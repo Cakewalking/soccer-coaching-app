@@ -1,4 +1,4 @@
-// Clean Sheet Family (family-app-v16): a parent uploads a video, and credits pay for finding their own child's moments.
+// Clean Sheet Family (family-app-v18): a parent uploads a video, and credits pay for finding their own child's moments.
 // This is a demo of the flows on sample data. Nothing here analyses real film, and the purchase is a stub.
 // Prices, pack sizes, the rate table, the check's thresholds and the club offer are placeholders until Booker confirms them.
 
@@ -16,6 +16,12 @@ export const aboutGames = (balance: number, joined = false) => Math.floor(balanc
 export const TEAM = { back: 20, families: 10, days: 14, factor: 0.5 }
 /** Send to the team does not go live until the children's privacy review has covered it. False takes its row off the Share page. */
 export const TEAM_LINK = true
+/** Taking back all filming consent (FAM36w). Built, and not to go live until the same review has covered it. Off, the row on "Filming and photos" is not shown. */
+export const CONSENT_BACK = true
+/** The club's side of the app, once the club has joined: the week's sessions, and the three things the club asks each family about filming. Sample data. */
+export const SESSIONS: { id: string; title: string; when: string; says: string }[] = [{ id: 'tue', title: 'Training', when: 'Tue 23 June · 5:00 · Reserve pitch 2', says: 'Training' }, { id: 'sun', title: 'Game v Eastbank', when: 'Sun 28 June · 9:30 · home', says: 'Game v Eastbank' }, { id: 'jul', title: 'Game v Northgate City', when: 'Sun 5 July · 10:15 · away', says: 'Game v Northgate City' }]
+export const ASKS: [string, string][] = [['Film games and training for coaching', 'Seen by {name}’s coaches only'], ['Show {name} in team-mates’ clips', 'Unblurred, for families in this team'], ['Photos in club news', 'The club’s website and newsletter']]
+export const STAFF = { coach: 'Luke', manager: 'Mel', welfare: 'Helen Park' }
 /** A parent who opened the link, tapped a shirt and typed a first name and birth year. This is all the uploader ever sees of them. */
 export type Asker = { account: string; child: string; year: number; shirt: string }
 /** One video's link: nothing is made for a family until the uploader says yes. */
@@ -131,7 +137,11 @@ export type Family = {
   balance: number; videos: Video[]; open: string; clip: number; /** which list the open clip is from: the reel, or one stat */ from: 'reel' | StatKey; stat: StatKey
   /** the video chosen for the check, a quote that is being held, and the work under way */ film: string; /** the first minutes of it only, or 0 for all of it */ part: number; both: boolean; anyway: boolean; held: { film: string; credits: number } | null; working: string | null
   people: Person[]; notify: boolean
-  /** families at the same club, the club's state, and whether "your club has joined" has been shown */ families: number; joined: boolean; toldJoined: boolean; coming: boolean
+  /** families at the same club, the club's state, and whether "your club has joined" has been shown */ families: number; joined: boolean; toldJoined: boolean
+  /** with the club: yes or no for each session, the club's three filming questions, whether they have been answered, what this parent has sent to the team chat, and whether the chat has been opened */ rsvp: Record<string, boolean>; consent: boolean[]; answered?: boolean; chat?: string[]; chatSeen?: boolean
+  /** the club's plan has ended, and the family has not been told yet (FAM41 shows once) */ paused?: boolean
+  /** the child being edited, the help topic picked, picking a video to delete, and "only upload on Wi-Fi" */ edit?: string | null; topic?: number; picking?: boolean; wifi?: boolean
+  /** a later video on its way up: how far, and whether it is paused or has stopped */ upload?: { pct: number; paused: boolean }
   /** links sent to other parents from the team, by video */ invites?: Record<string, Invite>
   pack: number; message: string | null; /** the library item that is open */ item: string
   /** "three games in": the child it is due for, and the children it has been shown for (once each) */ seasonDue: string | null; seasonTold: string[]
@@ -154,7 +164,7 @@ const MIAS: Video[] = [
 ]
 const PEOPLE: Person[] = [{ name: 'Kerem', how: 'Ari’s dad · has the app', on: true }, { name: 'Nan and Pop', how: 'Watch by a private link', on: true }]
 /** A family a few weeks in: two children, credits, reels. */
-const base = (): Family => ({ parent: 'Dana', email: 'dana@example.com', signedIn: true, kids: [ARI, MIA], kid: 'ari', club: HILLVIEW, freeUsed: true, offered: true, balance: 300, videos: [PARK, LAKESIDE, RIDGEWAY, PARKSIDE, NORTHGATE, BACKYARD, ...MIAS], open: 'g1', clip: 0, from: 'reel', stat: 'shots', film: 'f50', part: 0, both: false, anyway: false, held: null, working: null, people: PEOPLE, notify: true, families: 14, joined: false, toldJoined: false, coming: false, pack: 1, message: null, item: 'Wall ball to 20', seasonDue: null, seasonTold: ['mia'] })
+const base = (): Family => ({ parent: 'Dana', email: 'dana@example.com', signedIn: true, kids: [ARI, MIA], kid: 'ari', club: HILLVIEW, freeUsed: true, offered: true, balance: 300, videos: [PARK, LAKESIDE, RIDGEWAY, PARKSIDE, NORTHGATE, BACKYARD, ...MIAS], open: 'g1', clip: 0, from: 'reel', stat: 'shots', film: 'f50', part: 0, both: false, anyway: false, held: null, working: null, people: PEOPLE, notify: true, families: 14, joined: false, toldJoined: false, rsvp: { tue: true, sun: true }, consent: [true, true, false], pack: 1, message: null, item: 'Wall ball to 20', seasonDue: null, seasonTold: ['mia'] })
 /** A parent who has just opened the app: the sample child is filled in and can be changed. */
 const brandNew = (): Family => ({ ...base(), signedIn: false, kids: [ARI], freeUsed: false, offered: false, balance: 0, videos: [], notify: false })
 const first = (state: Video['state']): Video => ({ ...RIDGEWAY, id: 'n1', state, film: 'f50', minutes: 50, credits: 0, stats: statsFor(50, 24), clips: state === 'ready' ? RIDGEWAY.clips : [] })
@@ -163,11 +173,16 @@ export function preset(id: string): Family {
   const b = base(), n = brandNew(), joined = { joined: true, toldJoined: true, videos: [FUTSAL, PARKSIDE, RIDGEWAY, NORTHGATE, ...MIAS], open: 'g6' }
   if (id === 'FAM1-Welcome' || id === 'FAM0-SignUp') return n
   if (id === 'FAM22-ThreeGames') return { ...b, seasonDue: 'ari', seasonTold: [] }
-  if (/^FAMt\d|^FAM3e|^FAM2-|^FAM2c|^FAM5f/.test(id)) return { ...n, signedIn: true }
+  if (/^FAMt\d|^FAM3e|^FAM2-|^FAM2c|^FAM2n|^FAM5f/.test(id)) return { ...n, signedIn: true }
   if (id === 'FAM5u-FreeUsed') return { ...n, signedIn: true, withheld: true, offered: true }
   if (id === 'FAM7-Working') return { ...n, signedIn: true, freeUsed: true, videos: [first('working')], working: 'n1', open: 'n1' }
   if (id === 'FAM8r-Reveal' || id === 'FAM6f-AfterFree') return { ...n, signedIn: true, freeUsed: true, videos: [first('ready')], open: 'n1' }
   if (/^FAM23-|^FAM23a|^FAMi\d/.test(id)) return { ...b, invites: { g1: { daysLeft: 12, waiting: [ASKERS[0]], joined: [{ child: 'Leo', shirt: '4', when: 'on Monday' }, { child: 'Noor', shirt: '11', when: 'on Monday' }] } } }
+  if (id === 'FAM18d-DeleteVideo') return { ...b, open: 'g1', invites: { g1: { daysLeft: 12, waiting: [], joined: [{ child: 'Leo', shirt: '4', when: 'on Monday' }, { child: 'Noor', shirt: '11', when: 'on Monday' }] } } }
+  if (id === 'FAM15c-EditChild') return { ...b, edit: 'ari' }
+  if (/^FAM3[1-9]|^FAM40/.test(id)) return { ...b, ...joined, videos: [RIDGEWAY, FUTSAL, PARKSIDE, NORTHGATE, ...MIAS], open: 'g1' }   // the club's side, once it has joined
+  if (id === 'FAM41-ClubPaused') return { ...b, paused: true }
+  if (id === 'FAM7u-Uploading' || id === 'FAM7x-UploadStopped') return { ...b, upload: { pct: 62, paused: id === 'FAM7x-UploadStopped' } }
   if (id === 'FAM5b-Maybe') return { ...b, film: 'maybe' }
   if (id === 'FAM5x-CantRead' || id === 'FAM5p-PhoneCheck') return { ...b, film: 'bad', anyway: id === 'FAM5x-CantRead' }
   if (id === 'FAM5n-NotEnough') return { ...b, balance: 40 }
@@ -184,7 +199,7 @@ export const SAMPLE_OLDER = MIA
 export function addSampleOlder() { setFamily(s => s.kids.some(x => x.id === MIA.id) ? { kid: MIA.id, open: 'm1' } : { kids: [...s.kids, MIA], videos: [...s.videos, ...MIAS], kid: MIA.id, open: 'm1', clip: 0, from: 'reel' }) }
 
 const KEY = 'cs_family_v7'
-let state: Family = (() => { try { const v = JSON.parse(localStorage.getItem(KEY) ?? 'null') as Family | null; if (v?.kids?.length && v.videos && v.seasonTold && v.item) return { ...v, videos: v.videos.map(x => x.stats ? { ...x, stats: { ...x.stats, lists: { ...x.stats.lists, chances: x.stats.lists.chances ?? [], prog: x.stats.lists.prog ?? [], shots: x.stats.lists.shots.map(c => c.odds ? c : { ...c, odds: /goal/i.test(c.title) ? 2 : /saved/i.test(c.title) ? 4 : 8 }) } } } : x) } } catch { /* start again */ } return brandNew() })()
+let state: Family = (() => { try { const v = JSON.parse(localStorage.getItem(KEY) ?? 'null') as Family | null; if (v?.kids?.length && v.videos && v.seasonTold && v.item) return { ...v, rsvp: v.rsvp ?? { tue: true, sun: true }, consent: v.consent ?? [true, true, false], videos: v.videos.map(x => x.stats ? { ...x, stats: { ...x.stats, lists: { ...x.stats.lists, chances: x.stats.lists.chances ?? [], prog: x.stats.lists.prog ?? [], shots: x.stats.lists.shots.map(c => c.odds ? c : { ...c, odds: /goal/i.test(c.title) ? 2 : /saved/i.test(c.title) ? 4 : 8 }) } } } : x) } } catch { /* start again */ } return brandNew() })()
 const subs = new Set<() => void>()
 export function setFamily(patch: Partial<Family> | ((f: Family) => Partial<Family>)) { state = { ...state, ...(typeof patch === 'function' ? patch(state) : patch) }; try { localStorage.setItem(KEY, JSON.stringify(state)) } catch { /* kept for this visit only */ } subs.forEach(f => f()) }
 export const useFamily = (): Family => useSyncExternalStore(f => { subs.add(f); return () => { subs.delete(f) } }, () => state, () => state)

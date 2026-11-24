@@ -669,7 +669,7 @@ function RecordView({ empty, onDrill, onRecording }: { empty: boolean; onDrill: 
       <Card><div style={{ padding: 20, textAlign: 'center' }}>
         <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 6 }}>Pair a camera, or start with your phone</div>
         <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5, marginBottom: 14 }}>Any camera that saves a video file works. With no kit you can still count by hand, and it goes into each player's notes.</div>
-        <div style={{ display: 'flex', gap: 8, justifyContent: 'center' }}><Btn label="Pair a camera" primary/><Btn label="Count by hand"/></div>
+        <div style={{ display: 'flex', gap: 8, justifyContent: 'center' }}><Btn label="Pair a camera" primary onClick={() => openScreen('ACC8p-PairCamera')}/><Btn label="Count by hand"/></div>
       </div></Card>
       <StepList items={[
         { n: '1', title: 'A camera', note: 'Clips for parents and term reports' },

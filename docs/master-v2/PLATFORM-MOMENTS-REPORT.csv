@@ -1,0 +1,26 @@
+control id,screen,control,does,target or line,status: works / line of text only / missing / wrong target (say where)
+PLT1-PlanEnding#1,PLT1-PlanEnding,Help,Says,"Help opens here: common questions, and how to reach a person.",works
+PLT1-PlanEnding#2,PLT1-PlanEnding,Keep the plan,Says,The plan carries on. The next payment is 1 July.,works
+PLT1-PlanEnding#3,PLT1-PlanEnding,Is it being used?,Opens,PRM6-Usage,works
+PLT1-PlanEnding#4,PLT1-PlanEnding,Let it end,Opens,PLT3-CancelPlan,works
+PLT2-PaymentFailed#1,PLT2-PaymentFailed,Help,Says,"Help opens here: common questions, and how to reach a person.",works
+PLT2-PaymentFailed#2,PLT2-PaymentFailed,Update the card,Says,Card details open with your payment provider.,works
+PLT2-PaymentFailed#3,PLT2-PaymentFailed,Pay by invoice instead,Says,We email an invoice to the treasurer. Pay within 14 days.,works
+PLT2-PaymentFailed#4,PLT2-PaymentFailed,This month’s bill,Opens,PRM3-Bill,works
+PLT3-CancelPlan#1,PLT3-CancelPlan,Help,Says,"Help opens here: common questions, and how to reach a person.",works
+PLT3-CancelPlan#2,PLT3-CancelPlan,Keep the plan,Opens,PRM1-FeaturesByTeam,works
+PLT3-CancelPlan#3,PLT3-CancelPlan,End on 30 June,Says,The plan ends on 30 June. You can change your mind before then.,works
+PLT4-PlanEnded#1,PLT4-PlanEnded,Help,Says,"Help opens here: common questions, and how to reach a person.",works
+PLT4-PlanEnded#2,PLT4-PlanEnded,Open in read-only,Opens,T1-TabletTraining,"works: T1 is the coach app on Home, and the Home page inside it carries the id STO5-HomeStoryJuniors. Nothing in the build is read-only, so it opens the app as normal"
+PLT4-PlanEnded#3,PLT4-PlanEnded,Download my season,Says,"A file with your sessions, notes and reports is on its way to your email.",works
+PLT4-PlanEnded#4,PLT4-PlanEnded,Ask the club to restart,Says,"Sent to Rosa Marin, the billing owner.",works
+PLT5-LostAccess#1,PLT5-LostAccess,Help,Says,"Help opens here: common questions, and how to reach a person.",works
+PLT5-LostAccess#2,PLT5-LostAccess,"I have a new mobile number · We send the code to your email, then you change the number",Says,"Code sent to your email. After it, you set the new number.",works
+PLT5-LostAccess#3,PLT5-LostAccess,"I have a new email · We text the code, then you change the email",Says,"Code texted. After it, you set the new email.",works
+PLT5-LostAccess#4,PLT5-LostAccess,I’ve lost both · Your club’s admin confirms it’s you. For Wattle Creek FC that is Rosa Marin,Says,Rosa Marin has been asked to confirm you. You get a link once she does.,works
+PLT5-LostAccess#5,PLT5-LostAccess,I am the club’s admin · We call the club’s registered number. One to two working days,Says,We will call the club’s registered number within two working days.,works
+PLT5-LostAccess#6,PLT5-LostAccess,Back to sign in,Opens,SI1-SignIn,works
+PLT6-ConsentChanged#1,PLT6-ConsentChanged,Help,Says,"Help opens here: common questions, and how to reach a person.",works
+PLT6-ConsentChanged#2,PLT6-ConsentChanged,Fix the 2 playlists,Opens,CL1-Playlists,works
+PLT6-ConsentChanged#3,PLT6-ConsentChanged,Done,Opens,T1-TabletTraining,"works: T1 is the coach app on Home, and the Home page inside it carries the id STO5-HomeStoryJuniors. It is U12 Sam's Home, though the screen is about U11 Luke's team"
+PLT6-ConsentChanged#4,PLT6-ConsentChanged,Consent for the whole team,Opens,P1-Consent,works

@@ -58,6 +58,7 @@ export const SCREEN_ALIAS: Record<string, string> = {
   // sign-in, sandbox and fault screens were registered by short code only
   'SI1-SignIn': 'SI1', 'SI2-Code': 'SI2', 'SI3-CodeWrong': 'SI3', 'SI4-CodeExpired': 'SI4', 'SI6-NewDevice': 'SI6', 'SI7-SignedOut': 'SI7',
   'SB1-SandboxEnding': 'SB1', 'SB2-SandboxEnded': 'SB2', 'SB3-NoSandbox': 'SB3', 'SB4-KeepGoing': 'SB4',
+  'PLT1-PlanEnding': 'PLT1', 'PLT2-PaymentFailed': 'PLT2', 'PLT3-CancelPlan': 'PLT3', 'PLT4-PlanEnded': 'PLT4', 'PLT5-LostAccess': 'PLT5', 'PLT6-ConsentChanged': 'PLT6',
   'ER1-SomethingWrong': 'ER1', 'ER2-UploadFailed': 'ER2', 'ER3-Loading': 'ER3', 'ER4-NotFound': 'ER4', 'ER5-NoAccess': 'ER5',
   'SIp1-SignIn': 'SIp1', 'SIp2-Code': 'SIp2', 'SIp3-CodeProblem': 'SIp3', 'ERp1-SomethingWrong': 'ERp1', 'ERp2-NotFound': 'ERp2',
   'PA-Thanks': 'pa-thanks',

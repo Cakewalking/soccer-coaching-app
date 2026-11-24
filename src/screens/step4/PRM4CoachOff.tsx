@@ -59,7 +59,7 @@ export default function PRM4CoachOff({ onNav }: { onNav?: (s: string) => void })
               Wattle Creek FC has this off for under 6 to under 11. "New coaches learn to read the game first." Rachel, director of football.
             </div>
             {/* Ask Rachel [nth=1, change] */}
-            <button onClick={() => tool('A note goes to Rachel. Say why it would help your team.')} style={{ height: 46, padding: '0 28px', background: AMBER, color: INK, border: 'none', borderRadius: 12, fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Ask Rachel</button>
+            <button onClick={() => onNav ? onNav('PRM5-CoachAsk') : tool('A note goes to Rachel. Say why it would help your team.')} style={{ height: 46, padding: '0 28px', background: AMBER, color: INK, border: 'none', borderRadius: 12, fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Ask Rachel</button>
           </div>
         </div>
 

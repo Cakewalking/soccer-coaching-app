@@ -18,7 +18,8 @@ export const STO16: PhoneCfg = {
 export const STO17: PhoneCfg = {
   id: 'STO17-HomeStoryParent', roleLine: 'Wattle Creek FC · parent', greeting: 'Mia and Bao', avatar: 'LT',
   kids: [{ ini: 'M', label: 'Mia · U12 Sam' }, { ini: 'B', label: 'Bao · U8 Hannah' }],
-  tabs: [{ label: 'Home', target: 'PA-ParentHome' }, { label: 'Clips', target: 'PA-Clip' }, { label: 'Learn', target: 'LEARN-Parent' }, { label: 'Messages', target: 'PM1-ParentChats' }, { label: 'Me', target: 'PS1-ParentSettings' }],
+  // Home names the family app's home (handover v12: the family app is the only parent app). The tab bar does not read the first tab's target: Home here returns to this page.
+  tabs: [{ label: 'Home', target: 'FAM14-HomeWithClub' }, { label: 'Clips', target: 'PA-Clip' }, { label: 'Learn', target: 'LEARN-Parent' }, { label: 'Messages', target: 'PM1-ParentChats' }, { label: 'Me', target: 'PS1-ParentSettings' }],
   blocks: [
     { kind: 'proof', label: 'MIA · U12 SAM · SATURDAY', headline: 'Mia won the ball back four times on Saturday. Sam sent you the clip.', second: 'Her goal this term is pressing as a pair. A month ago she did it once a game.', clip: { duration: '0:12', note: 'Only you, Mia and her coaches can see this.' }, btn: 'Watch Mia’s 12 seconds', btnTarget: 'PA-Clip' },
     { kind: 'list', label: 'THIS WEEK · 2 CHILDREN', title: 'The Tran family', text: 'Mia and Bao both kick off at 9:30 on Saturday.', action: 'See the family week', actionTarget: 'CNp11-FamilyView' },

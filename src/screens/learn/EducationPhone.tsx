@@ -90,7 +90,7 @@ export default function EducationPhone({ start = 'ECp1-FamilyLibrary', team, chi
     const row = (name: string, titles: string[]) => { const its = mine.filter(i => i.shelf === name), order = [...titles.map(tt => its.find(i => i.title === tt)).filter((i): i is PItem => !!i), ...its.filter(i => !titles.includes(i.title))]; return shelf(name, order.map(i => tile(i.id, 'figure', i.length, i.title, i.kind, i.id)), order.length) }
     return (
       <div data-screen="ECp3-PlayerLibrary" style={phone}>
-        {head(`${t.label} · ${kid}`, 'Learn', 'PU1-PlayerHome', ini ?? 'MR')}
+        {head(`${t.label} · ${kid}`, 'Learn', 'PO1-OlderHome', ini ?? 'MR')}
         <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 12 }}>
           <LearnPlayer phone tryLabel="Try" chapters={chapters('team', 11, 'Your first touch', 'You')} ratio="362 / 215" chips={['Your clip · Saturday']} captions={captions} onCaptions={setCaptions} say={demoToast}
             tryCard={{ heading: 'Your first touch under pressure', at: '', task: `Picked by ${t.coach} · goes with your goal for this term`, button: '', done: false, onAdd: () => {} }} />

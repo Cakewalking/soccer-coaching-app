@@ -1,4 +1,4 @@
-// Clean Sheet Family (family-app-v16), on a phone. A parent uploads a video; credits pay for finding their own child's
+// Clean Sheet Family (family-app-v18), on a phone. It is the one app a parent uses, before and after their club joins. A parent uploads a video; credits pay for finding their own child's
 // moments, and the first video is free. It works whether or not the club uses Clean Sheet. A child's reel and numbers are
 // private to the family for ever: no control here sends a video, a clip or a count to a club, a coach or another family.
 // Another family can get their own child's moments from a video, only if the uploader sends them the link and says yes.
@@ -11,7 +11,7 @@ import { G, INK, MUT, LINE, PALE } from '../capture/marks'
 import LearnPlayer, { Thumb } from '../learn/LearnPlayer'
 import EducationPhone from '../learn/EducationPhone'
 import { byTitle } from '../learn/library'
-import { ADDED_ODDS, ASKERS, CHECK, CLUBS, HOWS, KINDS, MAX_MINUTES, OFFER_AT, PACKS, RATES, SAMPLE_OLDER, SHOW_COUNT_AT, SHOW_XG, STAT, STAT_KEYS, TEAM, TEAM_LINK, aboutGames, affordable, addSampleOlder, ageOf, clockOf, familyNow, film, filmId, finish, freeLeft, freshFamily, fullGames, howOf, named, ord, outcome, preset, priceOf, quote, reelOf, secsOf, setFamily, spend, tagged, useFamily, worth, xgOf, type Clip, type Family, type Invite, type Kind, type StatKey, type Video } from './familyStore'
+import { ADDED_ODDS, ASKERS, ASKS, CHECK, CONSENT_BACK, SESSIONS, STAFF, CLUBS, HOWS, KINDS, MAX_MINUTES, OFFER_AT, PACKS, RATES, SAMPLE_OLDER, SHOW_COUNT_AT, SHOW_XG, STAT, STAT_KEYS, TEAM, TEAM_LINK, aboutGames, affordable, addSampleOlder, ageOf, clockOf, familyNow, film, filmId, finish, freeLeft, freshFamily, fullGames, howOf, named, ord, outcome, preset, priceOf, quote, reelOf, secsOf, setFamily, spend, tagged, useFamily, worth, xgOf, type Clip, type Family, type Invite, type Kind, type StatKey, type Video } from './familyStore'
 
 // Colour (family-app-v10). Green: things you do. Amber: your child's moments, and anything free. Mauve, on plum: with your club.
 // Writing on amber, mauve and every tint is INK. Amber is never on an Estimate chip or a stat's number. The club's web page stays green.
@@ -32,12 +32,21 @@ const cap: React.CSSProperties = { fontSize: 11, fontWeight: 700, letterSpacing:
 const chip = (on: boolean): React.CSSProperties => ({ flex: 'none', minHeight: 44, minWidth: 44, padding: '0 16px', boxSizing: 'border-box', borderRadius: 999, border: on ? 0 : `1px solid ${LINE}`, background: on ? G : '#fff', color: on ? '#fff' : INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' })
 const svg = { fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const, 'aria-hidden': true }
 const I = ({ d, size = 20, w = 2 }: { d: string; size?: number; w?: number }) => <svg width={size} height={size} viewBox="0 0 24 24" {...svg} strokeWidth={w}><path d={d} /></svg>
-const CLOCK = 'M12 3a9 9 0 100 18 9 9 0 000-18zM12 7v5l3 2', TICK = 'M5 12l5 5 9-10', CHEV = 'M9 6l6 6-6 6', BACK = 'M15 6l-6 6 6 6', SHIELD = 'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z', LOCK = 'M7 11V8a5 5 0 0110 0v3M5 11h14v10H5z', PLAY = 'M8 5l11 7-11 7z', PLUS = 'M12 5v14M5 12h14', CROSS = 'M7 7l10 10M17 7L7 17', VIDEO = 'M3 7h12v10H3zM15 10l6-3v10l-6-3', BARS = 'M6 20v-6M12 20V6M18 20v-9'
-const TABS: [string, string, string, string][] = [['Home', 'M4 11l8-7 8 7v9H4z', 'home', 'FAM3-Home'], ['Reels', VIDEO, 'reels', 'FAM18-Reels'], ['Learn', 'M5 4h14v16H5zM9 4v16', 'learn', 'FAM17-Learn'], ['Club', SHIELD, 'club', 'FAM11-Locked']]
+const CLOCK = 'M12 3a9 9 0 100 18 9 9 0 000-18zM12 7v5l3 2', TICK = 'M5 12l5 5 9-10', CHEV = 'M9 6l6 6-6 6', BACK = 'M15 6l-6 6 6 6', SHIELD = 'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z', LOCK = 'M7 11V8a5 5 0 0110 0v3M5 11h14v10H5z', PLAY = 'M8 5l11 7-11 7z', PLUS = 'M12 5v14M5 12h14', CROSS = 'M7 7l10 10M17 7L7 17', VIDEO = 'M3 7h12v10H3zM15 10l6-3v10l-6-3', BARS = 'M6 20v-6M12 20V6M18 20v-9', PEOPLE = 'M8 11a3 3 0 100-6 3 3 0 000 6zm8 0a3 3 0 100-6 3 3 0 000 6zM2 20c0-3 3-5 6-5s6 2 6 5M14 20c0-2 1-4 4-4s4 2 4 4', WARN = 'M12 8v5M12 16.5v.5M12 3l9.5 17h-19z', UPLOAD = 'M12 16V5M7 10l5-5 5 5M5 20h14'
+const TABS: [string, string, string, string][] = [['Home', 'M4 11l8-7 8 7v9H4z', 'home', 'FAM3-Home'], ['Reels', VIDEO, 'reels', 'FAM18-Reels'], ['Team', PEOPLE, 'team', 'FAM30-TeamLocked'], ['Learn', 'M5 4h14v16H5zM9 4v16', 'learn', 'FAM17-Learn'], ['Club', SHIELD, 'club', 'FAM11-Locked']]
 const HOMES = ['FAM3-Home', 'FAM3e-HomeEmpty', 'FAM14-HomeWithClub']
 // Retired 23 Nov: stats are for every age, so there is one Home and one results screen. The boards still open, and say so.
 // Learn is a club feature (Booker, 24 Nov): closed, with an explanation, until the club joins.
 const LEARNS = ['FAM17-Learn', 'FAM17u-LearnWithClub']
+// One parent app (Booker, 24 Nov): the club's features live here. Team and Learn are closed, with an explanation, until the club joins; then the same tabs open.
+const TEAMS = ['FAM31-Team', 'FAM32-TeamChat', 'FAM33-Coming', 'FAM34-Lineup', 'FAM35-Forms', 'FAM39-Fees'], CLUBSIDE = ['FAM36-Consent', 'FAM36w-ConsentBack', 'FAM37-FromCoach', 'FAM38-Concern', 'FAM40-ClubHome']
+const ABOUT = ['How my child is treated', 'Another adult', 'Game time', 'Filming', 'Something else']
+const TOPICS: [string, string][] = [['A reel is wrong', 'Wrong child, a missed moment'], ['Credits or a payment', 'A refund, a failed payment'], ['The free video', 'It says mine has been used'], ['A link from another parent', ''], ['Something else', '']]
+const STATES = ['Victoria', 'New South Wales', 'Queensland', 'South Australia', 'Western Australia', 'Tasmania', 'Australian Capital Territory', 'Northern Territory']
+const RESTORED = 'Checked with your app store. Anything you paid for is back in your balance.'
+/** Placeholder for legal review: clips of a child already shared with the team come down within this many days of consent being taken back. */
+const CLIPS_DOWN_DAYS = 7
+const BAR = '#e3ad2f'
 const RETIRED: Record<string, [string, string]> = { 'FAM3m-HomeStats': ['FAM3-Home', 'Stats are for every age now, so there is one Home, not one for under 12 and one for 12 and over.'], 'FAM8b-Results13': ['FAM8-Results', 'Stats are for every age now, so there is one results screen, not one for under 12 and one for 12 and over.'] }
 const WORDS = ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven']
 const SAMPLE = 'A sample reel plays full screen: 48 seconds.'
@@ -75,6 +84,7 @@ const pill: React.CSSProperties = { minHeight: 30, padding: '0 14px', borderRadi
 function homeOf(s: Family) {
   const kid = s.kids.find(x => x.id === s.kid) ?? s.kids[0]
   if (!s.signedIn) return 'FAM1-Welcome'
+  if (s.paused) return 'FAM41-ClubPaused'   // the club's plan has ended: said once
   if (s.joined) return s.toldJoined ? 'FAM14-HomeWithClub' : 'FAM13-ClubJoined'
   if (!s.videos.length) return 'FAM3e-HomeEmpty'
   if (s.seasonDue && s.seasonDue === kid?.id && s.club) return 'FAM22-ThreeGames'
@@ -107,6 +117,10 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
   const [toast, setToast] = useState<string | null>(() => said)
   const [captions, setCaptions] = useState(true)
   const [sheet, setSheet] = useState<'delete' | 'close' | null>(null)
+  const [sure, setSure] = useState<{ text: string; no: string; yes: string; on: () => void } | null>(null)   // a question asked before something that cannot be undone
+  const [draft, setDraft] = useState(''), [anns, setAnns] = useState(false), [about, setAbout] = useState(0), [story, setStory] = useState('')
+  const [ed, setEd] = useState<{ id: string; name: string; year: string } | null>(null), [st, setSt] = useState(STATES[0])
+  const [rq, setRq] = useState({ club: '', date: '', email: '', note: '' })
   const [all, setAll] = useState(''), [editing, setEditing] = useState(false), [adding, setAdding] = useState(false), [newName, setNewName] = useState('')
   const [q, setQ] = useState(start === 'FAM2c-PickClub' ? 'Hillv' : ''), [lost, setLost] = useState<{ name: string; place: string } | null>(null)
   const [extra, setExtra] = useState<{ name: string; year: string } | null>(null)   // a child being added from the account
@@ -138,8 +152,13 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
       if (v.state === 'few') to = 'FAM8x-TooFew'
       else if (!v.stats) to = 'FAM8-Results'
     }
-    if (to === 'FAM11-Locked' && s.joined) to = 'FAM13-ClubJoined'
-    if (to === 'FAM5-Check') to = s.freeUsed ? checkOf(s) : s.withheld && s.kids[0]?.number ? checkOf(s) : 'FAM2-AddChild'
+    if (to === 'FAM30-TeamLocked' || TEAMS.includes(to)) to = !s.joined ? 'FAM30-TeamLocked' : to === 'FAM30-TeamLocked' ? 'FAM31-Team' : to
+    if (CLUBSIDE.includes(to) && !s.joined) to = 'FAM11-Locked'
+    if (to === 'FAM11-Locked' && s.joined) to = s.toldJoined ? 'FAM40-ClubHome' : 'FAM13-ClubJoined'
+    if (s.picking && to !== 'FAM18-Reels') setFamily({ picking: false })
+    if (to === 'FAM5-Check') { to = s.freeUsed || (s.withheld && s.kids[0]?.number) ? checkOf(s) : 'FAM2-AddChild'
+      // a later video uploads before the check can read it. The first one uploads while the parent says who to look for (FAM2). The phone's own check, and a game the club filmed, come before any upload.
+      if (!['FAM2-AddChild', 'FAM5p-PhoneCheck', 'FAM5c-ClubFilmedThis'].includes(to)) { setFamily({ upload: { pct: 0, paused: false } }); to = 'FAM7u-Uploading' } }
     if (to === 'STA3-PickRole') { if (onNav) onNav(to); else openScreen(to); return }
     setView(to); top()
   }
@@ -147,6 +166,9 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
   const side = (id: string) => { if (!['FAM19-Account', 'FAM15-Children', 'FAM16-Privacy', 'FAM4-BeforeYouFilm', 'FAM6-Credits', 'FAM10-ShareFamily', 'FAM23-InviteTeam', 'FAM23e-InviteTeamFirst', 'FAM23a-InviteConfirm'].includes(view)) setRet(view); setView(id); top() }
   const back = () => go(ret && ret !== view ? ret : 'FAM3-Home')
   const openVideo = (v: Video) => { setFamily({ open: v.id, clip: 0, from: 'reel', ...(v.state === 'working' ? { working: v.id } : v.state === 'unread' ? { film: v.film ?? 'bad', anyway: true, held: null } : {}) }); if (v.state === 'working') { setView('FAM7-Working'); top() } else if (v.state === 'unread') { setView('FAM5x-CantRead'); top() } else go('FAM8-Results') }
+  const hop = (id: string) => () => { setView(id); top() }
+  const help = (topic: number, from = 'FAM19-Account') => { setFamily({ topic }); setRet(from); setView('FAM24-Help'); top() }
+  const rsvp = (id: string, yes: boolean) => setFamily(x => ({ rsvp: { ...x.rsvp, [id]: yes } }))
   const openClip = (n: number, from: 'reel' | StatKey = 'reel') => { setFamily({ clip: n, from }); setView('FAM9-Clip'); top() }
   const pickKid = (id: string) => { const s = familyNow(), v = s.videos.find(x => x.kid === id && x.state === 'ready'); setFamily({ kid: id, open: v?.id ?? '', clip: 0, from: 'reel' }); say(`Showing ${s.kids.find(x => x.id === id)?.name}.`) }
   const pickFilm = (id: string) => { setFamily({ film: id, part: 0, both: false, anyway: false, held: null }); setView(checkOf(familyNow())); top() }
@@ -158,13 +180,22 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
   const wid = working?.id, begun = start === 'FAM7-Working' ? 3 : 0
   useEffect(() => { if (!said) return; const id = setTimeout(() => { keep(null); setToast(null) }, 3000); return () => clearTimeout(id) }, [])   // a line carried over from a board clears like any other
   const move = useRef(setView); useEffect(() => { move.current = setView })   // the timer moves on with the app as it is when it fires
+  const land = (id: string) => { const r = finish(id), kept = familyNow().videos.find(x => x.id === id)?.clips.length; move.current(r.made ? 'FAM8r-Reveal' : kept ? 'FAM8x-TooFew' : 'FAM3-Home'); top(); if (!r.made && !kept) setToast(`We could not find a moment in that one, so your ${r.back} credits are back.`) }
+  const landed = useRef(land); useEffect(() => { landed.current = land })
   useEffect(() => {
     if (view !== 'FAM7-Working' || !wid) return
     const count = { n: begun }
     const id = setInterval(() => { count.n += 1; const n = count.n; setTick({ id: wid, n }); if (n < 6) return
-      clearInterval(id); const r = finish(wid), kept = familyNow().videos.find(x => x.id === wid)?.clips.length; move.current(r.made ? 'FAM8r-Reveal' : kept ? 'FAM8x-TooFew' : 'FAM3-Home'); top(); if (!r.made && !kept) setToast(`We could not find a moment in that one, so your ${r.back} credits are back.`) }, 1000)
+      clearInterval(id); landed.current(wid) }, 1000)
     return () => clearInterval(id)
   }, [view, wid, begun])
+  // a later video uploads, then the check reads it. In the demo the upload takes a few seconds; the board stays as it is drawn.
+  const pct = f.upload?.pct ?? 0, held = !!f.upload?.paused, still = start === 'FAM7u-Uploading'
+  useEffect(() => {
+    if (view !== 'FAM7u-Uploading' || held || still) return
+    const id = setTimeout(() => { if (pct >= 100) { move.current(checkOf(familyNow())); top() } else setFamily({ upload: { pct: Math.min(100, pct + 4), paused: false } }) }, 170)
+    return () => clearTimeout(id)
+  }, [view, pct, held, still])
   // the upload carries on while the parent says who to look for
   useEffect(() => { if (view !== 'FAM2-AddChild') return; const id = setInterval(() => setUp(u => Math.min(100, u + 3)), 450); return () => clearInterval(id) }, [view])
 
@@ -174,6 +205,12 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
   // ── the pieces every page shares ──
   const overlays = <>
     {toast && <div role="status" style={{ position: 'fixed', left: '50%', bottom: 132, transform: 'translateX(-50%)', width: 'max-content', maxWidth: 'min(350px, calc(100vw - 32px))', zIndex: 60, pointerEvents: 'none', boxSizing: 'border-box', padding: '12px 16px', borderRadius: 14, background: '#1f4a3e', color: '#fff', fontSize: 15, lineHeight: '21px', fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)' }}>{toast}</div>}
+    {sure && <div role="dialog" aria-label={sure.yes} style={{ position: 'fixed', inset: 0, zIndex: 70, background: 'rgba(16,33,31,0.45)', display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
+      <div style={{ width: '100%', maxWidth: 430, boxSizing: 'border-box', background: '#fff', color: INK, borderRadius: '18px 18px 0 0', padding: '18px 16px 22px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <strong style={{ fontSize: 18, lineHeight: '24px' }}>{sure.text}</strong>
+        <div style={{ display: 'flex', gap: 10 }}><button onClick={() => setSure(null)} style={btn(false)}>{sure.no}</button><button onClick={() => { const on = sure.on; setSure(null); on() }} style={btn(true)}>{sure.yes}</button></div>
+      </div>
+    </div>}
     {sheet && <div role="dialog" aria-label={sheet === 'delete' ? 'Delete everything' : 'Close my account'} style={{ position: 'fixed', inset: 0, zIndex: 70, background: 'rgba(16,33,31,0.45)', display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
       <div style={{ width: '100%', maxWidth: 430, boxSizing: 'border-box', background: '#fff', color: INK, borderRadius: '18px 18px 0 0', padding: '18px 16px 22px', display: 'flex', flexDirection: 'column', gap: 12 }}>
         <strong style={{ fontSize: 18, lineHeight: '24px' }}>{sheet === 'delete' ? 'Delete all games, clips and your child’s details? This cannot be undone.' : 'Unused credits are refunded when you close your account.'}</strong>
@@ -182,11 +219,14 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
     </div>}
   </>
   const avatar = <button aria-label="Your account" onClick={() => side('FAM19-Account')} style={{ ...round, border: 0, background: '#cbbeb5', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>DB</button>
+  // Chat is one tap from anywhere once the club has joined (v18): a button in every green header, with a white count of what is unread. It clears when the chat is opened. Not shown before the club joins.
+  const unread = f.joined && !f.chatSeen && view !== 'FAM32-TeamChat' ? 2 : 0
+  const chat = f.joined && <button aria-label={unread ? `Team chat, ${unread} new` : 'Team chat'} onClick={() => { setFamily({ chatSeen: true }); setView('FAM32-TeamChat'); top() }} style={{ ...round, position: 'relative', border: 0, background: 'transparent', color: '#fff', cursor: 'pointer' }}><I d="M4 5h16v11H9l-5 4z" size={24} />{unread > 0 && <span style={{ position: 'absolute', top: 2, right: 0, minWidth: 18, height: 18, padding: '0 4px', boxSizing: 'border-box', borderRadius: 999, background: '#fff', color: NIGHT, fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{unread}</span>}</button>
   const arrow = (to: () => void, color = '#fff') => <button aria-label="Back" onClick={to} style={{ ...round, border: 0, background: 'transparent', color, marginLeft: -10, cursor: 'pointer' }}><I d={BACK} w={2.4} /></button>
   const head = (over: string, title: string, to?: string | (() => void)) => (
     <div style={{ flex: 'none', padding: '12px 18px', background: G, color: '#fff', display: 'flex', alignItems: 'center', gap: 10 }}>
       {to && arrow(typeof to === 'string' ? () => go(to) : to)}
-      <span style={{ flexGrow: 1, minWidth: 0 }}><span style={{ display: 'block', fontSize: 13, color: MINT }}>{over}</span><strong style={{ fontSize: 22, lineHeight: '27px', letterSpacing: '-0.01em' }}>{title}</strong></span>{avatar}
+      <span style={{ flexGrow: 1, minWidth: 0 }}><span style={{ display: 'block', fontSize: 13, color: MINT }}>{over}</span><strong style={{ fontSize: 22, lineHeight: '27px', letterSpacing: '-0.01em' }}>{title}</strong></span>{chat}{avatar}
     </div>)
   const tabs = (on: string) => (
     <nav aria-label="Family" style={{ flex: 'none', position: 'sticky', bottom: 0, display: 'flex', background: '#fff', borderTop: `1px solid ${LINE}`, padding: '4px 0 8px' }}>
@@ -235,6 +275,18 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
   const demo = (label: string, body: ReactNode) => <section aria-label={`Demo: ${label}`} style={{ borderRadius: 14, border: `1px dashed ${MUT}`, padding: '10px 12px', display: 'flex', flexDirection: 'column', gap: 6 }}><span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', color: MUT }}>DEMO · {label.toUpperCase()}</span>{body}</section>
   const group = (rows: [string, string, string, () => void][]) => <section style={{ ...card, gap: 0, padding: '2px 14px' }}>{rows.map(([a, b, v, on], n) => <button key={a} onClick={on} style={{ ...row, borderTop: n ? `1px solid ${HAIR}` : 0 }}><span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 16 }}>{a}</strong>{b && <span style={{ fontSize: 14, color: MUT }}>{b}</span>}</span>{v && <span style={{ fontSize: 15, color: MUT }}>{v}</span>}<I d={CHEV} size={16} /></button>)}</section>
 
+  const listed = (heading: string, rows: [string, string, string, () => void][]) => <section style={{ ...card, gap: 0, padding: '12px 14px 2px' }}><strong style={{ fontSize: 16, paddingBottom: 6 }}>{heading}</strong>{rows.map(([a, b, v, on]) => <button key={a} onClick={on} style={{ ...row, borderTop: `1px solid ${HAIR}` }}><span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 16 }}>{a}</strong>{b && <span style={{ fontSize: 14, color: MUT }}>{b}</span>}</span>{v && <span style={{ fontSize: 15, color: MUT }}>{v}</span>}<I d={CHEV} size={16} /></button>)}</section>
+  const field: React.CSSProperties = { width: '100%', boxSizing: 'border-box', minHeight: 50, padding: '0 12px', borderRadius: 10, border: `1px solid ${MUT}`, background: '#fff', fontFamily: 'inherit', fontSize: 17, color: INK }
+  const area: React.CSSProperties = { ...field, padding: 12, lineHeight: '23px', resize: 'vertical' }
+  const labelled = (l: string, node: ReactNode, hint?: string) => <label style={{ display: 'flex', flexDirection: 'column', gap: 4 }}><strong style={{ fontSize: 14 }}>{l}</strong>{node}{hint && <span style={{ fontSize: 13, color: MUT }}>{hint}</span>}</label>
+  const toggle = (a: string, b: string, on: boolean, set: () => void, first = false) => <button key={a} role="switch" aria-checked={on} onClick={set} style={{ ...row, minHeight: 60, borderTop: first ? 0 : `1px solid ${HAIR}` }}><span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 16 }}>{a}</strong><span style={{ fontSize: 14, color: MUT }}>{b}</span></span>
+    <span aria-hidden style={{ flex: 'none', position: 'relative', width: 48, height: 28, borderRadius: 999, background: on ? G : GREY }}><span style={{ position: 'absolute', top: 3, left: on ? 23 : 3, width: 22, height: 22, borderRadius: 999, background: '#fff' }} /></span></button>
+  const badge = (icon: string) => <span style={{ width: 64, height: 64, borderRadius: 999, background: G, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><I d={icon} size={28} w={2.3} /></span>
+  const quiet: React.CSSProperties = { ...link, minHeight: 48, fontSize: 15, alignSelf: 'center' }
+  const small: React.CSSProperties = { ...btn(false), minHeight: 44, fontSize: 14 }
+  const dark = (over: string, t: string, line?: string) => <section style={{ borderRadius: 16, background: DEEP, color: '#fff', padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 6 }}><span style={{ ...cap, color: SOFT }}>{over}</span><strong style={{ fontSize: 20, lineHeight: '26px' }}>{t}</strong>{line && <span style={{ fontSize: 14, lineHeight: '20px', color: MINT }}>{line}</span>}</section>
+  const squad = `U${age < 12 ? age : age + 1} ${STAFF.coach} · ${club}`
+
   /** What comes back from one video, as a white card: three sample numbers and sample clips. Sample figures, not a child's: dark ink on pale green, never amber. */
   const comesBack = (label: string, clips: number, foot?: ReactNode) => <div style={{ borderRadius: 20, background: '#fff', color: INK, padding: foot ? '12px 14px 4px' : '12px 14px 6px', display: 'flex', flexDirection: 'column', boxShadow: '0 14px 34px rgba(0,0,0,0.35)' }}>
     <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: MUT, paddingBottom: 8 }}>{label}</span>
@@ -246,6 +298,12 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
   let v = HOMES.includes(view) ? homeOf(f) : view
   if (LEARNS.includes(v) || /^ECp/.test(v)) v = f.joined ? 'FAM17u-LearnWithClub' : 'FAM17-Learn'   // nothing links to Learn content before the club joins
   if (v === 'FAM7-Working' && !working) v = homeOf(f)
+  if (v === 'FAM41-ClubPaused' && !f.paused) v = homeOf(f)
+  if (v === 'FAM30-TeamLocked' || TEAMS.includes(v)) v = !f.joined ? 'FAM30-TeamLocked' : v === 'FAM30-TeamLocked' ? 'FAM31-Team' : v
+  if (CLUBSIDE.includes(v) && !f.joined) v = 'FAM11-Locked'
+  if (v === 'FAM11-Locked' && f.joined) v = f.toldJoined ? 'FAM40-ClubHome' : 'FAM13-ClubJoined'
+  if (v === 'FAM36w-ConsentBack' && !CONSENT_BACK) v = 'FAM36-Consent'
+  if (v === 'FAM18d-DeleteVideo' && !video) v = 'FAM18-Reels'
   if ((['FAM8-Results', 'FAM20-GameStats', 'FAM21-StatClips', 'FAM9-Clip', 'FAM9a-AddMoment', 'FAM8x-TooFew', 'FAM10-ShareFamily', 'FAM8r-Reveal'].includes(v) || /^FAM23|^FAMi\d/.test(v)) && !video?.clips.length) v = homeOf(f)
   if ((v === 'FAM20-GameStats' || v === 'FAM21-StatClips') && !video?.stats) v = 'FAM8-Results'
 
@@ -308,7 +366,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
   </>, <div style={{ display: 'flex', gap: 26, justifyContent: 'center' }}><button onClick={() => side('FAM4-BeforeYouFilm')} style={{ ...link, fontSize: 15 }}>Filming tips</button><button onClick={() => say(SAMPLE)} style={{ ...link, fontSize: 15 }}>Watch a sample reel</button></div>)
 
   // ── FAM2c · pick the club from the list ──
-  if (v === 'FAM2c-PickClub') { const hits = CLUBS.filter(c => c.name.toLowerCase().includes(q.trim().toLowerCase())), done = () => { setView('FAM2-AddChild'); top() }
+  if (v === 'FAM2c-PickClub') { const hits = CLUBS.filter(c => c.name.toLowerCase().includes(q.trim().toLowerCase())), done = () => { const s = familyNow(); if (s.edit && s.joined && s.club?.name !== 'Hillview FC') setFamily({ joined: false, toldJoined: false }); setView(s.edit ? 'FAM15c-EditChild' : 'FAM2-AddChild'); top() }
     return shell('FAM2c-PickClub', head('Who are we looking for?', `${name}’s club`, done), <>
       <label style={{ display: 'flex', alignItems: 'center', gap: 8, height: 54, padding: '0 6px 0 14px', borderRadius: 14, border: `2px solid ${INK}`, background: '#fff' }}><svg width="18" height="18" viewBox="0 0 24 24" {...svg}><circle cx="11" cy="11" r="6.5" /><path d="M16 16l4.5 4.5" /></svg>
         <input aria-label="Search for a club" value={q} onChange={e => setQ(e.target.value)} style={{ flexGrow: 1, minWidth: 0, height: 44, border: 0, outline: 0, background: 'none', fontFamily: 'inherit', fontSize: 17, color: INK }} />
@@ -318,13 +376,22 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
           <span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 17 }}>{c.name}</strong><span style={{ fontSize: 14, color: MUT }}>{[c.place, c.far, c.sort, c.uses ? 'uses Clean Sheet' : ''].filter(Boolean).join(' · ')}</span></span>{on && <Dot />}</button> })}
           {!hits.length && <span style={{ fontSize: 14, color: MUT, padding: '12px 0', borderTop: `1px solid ${HAIR}` }}>No club by that name in the list.</span>}</div></section>
       <section style={{ ...card, gap: 0, padding: '2px 14px' }}>
-        <button onClick={() => { setLost(lost ?? { name: q, place: '' }); say('Type the club’s name and suburb. We check it and add it to the list, usually within a day.') }} style={row}><strong style={{ flexGrow: 1, fontSize: 16 }}>I can’t find it</strong><I d={CHEV} size={16} /></button>
-        {lost && <form onSubmit={e => { e.preventDefault(); if (!lost.name.trim() || !lost.place.trim()) { say('Add the club’s name and its suburb.'); return } setFamily({ club: { name: lost.name.trim(), place: lost.place.trim(), unmatched: true } }); setLost(null); done(); say(`${lost.name.trim()}: we will check it and add it to the list.`) }} style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: '4px 0 12px' }}>
-          {(['name', 'place'] as const).map(key => <input key={key} aria-label={key === 'name' ? 'The club’s name' : 'Its suburb'} placeholder={key === 'name' ? 'The club’s name' : 'Its suburb'} value={lost[key]} onChange={e => setLost({ ...lost, [key]: e.target.value })} style={{ height: 46, padding: '0 12px', borderRadius: 10, border: `1px solid ${LINE}`, fontFamily: 'inherit', fontSize: 16, color: INK }} />)}
-          <button type="submit" style={{ ...btn(true), flex: 'none', minHeight: 46 }}>Send it to be checked</button></form>}
+        <button onClick={() => { setLost(lost ?? { name: q, place: '' }); setView('FAM2n-ClubNotListed'); top() }} style={row}><strong style={{ flexGrow: 1, fontSize: 16 }}>I can’t find it</strong><I d={CHEV} size={16} /></button>
         <button onClick={() => { setFamily({ club: null }); done() }} style={{ ...row, borderTop: `1px solid ${HAIR}` }}><strong style={{ flexGrow: 1, fontSize: 16 }}>{name} isn’t at a club</strong><I d={CHEV} size={16} /></button></section>
       <span style={note}>Picking from the list means we can tell you when your club joins, and how many families there already use this. We never contact the club or tell it who you are.</span>
     </>, null) }
+
+  // ── FAM2n · a club that is not in the list: its name and suburb. It is checked and added; the video is not held up ──
+  if (v === 'FAM2n-ClubNotListed') { const l = lost ?? { name: '', place: '' }, away = hop('FAM2c-PickClub')
+    const add = () => { if (!l.name.trim() || !l.place.trim()) { say('Add the club’s name and its suburb.'); return } setFamily({ club: { name: l.name.trim(), place: `${l.place.trim()}, ${st}`, unmatched: true } }); setLost(null); setView(f.edit ? 'FAM15c-EditChild' : 'FAM2-AddChild'); top(); say(`${l.name.trim()}: we will check it and add it to the list.`) }
+    return shell(v, head('Who are we looking for?', 'Add your club', away), <>
+      <section style={{ ...card, gap: 12 }}>
+        {labelled('Club name', <input placeholder="Tap to type" value={l.name} onChange={e => setLost({ ...l, name: e.target.value })} style={field} />)}
+        {labelled('Suburb or town', <input placeholder="Tap to type" value={l.place} onChange={e => setLost({ ...l, place: e.target.value })} style={field} />)}
+        {labelled('State', <select value={st} onChange={e => setSt(e.target.value)} style={field}>{STATES.map(x => <option key={x}>{x}</option>)}</select>)}</section>
+      <section style={{ ...card, gap: 0, padding: '4px 14px' }}><Line top={false} a="We check it and add it" b="Usually within a day" /><Line a="Your video goes ahead now" b="You don’t have to wait" /><Line a="Other families will find it in the list" /></section>
+      <span style={note}>We use the club only to count how many families from it use Clean Sheet. We never contact the club for you.</span>
+    </>, null, actions(false, <button key="a" onClick={away} style={btn(false)}>Back</button>, <button key="b" onClick={add} style={btn(true)}>Add my club</button>)) }
 
   // ── FAM2 · who are we looking for (and, from the account, another child) ──
   if (v === 'FAM2-AddChild') {
@@ -334,7 +401,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
     const form = <section style={{ ...card, gap: 10 }}>
       <div style={{ display: 'flex', gap: 10 }}>{field('First name', nm, x => extra ? setExtra({ ...extra, name: x.split(' ')[0] }) : edit({ name: x.split(' ')[0] }))}{field('Year born', extra ? extra.year : String(kid.year || ''), x => { const y = x.replace(/\D/g, '').slice(0, 4); if (extra) setExtra({ ...extra, year: y }); else edit({ year: Number(y) }) }, true)}</div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}><strong style={{ fontSize: 14 }}>Their club</strong>
-        <button onClick={() => { setView('FAM2c-PickClub'); top() }} style={{ ...row, minHeight: 64, padding: '8px 12px', boxSizing: 'border-box', borderRadius: 12, border: `1px solid ${MUT}` }}>{f.club && <Dot />}<span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 17 }}>{f.club?.name ?? `${call} isn’t at a club`}</strong>{f.club && <span style={{ fontSize: 13, color: MUT }}>{f.club.place}{f.club.unmatched ? ' · being checked' : ''}</span>}</span><span style={{ ...link, minHeight: 0 }}>Change</span></button>
+        <button onClick={() => { setFamily({ edit: null }); setView('FAM2c-PickClub'); top() }} style={{ ...row, minHeight: 64, padding: '8px 12px', boxSizing: 'border-box', borderRadius: 12, border: `1px solid ${MUT}` }}>{f.club && <Dot />}<span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 17 }}>{f.club?.name ?? `${call} isn’t at a club`}</strong>{f.club && <span style={{ fontSize: 13, color: MUT }}>{f.club.place}{f.club.unmatched ? ' · being checked' : ''}</span>}</span><span style={{ ...link, minHeight: 0 }}>Change</span></button>
         <span style={{ fontSize: 13, color: MUT }}>Picked from the list of clubs. We never contact the club</span></div></section>
     const about = <span style={note}>First name, birth year and club are all we keep about {call}. You get clips and game stats, whatever their age.</span>
     const missing = () => say('Add a first name and the year they were born.')
@@ -363,22 +430,20 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
       {title('We can read this one.', 30)}<span style={{ fontSize: 17, lineHeight: '25px' }}>We can follow the play for {fm.readable} of {fm.minutes} minutes, and {name} is in shot for about {fm.inShot}. Enough for about {fm.moments} moments.</span>
       <section style={{ ...card, flexDirection: 'row', alignItems: 'center', gap: 12, marginTop: 6 }}><span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 16 }}>This video</strong><span style={{ fontSize: 13, color: MUT }}>{fm.minutes} minutes · credits back if we can’t make a reel</span></span><strong style={{ fontSize: 22, letterSpacing: '-0.02em' }}>{price}</strong><span style={{ fontSize: 13, color: MUT }}>credits</span></section>
       <section style={{ borderRadius: 14, background: PALE, padding: '10px 14px', display: 'flex', flexDirection: 'column', gap: 2 }}><strong style={{ fontSize: 14, lineHeight: '19px' }}>The free video has already been used</strong><span style={{ fontSize: 13, lineHeight: '19px' }}>It is one for each family. One has been used on this phone, or for {name} on another account.</span>
-        <button onClick={() => say('Help opens with this video and account filled in. A person replies within a day.')} style={{ ...link, alignSelf: 'flex-start' }}>That’s not right</button></section>
+        <button onClick={() => help(2, v)} style={{ ...link, alignSelf: 'flex-start' }}>That’s not right</button></section>
       {demo('the free video', <button onClick={() => { setFamily({ withheld: false, offered: false, held: null }); setView('FAM5f-CheckFree'); top(); say('A person has looked at it: the free video is yours.') }} style={{ ...btn(false), minHeight: 44, fontSize: 14 }}>A person gives the free video by hand</button>)}
     </>, <><button onClick={() => { setFamily({ held: { film: fm.id, credits: price } }); setView('FAM6-Credits'); top() }} style={big(false)}>Get credits<span style={{ fontSize: 13, fontWeight: 500 }}>{p.credits} credits is ${p.price}</span></button>
       <button onClick={() => { setFamily({ held: null }); setView('FAM3e-HomeEmpty'); top() }} style={{ ...link, minHeight: 48, fontSize: 15, alignSelf: 'center' }}>Not now</button></>) }
 
 
   // ── FAM7 · working on it ──
-  if (v === 'FAM7-Working' && working) { const fm = film(working.film ?? 'f50'), n = Math.min(6, tick.id === working.id ? tick.n : begun), found = Math.min(fm.found, n), left = [20, 16, 12, 8, 4, 1, 1][n], R = 92, C = 2 * Math.PI * R
-    return plain('FAM7-Working', true, <Mark />, <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14, textAlign: 'center' }}>
-      <div style={{ position: 'relative', width: 210, height: 210 }}><svg width="210" height="210" viewBox="0 0 210 210" aria-hidden><circle cx="105" cy="105" r={R} fill="none" stroke="rgba(255,255,255,0.22)" strokeWidth="10" /><circle cx="105" cy="105" r={R} fill="none" stroke={AMBER} strokeWidth="10" strokeLinecap="round" strokeDasharray={C} strokeDashoffset={C * (1 - Math.max(0.04, n / 6))} transform="rotate(-90 105 105)" style={{ transition: 'stroke-dashoffset 0.9s linear' }} /></svg>
-        <span style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}><strong style={{ fontSize: 54, lineHeight: '58px' }}>{found}</strong><span style={{ fontSize: 15 }}>{found === 1 ? 'moment' : 'moments'} so far</span></span></div>
-      <h1 style={{ margin: 0, fontSize: 28, letterSpacing: '-0.02em' }}>Finding {name}’s moments.</h1>
-      <span role="status" style={{ fontSize: 17, lineHeight: '24px', color: MINT }}>About {left} {left === 1 ? 'minute' : 'minutes'} to go. Close the app if you like; we’ll let you know.</span>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 104px))', gap: 8, minHeight: 60 }}>{(fm.short ? [KINDS.turn, KINDS.look] : TOUR).slice(0, Math.min(found, 3)).map((c, k) => <Thumb key={k} kind="team" len={c.len} wide />)}</div>
-    </div>, <><span style={{ ...note, color: MINT }}>Everyone except {name} was blurred before anything was saved.</span>
-      <button aria-pressed={f.notify} onClick={() => { setFamily({ notify: true }); say('Your phone asks to allow notifications. We send one when the reel is ready, and nothing else.') }} style={{ ...big(false), background: 'transparent', border: '1.5px solid #fff' }}>Tell me when it’s ready</button></>) }
+  if (v === 'FAM7-Working' && working) { const n = Math.min(6, tick.id === working.id ? tick.n : begun), cutting = n >= 4
+    const step = (a: string, b: string, done: boolean, first = false) => <div key={a} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', padding: '9px 0', borderTop: first ? 0 : `1px solid ${LINE}` }}>{done ? <Dot /> : <span aria-hidden style={{ flex: 'none', width: 24, height: 24, borderRadius: 999, boxSizing: 'border-box', border: `2px dashed ${MUT}` }} />}<span style={{ display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 15, lineHeight: '20px' }}>{a}</strong><span style={{ fontSize: 14, lineHeight: '19px', color: MUT }}>{b}</span></span></div>
+    return shell('FAM7-Working', head(`${working.date}${working.title.startsWith('v ') ? ` · ${working.title}` : ''}`, `Finding ${name}’s moments`, () => go('FAM3-Home')), <>
+      {dark('ABOUT 20 MINUTES', 'You can close the app. We’ll let you know.')}
+      <section style={{ ...card, gap: 0, padding: '4px 14px' }}>{step('Film received', `${working.minutes} minutes`, true, true)}{step(`Everyone except ${name} blurred`, 'Done before anything is saved', true)}{step('Finding the moments', cutting ? 'Done' : 'Working on it now', cutting)}{step('Cutting the reel', cutting ? 'Working on it now' : 'Next', false)}</section>
+      <span style={note}>When it is done this screen changes to “{name}’s reel is ready”.</span>
+    </>, 'reels', actions(true, <button key="a" onClick={() => land(working.id)} style={btn(true)}>Open the reel when it’s ready</button>)) }
 
   // ── FAM8r · the reel is ready ──
   if (v === 'FAM8r-Reveal' && video) return plain('FAM8r-Reveal', true, <Mark />, <>
@@ -448,7 +513,28 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
         {rows.map(([a, b]) => <div key={a} style={{ display: 'flex', justifyContent: 'space-between', gap: 10, padding: '8px 0', borderTop: `1px solid ${HAIR}`, fontSize: 14 }}><span>{a}</span><strong style={{ flex: 'none' }}>{b}</strong></div>)}
         <span style={{ fontSize: 13, lineHeight: '19px', color: MUT, paddingTop: 6, borderTop: `1px solid ${HAIR}` }}>Longer video uses more. You see the number before you spend, and it never changes after.</span></section>
       <span style={{ fontSize: 13, lineHeight: '19px', color: MUT }}>{f.joined ? `${club} has joined: games the club films are free, and your own filming uses half the credits.` : f.club ? `If ${club} joins: games the club films are free, and your own filming uses half the credits.` : ''} Credits come back if we can’t make a reel. They don’t run out.</span>
-    </>, 'home', actions(true, <button key="b" onClick={() => { buy(p.credits, `Paid through your app store. ${p.credits} credits added.`); if (f.held) setTimeout(() => { setView(checkOf(familyNow())); top() }, 1400) }} style={btn(true)}>Buy {p.credits} for ${p.price}</button>)) }
+      {demo('the app store', <button onClick={hop('FAM6x-PaymentFailed')} style={small}>The app store declines the payment</button>)}
+    </>, 'home', actions(true, <button key="a" onClick={() => say(RESTORED)} style={{ ...btn(false), flex: 'none', padding: '0 18px' }}>Restore</button>, <button key="b" onClick={() => { buy(p.credits, `Paid through your app store. ${p.credits} credits added.`); if (f.held) setTimeout(() => { setView(checkOf(familyNow())); top() }, 1400) }} style={btn(true)}>Buy {p.credits} for ${p.price}</button>)) }
+
+  // ── FAM6x · a purchase that failed: nothing was charged ──
+  if (v === 'FAM6x-PaymentFailed') return plain(v, false, <span />, <>
+    {badge(WARN)}{title('The payment didn’t go through.', 30)}<span style={{ fontSize: 17, lineHeight: '25px' }}>Nothing was charged. Your app store declined it, so it is worth checking the card there.</span>
+    {group([['Paid, but no credits?', 'Restore purchases', '', () => say(RESTORED)], ['Get help', 'A person replies within a day', '', () => help(1, v)]])}
+  </>, <><button onClick={hop('FAM6-Credits')} style={big(false)}>Try again</button><button onClick={() => go('FAM3-Home')} style={quiet}>Not now</button></>)
+
+  // ── FAM7u and FAM7x · the upload, and an upload that stopped. It carries on from where it stopped; credits are only taken when the check passes and the work starts ──
+  if (v === 'FAM7u-Uploading') { const fm = film(f.film), gb = Math.round(fm.minutes * 0.38) / 10, left = Math.max(1, Math.round((100 - pct) * fm.minutes * 0.0032)), wifi = f.wifi !== false
+    return plain(v, false, <span />, <>
+      {badge(UPLOAD)}{title(held ? 'The upload is paused.' : 'Uploading your video.', 30)}<span style={{ fontSize: 17, lineHeight: '25px' }}>You can close the app or lock your phone. It carries on.</span>
+      <section style={{ ...card, gap: 8 }}><div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 10 }}><strong style={{ fontSize: 16 }}>{pct}%</strong><span style={{ fontSize: 15, color: MUT }}>{(gb * pct / 100).toFixed(1)} of {gb.toFixed(1)} GB · about {left} {left === 1 ? 'minute' : 'minutes'}</span></div>
+        <div role="progressbar" aria-label="Uploaded" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} style={{ height: 8, borderRadius: 999, background: HAIR, overflow: 'hidden' }}><div style={{ width: `${pct}%`, height: '100%', borderRadius: 999, background: BAR }} /></div></section>
+      <section style={{ ...card, gap: 0, padding: '2px 14px' }}>{toggle('Only upload on Wi-Fi', 'Saves your mobile data', wifi, () => { setFamily({ wifi: !wifi }); say(`Only upload on Wi-Fi: ${wifi ? 'off' : 'on'}. Saved.`) }, true)}</section>
+      {demo('the upload', <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}><button onClick={() => { setFamily({ upload: { pct: 100, paused: false } }); setView(checkOf(familyNow())); top() }} style={small}>The upload finishes</button><button onClick={() => { setFamily({ upload: { pct, paused: true } }); setView('FAM7x-UploadStopped'); top() }} style={small}>The phone loses its connection</button></div>)}
+    </>, <><button onClick={() => { setFamily({ upload: { pct, paused: !held } }); say(held ? 'Carrying on.' : `Paused at ${pct}%. Nothing is lost.`) }} style={big(false)}>{held ? 'Carry on' : 'Pause'}</button>
+      <button onClick={() => { setFamily({ upload: undefined, held: null }); say('Cancelled. Nothing was uploaded and no credits were used.'); go('FAM3-Home') }} style={quiet}>Cancel the upload</button></>) }
+  if (v === 'FAM7x-UploadStopped') return plain(v, false, arrow(() => go('FAM3-Home'), INK), <>
+    {badge(WARN)}{title(`The upload stopped at ${pct}%.`, 30)}<span style={{ fontSize: 17, lineHeight: '25px' }}>Your phone lost its connection. Nothing is lost: we carry on from where it stopped, and no credits have been used.</span>
+  </>, <><button onClick={() => { setFamily({ upload: { pct, paused: false } }); setView('FAM7u-Uploading'); top() }} style={big(false)}>Carry on</button><button onClick={() => say('We carry on by ourselves when you’re next on Wi-Fi.')} style={quiet}>Wait for Wi-Fi</button></>)
 
   // ── FAM5p · checked on the phone, before anything is uploaded ──
   if (v === 'FAM5p-PhoneCheck') { const fm = film(f.film)
@@ -456,7 +542,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
       <span style={{ ...cap, fontSize: 12, color: MUT }}>BEFORE YOU UPLOAD</span>{title('This one probably won’t work.', 30)}
       <section style={{ ...card, gap: 0, padding: '4px 14px' }}>{(fm.phone ?? []).map(([a, b, ok], n) => <Line key={a} top={n > 0} ok={ok} a={a} b={b || undefined} />)}</section>
       <span style={{ fontSize: 15, lineHeight: '22px', color: MUT }}>Checked on your phone. Nothing has been sent, and no credits or free checks were used.</span>
-    </>, <><button onClick={() => { say('Your phone’s video picker opens.'); setTimeout(() => pickFilm('f50'), 1300) }} style={big(false)}>Pick another video</button><button onClick={() => { setFamily({ anyway: true }); setView(checkOf(familyNow())); top() }} style={{ ...link, fontSize: 15, alignSelf: 'center' }}>Upload this one anyway</button></>) }
+    </>, <><button onClick={() => { say('Your phone’s video picker opens.'); setTimeout(() => pickFilm('f50'), 1300) }} style={big(false)}>Pick another video</button><button onClick={() => { setFamily({ anyway: true, upload: { pct: 0, paused: false } }); setView('FAM7u-Uploading'); top() }} style={{ ...link, fontSize: 15, alignSelf: 'center' }}>Upload this one anyway</button></>) }
 
   // ── FAM5, FAM5b, FAM5x, FAM5n, FAM5c · the free check ──
   if (['FAM5-Check', 'FAM5b-Maybe', 'FAM5x-CantRead', 'FAM5n-NotEnough', 'FAM5c-ClubFilmedThis'].includes(v)) {
@@ -536,7 +622,6 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
 
   // ── FAM23e, FAM23, FAM23a · send to the team. The uploader sends the link themselves; nothing is made for another family until the uploader says yes ──
   const teamHead = (t: string, to: string) => head(video ? `${video.date}${video.title.startsWith('v ') ? ` · ${video.title}` : ''}` : '', t, () => { setView(to); top() })
-  const dark = (over: string, t: string, line?: string) => <section style={{ borderRadius: 16, background: DEEP, color: '#fff', padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 6 }}><span style={{ ...cap, color: SOFT }}>{over}</span><strong style={{ fontSize: 20, lineHeight: '26px' }}>{t}</strong>{line && <span style={{ fontSize: 14, lineHeight: '20px', color: MINT }}>{line}</span>}</section>
   if ((v === 'FAM23-InviteTeam' || v === 'FAM23a-InviteConfirm') && !inv) v = 'FAM23e-InviteTeamFirst'   // no link has been sent for this video yet
   if (v === 'FAM23e-InviteTeamFirst' && video) return shell(v, teamHead('Send to the team', 'FAM10-ShareFamily'), <>
     {dark('OTHER KIDS ARE IN THIS VIDEO', 'Their parents can get their own child’s moments.', 'You send the link yourself, in your own messages. We never see who you send it to.')}
@@ -562,6 +647,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
         {inv.joined.map((x, n) => <div key={x.child + n} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, minHeight: 56, borderTop: `1px solid ${HAIR}` }}><span style={{ display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 16 }}>{x.child}’s family</strong><span style={{ fontSize: 14, color: MUT }}>Joined {x.when}</span></span>{n < TEAM.families && <strong style={{ flex: 'none', fontSize: 15 }}>+{TEAM.back}</strong>}</div>)}</section>}
       {inv.stopped ? <section style={card}><strong style={{ fontSize: 16 }}>The link has stopped</strong><span style={{ fontSize: 14, lineHeight: '19px', color: MUT }}>Families who already joined keep their reels</span></section>
         : <button onClick={() => { setInv({ stopped: true }); say('The link stops working. Families who already joined keep their reels.') }} style={{ ...card, flexDirection: 'row', alignItems: 'center', gap: 10, fontFamily: 'inherit', color: INK, textAlign: 'left', cursor: 'pointer' }}><span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 16 }}>The link works for {inv.daysLeft} more days</strong><span style={{ fontSize: 14, lineHeight: '19px', color: MUT }}>Stopping it does not take back reels already made</span></span><span style={{ ...link, minHeight: 0 }}>Stop</span></button>}
+      {inv.stopped && demo('another parent', <button onClick={hop('FAMi4-LinkEnded')} style={small}>Open the stopped link as another parent</button>)}
       {!inv.stopped && next && demo('another parent', <button onClick={() => { setAsk({ name: next.child, year: String(next.year), shirt: '', account: next.account }); setView('FAMi1-InviteLanding'); top() }} style={{ ...btn(false), minHeight: 44, fontSize: 14 }}>Open the link as {next.account}, another parent</button>)}
     </>, 'reels', actions(true, <button key="a" onClick={() => { setInv({ stopped: false, daysLeft: inv.stopped ? TEAM.days : inv.daysLeft }); say(SHEET) }} style={btn(true)}>Send the link again</button>)) }
 
@@ -589,11 +675,18 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
         <section style={{ borderRadius: 14, background: PALE, padding: '10px 14px', display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 16 }}>{club}</strong><span style={{ fontSize: 13 }}>The club in this video</span></section>
         <span style={{ fontSize: 14, lineHeight: '20px', color: MUT }}>{f.parent} is asked to confirm she knows you. She sees the first name, birth year and shirt you picked, and nothing else.</span>
       </div>, <button onClick={send} style={big(false)}>Ask {f.parent} to confirm</button>) }
+    if (v === 'FAMi4-LinkEnded' || v === 'FAMi5-NotAvailable') { const ended = v === 'FAMi4-LinkEnded'
+      return plain(v, false, <span />, <>
+        {badge(ended ? CLOCK : CROSS)}{title(ended ? 'This link has ended.' : 'This video isn’t available to you.', 30)}
+        <span style={{ fontSize: 17, lineHeight: '25px' }}>{ended ? `Links to a video work for ${TEAM.days} days, and the parent who sent it can stop it sooner. Ask them to send a new one.` : 'The parent who filmed it didn’t confirm your request. We don’t share why. Nothing was made and you haven’t used your free video.'}</span>
+        {demo('another parent', <button onClick={hop('FAM23-InviteTeam')} style={small}>Back to {f.parent}’s phone</button>)}
+      </>, <><button onClick={ended ? hop('FAM1-Welcome') : () => side('FAM4-BeforeYouFilm')} style={big(false)}>Film a game of your own<span style={{ fontSize: 13, fontWeight: 500 }}>Your first video is free</span></button>
+        {ended ? <button onClick={() => say('Closed.')} style={quiet}>Close</button> : <button onClick={() => help(3, v)} style={quiet}>Ask for help</button>}</>) }
     return plain('FAMi3-InviteWaiting', false, <span />, <>
       <span style={{ width: 64, height: 64, borderRadius: 999, background: G, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><I d={CLOCK} size={28} w={2.2} /></span>
       {title(`Waiting for ${f.parent}.`, 30)}<span style={{ fontSize: 17, lineHeight: '25px' }}>She has a note to confirm she knows you. Once she says yes, we make {child === 'your child' ? 'your child’s' : `${child}’s`} reel and stats from the video that is already here.</span>
       <section style={{ ...card, flexDirection: 'row', alignItems: 'center', marginTop: 6 }}><span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 16 }}>Your first video</strong><span style={{ fontSize: 13, color: MUT }}>After this, a shared video is half the credits</span></span><strong style={{ fontSize: 22, padding: '2px 14px', borderRadius: 999, background: AMBER }}>Free</strong></section>
-      {demo('another parent', <button onClick={() => { setView('FAM23-InviteTeam'); top() }} style={{ ...btn(false), minHeight: 44, fontSize: 14 }}>Back to {f.parent}’s phone</button>)}
+      {demo('another parent', <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}><button onClick={hop('FAM23-InviteTeam')} style={small}>Back to {f.parent}’s phone</button><button onClick={() => { setInv({ waiting: (inv?.waiting ?? []).filter(x => x.account !== ask.account) }); setView('FAMi5-NotAvailable'); top() }} style={small}>{f.parent} says no</button></div>)}
     </>, <><button onClick={() => say('Notifications are on. You can close the app.')} style={big(false)}>Tell me when it’s ready</button><button onClick={() => side('FAM4-BeforeYouFilm')} style={{ ...link, minHeight: 48, fontSize: 15, alignSelf: 'center' }}>Film a game of your own</button></>) }
 
   // ── FAM9 · one clip, from the reel or from a stat ──
@@ -681,6 +774,169 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
       {locked(`Moments with ${his} team-mates`, 'Everyone else is blurred here. The club asks every family first.')}
     </>, firstRun ? null : 'reels', actions(!firstRun, <button key="a" onClick={() => side('FAM10-ShareFamily')} style={btn(false)}>Share with family</button>, <button key="b" onClick={() => { if (firstRun) { setView('FAM6f-AfterFree'); top() } else go('FAM3-Home') }} style={btn(true)}>Done</button>)) }
 
+  // The closed pattern, the same on Team and Learn. The page behind is a picture of the feature, not the feature: it cannot be tapped, focused or read out. The panel cannot be dismissed; the tabs still work.
+  const closed = (id: string, feature: string, what: string, why: string, ticks: string[], page: ReactNode, tab: string) => shell(id, head('With your club', feature), <div style={{ position: 'relative', flexGrow: 1, margin: '-12px -14px -16px', padding: '12px 14px 16px', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+    <div aria-hidden inert style={{ position: 'absolute', inset: 0, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 12, filter: 'blur(1.5px)', pointerEvents: 'none', userSelect: 'none', overflow: 'hidden' }}>{page}</div>
+    <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'rgba(250,245,236,0.22)' }} />
+    <section aria-label={`${feature}, with your club`} style={{ position: 'relative', flex: 'none', marginTop: short ? 16 : 118, borderRadius: 22, background: 'rgba(51,33,43,0.88)', color: '#fff', padding: '18px 18px 12px', display: 'flex', flexDirection: 'column', gap: 10, boxShadow: '0 14px 34px rgba(0,0,0,0.3)' }}>
+      <span style={{ alignSelf: 'flex-start' }}>{withClub}</span>
+      {title(`${feature} opens when ${f.club ? club : 'your club'} joins.`, 26)}
+      <span style={{ fontSize: 15.5, lineHeight: '22px' }}><strong>What it is.</strong> {what}</span>
+      <span style={{ fontSize: 15.5, lineHeight: '22px' }}><strong>Why it’s closed.</strong> {why}</span>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>{ticks.map(x => <span key={x} style={{ display: 'flex', alignItems: 'center', gap: 9, fontSize: 15, lineHeight: '20px' }}><span style={{ flex: 'none', width: 20, height: 20, borderRadius: 999, background: 'rgba(255,255,255,0.16)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><I d={TICK} size={11} w={3} /></span>{x}</span>)}</div>
+      <button onClick={tour} style={{ ...big('club'), marginTop: 4 }}>See what your club adds</button>
+      <button onClick={() => { setView('FAM12-TellClub'); top() }} style={{ ...under, color: '#fff', fontSize: 15, alignSelf: 'center' }}>Tell my club</button>
+    </section>
+  </div>, tab)
+
+  // ── FAM30 and FAM31 · the Team tab. Before the club joins it is the page dimmed under the panel; after, the week from the club ──
+  if (v === 'FAM30-TeamLocked' || v === 'FAM31-Team') { const page = <>
+      <section style={card}><span style={{ ...cap, color: MUT }}>THIS SUNDAY</span><strong style={{ fontSize: 18, lineHeight: '24px' }}>v Eastbank · 9:30 · Reserve pitch 2</strong><span style={{ fontSize: 14, color: MUT }}>Be there by 9:00. {STAFF.coach} has {name} starting on the left.</span>
+        <div style={{ display: 'flex', gap: 8, paddingTop: 4 }}><button aria-pressed={f.rsvp.sun === true} onClick={() => { rsvp('sun', true); say(`${STAFF.coach} can see ${name} is coming.`) }} style={btn(true)}>{name} is coming</button><button onClick={hop('FAM33-Coming')} style={btn(false)}>Can’t make it</button></div></section>
+      {group([['Team chat', f.chatSeen ? `From ${STAFF.coach} and ${STAFF.manager}` : `2 new from ${STAFF.coach}`, f.chatSeen ? '' : '2', () => { setFamily({ chatSeen: true }); setView('FAM32-TeamChat'); top() }], ['Who’s coming', 'Training Tuesday · game Sunday', '', hop('FAM33-Coming')], ['Line-up', 'Sunday v Eastbank', '', hop('FAM34-Lineup')],
+        ['Forms and files', f.answered ? 'Nothing to answer' : '1 to answer', f.answered ? '' : '1', hop('FAM35-Forms')], ['Fees and helping out', 'Paid · oranges on 28 June', '', hop('FAM39-Fees')]])}
+    </>
+    if (v === 'FAM30-TeamLocked') return closed(v, 'Team', 'Everything for the week in one place: the team chat, who’s coming, the line-up, forms and fees.', 'It belongs to the club. It runs on the club’s fixtures, its coaches and its list of families, so it starts when the club does.', ['Team chat with the coach and manager', 'Say your child is coming in one tap', 'Line-ups, forms and fees without the paper'], page, 'team')
+    return shell(v, head(squad, 'Team'), <>{page}<span style={note}>Everything here comes from {club}. Your own videos are not shown to the team.</span></>, 'team') }
+
+  // ── FAM32 · team chat: parents, the coach and the manager. No under-15s ──
+  if (v === 'FAM32-TeamChat') { const bubble = (who: string, t: string, mine = false) => <div key={who + t} style={{ alignSelf: mine ? 'flex-end' : 'flex-start', maxWidth: '86%', display: 'flex', flexDirection: 'column', gap: 3, alignItems: mine ? 'flex-end' : 'flex-start' }}><strong style={{ fontSize: 12, color: MUT }}>{who}</strong><span style={{ padding: '10px 14px', borderRadius: 16, background: mine ? G : '#fff', color: mine ? '#fff' : INK, border: mine ? 0 : `1px solid ${LINE}`, fontSize: 15.5, lineHeight: '21px' }}>{t}</span></div>
+    const send = () => { const t = draft.trim(); if (!t) { say('Write a message first.'); return } setFamily(x => ({ chat: [...(x.chat ?? []), t] })); setDraft(''); setAnns(false); say('Sent to the team.') }
+    const tab = (t: string, on: boolean, pick: () => void) => <button key={t} role="tab" aria-selected={on} onClick={pick} style={{ flex: 1, minHeight: 46, borderRadius: 12, border: on ? 0 : `1px solid ${LINE}`, background: on ? NIGHT : '#fff', color: on ? '#fff' : INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>{t}</button>
+    return shell(v, head(squad, 'Team chat', 'FAM31-Team'), <>
+      <div role="tablist" aria-label="Chat or announcements" style={{ display: 'flex', gap: 8 }}>{tab('Chat', !anns, () => setAnns(false))}{tab('Announcements', anns, () => { setAnns(true); say('Announcements: only the coach and manager can post. 1 this week.') })}</div>
+      {anns ? <>{bubble(`${STAFF.coach} · coach`, 'Sunday is 9:30 at Reserve pitch 2. Please be there by 9.')}<span style={note}>Only the coach and the manager can post here.</span></>
+        : <>{bubble(`${STAFF.coach} · coach`, 'Sunday is 9:30 at Reserve pitch 2. Please be there by 9.')}{bubble(`${STAFF.manager} · team manager`, 'Oranges this week are the Okafors. Thank you!')}{bubble('You', `${name}’s coming. See you Sunday.`, true)}{bubble(`${STAFF.coach} · coach`, 'Great. Two things for the kids to try before Tuesday are in Learn.')}
+          {(f.chat ?? []).map((t, n) => <div key={n} style={{ display: 'contents' }}>{bubble('You', t, true)}</div>)}<span style={note}>Parents, the coach and the manager. Children under 15 are not in this chat.</span></>}
+    </>, 'team', <form onSubmit={e => { e.preventDefault(); send() }} style={{ flex: 'none', position: 'sticky', bottom: 65, display: 'flex', gap: 10, padding: '10px 14px', background: PAGE, borderTop: `1px solid ${LINE}` }}><input aria-label="Message the team" placeholder="Message the team" value={draft} onChange={e => setDraft(e.target.value)} style={{ ...field, flex: 1, minWidth: 0, borderRadius: 14 }} /><button type="submit" style={{ ...btn(true), flex: 'none', padding: '0 20px' }}>Send</button></form>) }
+
+  // ── FAM33 · who is coming: yes or no for each session. A reason only if the parent adds one ──
+  if (v === 'FAM33-Coming') return shell(v, head(squad, `Is ${name} coming?`, 'FAM31-Team'), <>
+    <section style={{ ...card, gap: 0, padding: '4px 14px' }}>{SESSIONS.map((x, n) => <div key={x.id} role="radiogroup" aria-label={x.title} style={{ display: 'flex', alignItems: 'center', gap: 8, minHeight: 64, padding: '4px 0', borderTop: n ? `1px solid ${HAIR}` : 0 }}><span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 16 }}>{x.title}</strong><span style={{ fontSize: 14, color: MUT }}>{x.when}</span></span>
+      {([['Yes', true], ['No', false]] as [string, boolean][]).map(([t, yes]) => { const on = f.rsvp[x.id] === yes; return <button key={t} role="radio" aria-checked={on} onClick={() => { rsvp(x.id, yes); say(`${x.says}: ${t.toLowerCase()}. ${STAFF.coach} can see it.`) }} style={{ flex: 'none', width: 54, height: 46, borderRadius: 12, border: on ? 0 : `1.5px solid ${INK}`, background: on ? G : '#fff', color: on ? '#fff' : INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>{t}</button> })}</div>)}</section>
+    {group([[`Tell ${STAFF.coach} why`, 'Only if you want to', '', () => say(`A short note to ${STAFF.coach} opens. Only he and the manager see it.`)], ['Away for a while?', 'Set dates once', '', () => say('Pick the dates. Every session in them is set to no.')]])}
+    <span style={note}>{STAFF.coach} sees yes or no, and a reason only if you add one.</span>
+  </>, 'team')
+
+  // ── FAM34 · the line-up for the next game, and how game time is shared ──
+  if (v === 'FAM34-Lineup') return shell(v, head('Sun 28 June · v Eastbank', 'Line-up', 'FAM31-Team'), <>
+    {dark(`FROM ${STAFF.coach.toUpperCase()}`, `${name} starts on the left.`, 'Everyone plays at least three quarters this week.')}
+    <section style={{ ...card, gap: 0, padding: '12px 14px 4px' }}><strong style={{ fontSize: 16, paddingBottom: 6 }}>{name}, quarter by quarter</strong>{[['First', 'Left'], ['Second', 'Having a rest'], ['Third', 'Middle'], ['Fourth', 'Left']].map(([a, b]) => <div key={a} style={{ display: 'flex', justifyContent: 'space-between', gap: 10, padding: '9px 0', borderTop: `1px solid ${HAIR}`, fontSize: 15 }}><span>{a}</span><strong>{b}</strong></div>)}</section>
+    <section style={card}><strong style={{ fontSize: 16 }}>Game time this season</strong><span style={{ fontSize: 15, lineHeight: '21px' }}>{name} has played about the same as everyone else. The club’s rule is fair game time for every child.</span></section>
+    <span style={note}>Line-ups can change on the day.</span>
+  </>, 'team')
+
+  // ── FAM35 · forms and files from the club ──
+  if (v === 'FAM35-Forms') return shell(v, head(squad, 'Forms and files', 'FAM31-Team'), <>
+    {listed(f.answered ? 'Answered' : 'Needs your answer', [['Filming and photos', f.answered ? 'You can change your answers at any time' : `Three questions from ${club}`, f.answered ? '' : 'Answer', () => { setFamily({ answered: true }); setView('FAM36-Consent'); top() }]])}
+    {listed('Sign-ups', [['Canteen roster', 'Sun 5 July · 2 places left', '', () => say('You’re down for the canteen on 5 July, 9 to 10.')], ['End of season day', 'Sat 12 September · 24 coming', '', () => say('Say how many of you are coming.')]])}
+    {listed('Files', [['Team sheet · Sunday', `From ${STAFF.manager}`, '', () => say('The team sheet opens. You can read it and save a copy.')], ['Code of conduct', club, '', () => say('The code of conduct opens.')]])}
+  </>, 'team')
+
+  // ── FAM36 and FAM36w · what the club may film and share, and taking all filming consent back. The coach and the welfare officer are told that it changed, never why ──
+  if (v === 'FAM36-Consent') return shell(v, head(`${club} asks`, 'Filming and photos', 'FAM40-ClubHome'), <>
+    <section style={{ ...card, gap: 0, padding: '2px 14px' }}>{ASKS.map(([a, b], n) => { const t = a.replace('{name}', name), on = !!f.consent[n]; return toggle(t, b.replace('{name}', name), on, () => { setFamily(x => ({ answered: true, consent: x.consent.map((c, k) => k === n ? !on : c) })); say(`${t}: ${on ? 'off' : 'on'}. Saved.`) }, n === 0) })}</section>
+    {CONSENT_BACK && group([['Take back all filming consent', `${name} is blurred in everything from then on`, '', hop('FAM36w-ConsentBack')]])}
+    <span style={note}>You can change these at any time. A change applies to anything filmed from then on. Your own videos are separate and stay private.</span>
+  </>, 'club')
+  if (v === 'FAM36w-ConsentBack') return shell(v, head('Filming and photos', 'Take back consent?', 'FAM36-Consent'), <>
+    <section style={{ ...card, gap: 0, padding: '4px 14px' }}><Line top={false} a={`${name} is blurred in all new club film`} b="From the moment you confirm" /><Line a={`Clips of ${name} shared with the team are removed`} b={`Within ${CLIPS_DOWN_DAYS} days`} /><Line a={`${name}’s numbers from club film are deleted`} b="The coach keeps only written notes" /><Line a={`${name} still trains and plays as normal`} b="Nothing changes at the club" /><Line a="Your own videos are not touched" b="They were never shared" /></section>
+    <span style={note}>{STAFF.coach} and the club’s welfare officer are told that consent has changed. They are not told why. You can give it again at any time.</span>
+  </>, 'club', actions(true, <button key="a" onClick={hop('FAM36-Consent')} style={btn(false)}>Cancel</button>, <button key="b" onClick={() => { setFamily(x => ({ answered: true, consent: [false, false, !!x.consent[2]] })); say(`Done. ${name} is blurred in club film from now. ${STAFF.coach} and ${STAFF.welfare.split(' ')[0]} have been told.`); setView('FAM36-Consent'); top() }} style={btn(true)}>Take it back</button>))
+
+  // ── FAM37 · from the coach: the goal for the term, a clip with the coach's words, the season report, a catch-up. Goals are about learning, not ranking ──
+  if (v === 'FAM37-FromCoach') { const own = f.videos.find(x => x.kid === kid.id && x.state === 'ready' && x.title === 'v Ridgeway') ?? ready[0]
+    const play = () => { if (!own) { say('The clip plays: 11 seconds.'); return } setFamily({ open: own.id, clip: Math.max(0, own.clips.findIndex(c => c.minute === '22nd minute')), from: 'reel' }); setView('FAM9-Clip'); top() }
+    return shell(v, head(squad, `From ${STAFF.coach}`, 'FAM40-ClubHome'), <>
+      {dark(`${name.toUpperCase()}’S GOAL THIS TERM`, 'Look up before the ball comes.', `${STAFF.coach} saw it three times on Sunday. That is up from once.`)}
+      <section style={{ ...card, gap: 4 }}><strong style={{ fontSize: 16 }}>{STAFF.coach} sent a clip</strong><button onClick={play} style={{ ...row, minHeight: 64 }}><span style={{ flex: 'none', width: 96 }}><Thumb kind="team" len="0:11" wide /></span><span style={{ display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 15, lineHeight: '20px' }}>“This is the one. Head up, then the pass.”</strong><span style={{ fontSize: 13, color: MUT }}>Sun 14 June · 22nd minute</span></span></button></section>
+      {group([['Two things to try at home', `Picked by ${STAFF.coach}`, '', () => go('FAM17u-LearnWithClub')], ['Season report', 'Ready after the last round', '', () => say(`${STAFF.coach} writes it after the last round. You’ll be told when it is ready.`)], ['Book a catch-up', `Ten minutes with ${STAFF.coach}`, '', () => say(`Pick a time ${STAFF.coach} has offered.`)]])}
+      <span style={note}>Goals are about learning, not ranking. There are no scores against other children.</span>
+    </>, 'club') }
+
+  // ── FAM38 · raise a concern. It goes to the club's welfare officer, never the coach ──
+  if (v === 'FAM38-Concern') return shell(v, head(club, 'Raise a concern', 'FAM40-ClubHome'), <>
+    {dark(`THIS GOES TO ${STAFF.welfare.toUpperCase()}`, 'The club’s welfare officer, not the coach.', 'Nobody on the team can see it.')}
+    <section style={{ ...card, gap: 10 }}><strong style={{ fontSize: 14 }}>What is it about?</strong>
+      <div role="radiogroup" aria-label="What is it about?" style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>{ABOUT.map((t, n) => <button key={t} role="radio" aria-checked={about === n} onClick={() => { setAbout(n); say(`${t} picked.`) }} style={{ flex: 'none', minHeight: 46, padding: '0 16px', borderRadius: 999, border: about === n ? 0 : `1px solid ${MUT}`, background: about === n ? NIGHT : '#fff', color: about === n ? '#fff' : INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>{t}</button>)}</div>
+      {labelled('What happened', <textarea placeholder="Tap to write" rows={3} value={story} onChange={e => setStory(e.target.value)} style={area} />, 'As much or as little as you like')}</section>
+    <span style={note}>If a child is in danger now, call 000.</span>
+  </>, 'club', actions(true, <button key="a" onClick={() => { setStory(''); setView('FAM40-ClubHome'); top() }} style={btn(false)}>Cancel</button>, <button key="b" onClick={() => { setStory(''); say(`Sent to ${STAFF.welfare}. She replies within two days.`); setView('FAM40-ClubHome'); top() }} style={btn(true)}>Send to {STAFF.welfare.split(' ')[0]}</button>))
+
+  // ── FAM39 · fees and helping out. Fees are paid to the club, not to Clean Sheet ──
+  if (v === 'FAM39-Fees') { const swap = () => say('Ask to swap. The manager and the other families see the request.')
+    return shell(v, head(squad, 'Fees and helping out', 'FAM31-Team'), <>
+      <section style={{ ...card, gap: 0, padding: '12px 14px 4px' }}><strong style={{ fontSize: 16, paddingBottom: 6 }}>Fees</strong>{f.kids.map(x => <div key={x.id} style={{ display: 'flex', justifyContent: 'space-between', gap: 10, padding: '9px 0', borderTop: `1px solid ${HAIR}`, fontSize: 15 }}><span>Winter 2026 · {x.name}</span><strong style={{ flex: 'none' }}>{x.id === 'mia' ? '$260' : '$240'} · paid 2 March</strong></div>)}</section>
+      {listed('Your turns', [['Oranges', 'Sun 28 June', 'Swap', swap], ['Canteen', 'Sun 5 July · 9 to 10', 'Swap', swap]])}
+      <span style={note}>Fees are paid to {club}, not to Clean Sheet. Credits are separate and only for your own videos.</span>
+    </>, 'team') }
+
+  // ── FAM40 · the Club tab once the club has joined. The club and the coach can never see a family's own videos, credits or who they share reels with ──
+  if (v === 'FAM40-ClubHome') return shell(v, head(club, 'Your club'), <>
+    {group([[`From ${STAFF.coach}`, `${name}’s goal, a clip, the season report`, '1', hop('FAM37-FromCoach')], ['Filming and photos', 'What the club may film and share', '', hop('FAM36-Consent')], ['Raise a concern', 'Goes to the welfare officer', '', hop('FAM38-Concern')], ['Who to contact', 'Coach, manager, welfare officer', '', () => say(`${STAFF.coach} (coach), ${STAFF.manager} (manager), ${STAFF.welfare} (welfare officer). Tap one to message them.`)]])}
+    {group([['Club games', 'Free. They arrive in Reels', '', () => go('FAM18-Reels')], ['Your own filming', 'Half the credits. Private to your family', '', () => side('FAM6-Credits')]])}
+    <span style={note}>{club} and {STAFF.coach} can’t see your own videos, your credits or who you share reels with.</span>
+    {demo('the sample club', <button onClick={() => { setFamily({ joined: false, toldJoined: false, paused: true }); setView('FAM41-ClubPaused'); top() }} style={small}>{club}’s plan ends</button>)}
+  </>, 'club')
+
+  // ── FAM41 · the club's plan has ended: what closes again, and what the family keeps. Said once ──
+  if (v === 'FAM41-ClubPaused') { const seen = (to: string) => () => { setFamily({ paused: false }); go(to) }
+    return shell(v, head(club, 'Your club has paused'), <>
+      <section style={{ borderRadius: 16, background: PLUM, color: '#fff', padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 6 }}><span style={{ ...cap, color: '#e6d3d3' }}>FROM 30 JUNE</span><strong style={{ fontSize: 19, lineHeight: '25px' }}>{club} is no longer using Clean Sheet.</strong><span style={{ fontSize: 14, lineHeight: '20px', color: '#e6d3d3' }}>Team, Learn and messages from the coach close again.</span></section>
+      <section style={{ ...card, gap: 0, padding: '12px 14px 4px' }}><strong style={{ fontSize: 16, paddingBottom: 6 }}>What you keep</strong><Line a="Every reel you have, club games included" b="Still private to your family" /><Line a={`Your ${f.balance} credits`} b="They don’t run out" /><Line a="Filming your own games" b="Back to full credits" /></section>
+      <section style={{ ...card, gap: 0, padding: '12px 14px 4px' }}><strong style={{ fontSize: 16, paddingBottom: 6 }}>What closes</strong><Line ok={false} a="Team: chat, who’s coming, forms" b="Ask the club how it will run these" /><Line ok={false} a="Learn and messages from the coach" /><Line ok={false} a="Free club games" /></section>
+    </>, null, actions(false, <button key="a" onClick={seen('FAM3-Home')} style={{ ...btn(false), flex: 0.6 }}>OK</button>, <button key="b" onClick={seen('FAM12-TellClub')} style={btn(true)}>Tell my club I want it back</button>)) }
+
+  // ── FAM15c · edit a child, change their club, or remove them. Removing deletes that child's reels and numbers ──
+  if (v === 'FAM15c-EditChild') { const ek = f.kids.find(x => x.id === f.edit) ?? kid, cur = ed?.id === ek.id ? ed : { id: ek.id, name: ek.name, year: String(ek.year) }, reels = f.videos.filter(y => y.kid === ek.id && y.state === 'ready').length
+    const away = () => { setEd(null); setFamily({ edit: null }); setView('FAM15-Children'); top() }, pick = () => { setQ(''); setView('FAM2c-PickClub'); top() }
+    const save = () => { const yr = Number(cur.year); if (!cur.name.trim() || yr < SEASON_MIN || yr > SEASON_MAX) { say('Add a first name and the year they were born.'); return } setFamily(x => ({ kids: x.kids.map(k => k.id === ek.id ? { ...k, name: cur.name.trim(), year: yr } : k) })); say('Saved.') }
+    const remove = () => { if (f.kids.length < 2) { say(`${ek.name} is the only child here. To delete everything, open “How we handle your film” in your account.`); return }
+      setSure({ text: `Remove ${ek.name}? ${ek.name}’s ${reels} ${reels === 1 ? 'reel' : 'reels'}, their numbers and family links are deleted. This can’t be undone.`, no: `Keep ${ek.name}`, yes: `Remove ${ek.name}`, on: () => { setFamily(x => { const kids = x.kids.filter(k => k.id !== ek.id); return { kids, kid: x.kid === ek.id ? kids[0].id : x.kid, videos: x.videos.filter(y => y.kid !== ek.id), open: '', edit: null, seasonDue: x.seasonDue === ek.id ? null : x.seasonDue } }); setEd(null); setView('FAM15-Children'); top(); say(`${ek.name} has been removed.`) } }) }
+    return shell(v, head('Your children', ek.name || 'Your child', away), <>
+      <section style={{ ...card, gap: 12 }}>{labelled('First name', <input value={cur.name} onChange={e => setEd({ ...cur, name: e.target.value.split(' ')[0] })} style={field} />)}{labelled('Year born', <input inputMode="numeric" value={cur.year} onChange={e => setEd({ ...cur, year: e.target.value.replace(/\D/g, '').slice(0, 4) })} style={field} />)}</section>
+      {group([['Club', f.club?.name ?? 'Not at a club', 'Change', pick], ['Left the club?', `Choose “${ek.name} isn’t at a club”`, '', pick]])}
+      {group([[`Remove ${ek.name}`, `Deletes ${ek.name}’s ${reels} ${reels === 1 ? 'reel' : 'reels'} and their numbers`, '', remove]])}
+      <span style={note}>Changing club moves {ek.name}’s count to the new club. Reels stay as they are. Club features follow the new club.</span>
+    </>, 'home', actions(true, <button key="a" onClick={away} style={btn(false)}>Cancel</button>, <button key="b" onClick={save} style={btn(true)}>Save</button>)) }
+
+  // ── FAM18d · delete a video: what goes, and what it cannot take back. Families who got their own reel from it keep theirs ──
+  if (v === 'FAM18d-DeleteVideo' && video) { const j = f.invites?.[video.id]?.joined.length ?? 0, on = f.people.filter(p => p.on).map(p => p.name), made = video.clips.length > 0
+    const gone = () => { setFamily(x => { const invites = { ...x.invites }; delete invites[video.id]; return { videos: x.videos.filter(y => y.id !== video.id), invites, open: '', working: x.working === video.id ? null : x.working, picking: false } }); say('Deleted. It leaves our servers within 24 hours.'); setView('FAM18-Reels'); top() }
+    return shell(v, head(`${video.title} · ${video.date}`, 'Delete this video?', 'FAM18-Reels'), <>
+      <section style={{ ...card, gap: 0, padding: '4px 14px' }}><Line top={false} a={!made ? 'The video goes' : video.stats ? 'The video, the reel and its numbers go' : 'The video and the reel go'} b="From our servers within 24 hours" />
+        {made && on.length > 0 && <Line a="Family links to this reel stop working" b={on.join(', ')} />}
+        <Line ok={false} a="Film saved to a phone is not removed" b="Yours or a family member’s" />
+        {j > 0 && <Line ok={false} a={j === 1 ? 'One team-mate’s family keeps their own reel' : `${WORDS[j]?.[0].toUpperCase()}${WORDS[j]?.slice(1)} team-mates’ families keep their own reels`} b={j === 1 ? 'It was made from this video for them' : 'They were made from this video for them'} />}
+        <Line ok={false} a="Credits are not returned" /></section>
+      <span style={note}>This can’t be undone.</span>
+      {mine.length > 1 && <button onClick={() => { setFamily({ picking: true }); setView('FAM18-Reels'); top() }} style={{ ...under, alignSelf: 'center' }}>Pick a different video</button>}
+    </>, 'reels', actions(true, <button key="a" onClick={hop('FAM18-Reels')} style={btn(false)}>Keep it</button>, <button key="b" onClick={gone} style={btn(true)}>Delete</button>)) }
+
+  // ── FAM24 · help: what it is about and a note. It reaches a person with the video and the account attached ──
+  if (v === 'FAM24-Help') { const t = f.topic ?? -1, att = video ?? latest
+    return shell(v, head('A person replies within a day', 'Help', () => go(ret && ret !== v ? ret : 'FAM19-Account')), <>
+      <section style={{ ...card, gap: 0, padding: '12px 14px 2px' }}><strong style={{ fontSize: 14, paddingBottom: 2 }}>What is it about?</strong>
+        <div role="radiogroup" aria-label="What is it about?" style={{ display: 'flex', flexDirection: 'column' }}>{TOPICS.map(([a, b], n) => <button key={a} role="radio" aria-checked={t === n} onClick={() => { setFamily({ topic: n }); say(n ? 'Picked. Tell us what happened below.' : 'Pick the reel. We look again for free.') }} style={{ ...row, borderTop: n ? `1px solid ${HAIR}` : 0 }}><span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 16 }}>{a}</strong>{b && <span style={{ fontSize: 14, color: MUT }}>{b}</span>}</span>{t === n ? <Dot /> : <I d={CHEV} size={16} />}</button>)}</div></section>
+      <section style={card}>{labelled('Tell us what happened', <textarea placeholder="Tap to write" rows={3} value={story} onChange={e => setStory(e.target.value)} style={area} />, `We attach: ${att ? `${att.title} · ${att.date}, and your account` : 'your account'}`)}</section>
+      <span style={note}>Is your child in someone else’s video? There is a separate page for that, and you don’t need an account.</span>
+      {demo('the separate page', <button onClick={hop('FAM25-RemovalRequest')} style={small}>Open the page another parent would use</button>)}
+    </>, 'home', actions(true, <button key="a" onClick={() => { setStory(''); say(`Sent. A person replies within a day, to ${f.email}.`) }} style={btn(true)}>Send</button>)) }
+
+  // ── FAM25 · a web page, no account: a parent who thinks their child can be seen in someone else's video asks for a check. It never needs the child's name ──
+  if (v === 'FAM25-RemovalRequest') { const send = () => { if (!/\S+@\S+\.\S+/.test(rq.email)) { say('Add your email so we can reply.'); return } setRq({ club: '', date: '', email: '', note: '' }); say('Sent. We reply within two working days.') }
+    return <div data-screen={v} style={phone}><div style={{ flexGrow: 1, padding: '22px 22px 26px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <span style={{ color: G }}><Mark /></span>{title('Is your child in someone else’s video?', 30)}
+      <span style={{ fontSize: 16, lineHeight: '23px' }}>Every child except the one the parent picked is blurred before anything is saved. If you think that went wrong, tell us and a person checks.</span>
+      {labelled('Club', <select value={rq.club} onChange={e => setRq({ ...rq, club: e.target.value })} style={field}><option value="">Tap to choose</option>{CLUBS.map(c => <option key={c.name}>{c.name}</option>)}</select>)}
+      {labelled('Date of the game', <input type="date" value={rq.date} onChange={e => setRq({ ...rq, date: e.target.value })} style={field} />)}
+      {labelled('Your email', <input type="email" placeholder="So we can reply" value={rq.email} onChange={e => setRq({ ...rq, email: e.target.value })} style={field} />)}
+      {labelled('What should we check?', <textarea placeholder="Tap to write" rows={2} value={rq.note} onChange={e => setRq({ ...rq, note: e.target.value })} style={area} />, 'You don’t need to name your child')}
+      <span style={{ fontSize: 14, lineHeight: '20px', color: MUT }}>We reply within two working days. If your child can be seen, we blur them or remove the video, and tell you which.</span>
+      {demo('the separate page', <button onClick={hop('FAM24-Help')} style={small}>Back to {f.parent}’s phone</button>)}
+      <span style={{ flexGrow: 1 }} /><button onClick={send} style={big(false)}>Send</button>
+    </div>{overlays}</div> }
+
   // ── FAM12 · tell my club ──
   if (v === 'FAM12-TellClub') { const msg = f.message ?? `Hi, I’ve been using Clean Sheet to get ${name}’s highlights from games. It also does a lot for coaches and clubs: session plans, fair turns, clips for every family. ${count ? `A few of us at ${club.replace(/ FC$/, '')} already use it. ` : ''}There’s a page for clubs here if it’s of interest. No pressure at all. ${f.parent}`
     return shell('FAM12-TellClub', head(club, 'Tell my club', 'FAM11-Locked'), <>
@@ -694,15 +950,15 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
   // ── FAM13 · your club has joined ──
   if (v === 'FAM13-ClubJoined') { const seen = () => { setFamily({ toldJoined: true }); setView('FAM14-HomeWithClub'); top() }, kept = f.videos.filter(x => x.clips.length).length
     return shell('FAM13-ClubJoined', head(club, 'Your club has joined'), <>
-      <section style={{ borderRadius: 16, background: PLUM, color: '#fff', padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 6 }}><span style={{ ...cap, color: '#e6d3d3' }}>FROM TODAY</span><strong style={{ fontSize: 19, lineHeight: '25px' }}>Games {club} films are free for you.</strong><span style={{ fontSize: 14, lineHeight: '20px', color: '#e6d3d3' }}>{name}’s coach, Luke, can now send goals, clips and messages here.</span></section>
+      <section style={{ borderRadius: 16, background: PLUM, color: '#fff', padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 6 }}><span style={{ ...cap, color: '#e6d3d3' }}>FROM TODAY</span><strong style={{ fontSize: 19, lineHeight: '25px' }}>Team, Learn and your coach are open.</strong><span style={{ fontSize: 14, lineHeight: '20px', color: '#e6d3d3' }}>And games {club} films are free for you.</span></section>
       <section style={{ ...card, gap: 0, padding: '12px 14px 4px' }}><strong style={{ fontSize: 16, paddingBottom: 6 }}>What changes</strong>
-        {([['Games the club films', 'Free'], ['Your own filming', 'Half the credits'], [`Your ${f.balance} credits`, `Now about ${aboutGames(f.balance, true)} full ${aboutGames(f.balance, true) === 1 ? 'game' : 'games'}`]] as [string, string][]).map(([a, b]) => <div key={a} style={{ display: 'flex', justifyContent: 'space-between', gap: 10, padding: '9px 0', borderTop: `1px solid ${HAIR}`, fontSize: 15 }}><span>{a}</span><strong style={{ flex: 'none' }}>{b}</strong></div>)}</section>
+        {([['Team and Learn tabs', 'Open'], ['Games the club films', 'Free'], ['Your own filming', 'Half the credits'], [`Your ${f.balance} credits`, `Now about ${aboutGames(f.balance, true)} full ${aboutGames(f.balance, true) === 1 ? 'game' : 'games'}`]] as [string, string][]).map(([a, b]) => <div key={a} style={{ display: 'flex', justifyContent: 'space-between', gap: 10, padding: '9px 0', borderTop: `1px solid ${HAIR}`, fontSize: 15 }}><span>{a}</span><strong style={{ flex: 'none' }}>{b}</strong></div>)}</section>
       <section style={{ ...card, gap: 0, padding: '12px 14px 4px' }}><strong style={{ fontSize: 16, paddingBottom: 6 }}>What stays yours</strong><Line a={`Your ${kept} videos and their clips`} b="Private to your family, as before" /><Line a="The club and coach can’t see them" b="There is no way to send them" /><Line a="You can delete them any time" /></section>
-      <span style={{ fontSize: 13, lineHeight: '19px', color: MUT }}>The club asks each family what it may film and share. You’ll see those questions next.</span>
-    </>, null, actions(false, <button key="a" onClick={seen} style={btn(false)}>{f.toldJoined ? 'Home' : 'Later'}</button>, <button key="b" onClick={() => say(`Three questions from ${club} about film and sharing.`)} style={btn(true)}>Answer the club’s questions</button>)) }
+      <span style={{ fontSize: 13, lineHeight: '19px', color: MUT }}>The club asks each family what it may film and share. Those questions are next.</span>
+    </>, null, actions(false, <button key="a" onClick={seen} style={btn(false)}>{f.toldJoined ? 'Home' : 'Later'}</button>, <button key="b" onClick={() => { setFamily({ toldJoined: true, answered: true }); setView('FAM36-Consent'); top() }} style={btn(true)}>Answer the club’s questions</button>)) }
 
   // ── FAM11 · the Club tab: what you have now, and what the club would add ──
-  if (v === 'FAM11-Locked') { const rows: [string, string, string][] = [['Games covered', 'Ones you film', 'Every game'], ['Filming', 'You set up and upload', 'Done for you'], ['Numbers', 'Per video, estimates', 'All season, side by side'], ['Minutes and positions', '', 'From the team sheet'], ['Cost to you', 'Credits', 'Club games free'], ['From the coach', '', 'Goal, feedback, home practice'], ['Team-mates in clips', 'Blurred', 'With each family’s yes'], ['Season report', '', 'From the coach'], ['Learn: practice at home', '', '✓']]
+  if (v === 'FAM11-Locked') { const rows: [string, string, string][] = [['Games covered', 'Ones you film', 'Every game'], ['Filming', 'You set up and upload', 'Done for you'], ['Numbers', 'Per video, estimates', 'All season, side by side'], ['Minutes and positions', '', 'From the team sheet'], ['Cost to you', 'Credits', 'Club games free'], ['From the coach', '', 'Goal, feedback, season report'], ['Learn: practice at home', '', '✓'], ['Team-mates in clips', 'Blurred', 'With each family’s yes'], ['Team: chat, forms, who’s coming', '', '✓']]
     const cell: React.CSSProperties = { padding: '10px 6px', fontSize: 13, lineHeight: '17px', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center' }
     return shell('FAM11-Locked', head(f.club ? club : 'Your club', 'With your club', 'FAM3-Home'), <>
       <section style={{ borderRadius: 16, background: PLUM, color: '#fff', padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 6 }}><span style={{ ...cap, color: '#e6d3d3' }}>{count ? `${families} FAMILIES AT ${club.toUpperCase()} USE THIS` : 'TELL US IF YOUR CLUB JOINS'}</span><strong style={{ fontSize: 19, lineHeight: '25px' }}>You are getting part of it.</strong><span style={{ fontSize: 14, lineHeight: '20px', color: '#e6d3d3' }}>The rest needs the club: every game filmed, its coaches and every family’s say-so.</span></section>
@@ -721,17 +977,18 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
     return shell('FAM19-Account', head(f.email, 'Your account', back), <>
       {group([['Your children', f.kids.map(x => x.name).join(' and '), '', () => { setView('FAM15-Children'); top() }], ['Credits and receipts', '', String(f.balance), () => { setView('FAM6-Credits'); top() }], ['Family who can watch', on.map(p => p.name).join(', '), String(on.length), () => { if (!f.videos.some(x => x.id === f.open && x.clips.length)) { const any = f.videos.find(x => x.state === 'ready'); if (!any) { say('No reels yet. Add a video from Home.'); return } setFamily({ open: any.id }) } setView('FAM10-ShareFamily'); top() }]])}
       {group([['Tell me when a reel is ready', '', f.notify ? 'On' : 'Off', () => { setFamily({ notify: !f.notify }); say(`Notifications turned ${f.notify ? 'off' : 'on'}. We only ever send this one.`) }], ['How we handle your film', 'Copy, delete or close your account', '', () => { setView('FAM16-Privacy'); top() }], ['Filming tips', '', '', () => { setView('FAM4-BeforeYouFilm'); top() }]])}
-      {group([['Something wrong with a reel?', 'Wrong child, a missed moment, a refund', '', () => say('Pick the reel, say what is wrong. A person replies within a day.')], ['Terms', '', '', () => say('The terms open.')], ['Sign out', '', '', () => { setFamily({ signedIn: false }); setView('FAM1-Welcome'); top() }]])}
+      {group([['Something wrong with a reel?', 'Wrong child, a missed moment, a refund', '', () => help(0)], ['Terms', '', '', () => say('The terms open.')], ['Sign out', '', '', () => { setFamily({ signedIn: false }); setView('FAM1-Welcome'); top() }]])}
     </>, 'home') }
 
   // ── FAM15 · your children ──
   if (v === 'FAM15-Children') return shell('FAM15-Children', head('Your account', 'Your children', () => { setView('FAM19-Account'); top() }), <>
     <section style={{ ...card, gap: 0, padding: '4px 14px 2px' }}>
-      {f.kids.map((x, n) => { const reels = f.videos.filter(y => y.kid === x.id && y.state === 'ready').length; return <button key={x.id} onClick={() => say(`${x.name}: change name, birth year, club or shirt.`)} style={{ ...row, minHeight: 66, borderTop: n ? `1px solid ${HAIR}` : 0 }}><span style={{ ...round, background: x.id === kid.id ? G : PALE, color: x.id === kid.id ? '#fff' : INK, fontSize: 16, fontWeight: 700 }}>{x.name[0]}</span><span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 17 }}>{x.name}</strong><span style={{ fontSize: 14, color: MUT }}>Born {x.year}{f.club ? ` · ${f.club.name}` : ''} · {reels} {reels === 1 ? 'reel' : 'reels'}</span></span><I d={CHEV} size={16} /></button> })}
+      {f.kids.map((x, n) => { const reels = f.videos.filter(y => y.kid === x.id && y.state === 'ready').length; return <button key={x.id} onClick={() => { setEd(null); setFamily({ edit: x.id }); setView('FAM15c-EditChild'); top() }} style={{ ...row, minHeight: 66, borderTop: n ? `1px solid ${HAIR}` : 0 }}><span style={{ ...round, background: x.id === kid.id ? G : PALE, color: x.id === kid.id ? '#fff' : INK, fontSize: 16, fontWeight: 700 }}>{x.name[0]}</span><span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 17 }}>{x.name}</strong><span style={{ fontSize: 14, color: MUT }}>Born {x.year}{f.club ? ` · ${f.club.name}` : ''} · {reels} {reels === 1 ? 'reel' : 'reels'}</span></span><I d={CHEV} size={16} /></button> })}
       <button onClick={() => { setExtra({ name: '', year: '' }); setView('FAM2-AddChild'); top() }} style={{ ...under, alignSelf: 'flex-start', fontSize: 16, borderTop: `1px solid ${HAIR}`, width: '100%', textAlign: 'left', minHeight: 52 }}>Add a child</button></section>
     <section style={card}><strong style={{ fontSize: 16 }}>Both in the same video?</strong><span style={{ fontSize: 15, lineHeight: '21px' }}>Tap both when you upload. Each gets their own reel, and the second child adds {RATES.secondChild} credits.</span></section>
-    <section style={card}><strong style={{ fontSize: 16 }}>Age decides what you see</strong><span style={{ fontSize: 15, lineHeight: '21px' }}>Every age: clips and game stats, each number marked as an estimate.</span></section>
+    <section style={card}><strong style={{ fontSize: 16 }}>The same at every age</strong><span style={{ fontSize: 15, lineHeight: '21px' }}>Every age: clips and game stats, each number marked as an estimate.</span></section>
     <span style={note}>Only children you are the parent or guardian of.</span>
+    <button onClick={() => { setEd(null); setFamily({ edit: kid.id }); setView('FAM15c-EditChild'); top() }} style={{ ...under, alignSelf: 'center' }}>Edit or remove a child</button>
     {!f.kids.some(x => x.id === SAMPLE_OLDER.id) && demo('a second child', <button onClick={() => { addSampleOlder(); go('FAM3-Home'); say(`Showing ${SAMPLE_OLDER.name}.`) }} style={{ ...btn(false), minHeight: 44, fontSize: 14 }}>Add {SAMPLE_OLDER.name}, with three games and their stats</button>)}
   </>, 'home')
 
@@ -740,13 +997,14 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
     {switcher}
     {locked('Every club game, here, free', 'Filmed by the club. Nothing for you to film, no credits.')}
     <section style={{ ...card, gap: 0, padding: '4px 14px' }}>
-      {mine.map((x, n) => <button key={x.id} onClick={() => openVideo(x)} style={{ ...row, minHeight: 70, borderTop: n ? `1px solid ${HAIR}` : 0 }}>
+      {mine.map((x, n) => <button key={x.id} onClick={() => { if (!f.picking) { openVideo(x); return } setFamily({ picking: false, open: x.id }); setView('FAM18d-DeleteVideo'); top() }} style={{ ...row, minHeight: 70, borderTop: n ? `1px solid ${HAIR}` : 0 }}>
         <span style={{ flex: 'none', width: 96 }}>{x.state === 'working' ? <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', aspectRatio: '16 / 9', borderRadius: 10, background: NIGHT, color: '#fff' }}><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden><circle cx="12" cy="12" r="9" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="3" /><path d="M12 3a9 9 0 019 9" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" /></svg></span>
           : x.state === 'unread' ? <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', aspectRatio: '16 / 9', borderRadius: 10, border: `1px dashed ${MUT}`, color: MUT, boxSizing: 'border-box' }}><I d={CROSS} size={16} /></span> : <Thumb kind="team" len={reelOf(x.clips)} wide />}</span>
         <span style={{ display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 16, lineHeight: '20px' }}>{x.title}{x.clips.length ? ` · ${x.clips.length} ${x.clips.length === 1 ? 'moment' : 'moments'}` : ''}</strong>
           <span style={{ fontSize: 14, color: MUT }}>{[x.date, x.state === 'working' ? 'about 6 minutes to go' : x.state === 'few' ? 'credits returned' : x.state === 'unread' ? 'couldn’t read it, no credits used' : x.note].filter(Boolean).join(' · ')}</span></span></button>)}
       {!mine.length && <span style={{ fontSize: 15, color: MUT, padding: '14px 0' }}>Nothing for {name} yet.</span>}</section>
-    <span style={note}>Private to your family. Kept until you delete them.</span>
+    <span style={note}>{f.picking ? 'Tap the video to delete.' : 'Private to your family. Kept until you delete them.'}</span>
+    {mine.length > 0 && <button onClick={() => { if (f.picking) { setFamily({ picking: false }); return } const x = mine.find(y => y.id === f.open) ?? mine.find(y => y.state === 'ready') ?? mine[0]; setFamily({ open: x.id }); setView('FAM18d-DeleteVideo'); top() }} style={{ ...under, alignSelf: 'center' }}>{f.picking ? 'Cancel' : 'Delete a video'}</button>}
   </>, 'reels', actions(true, <button key="a" onClick={() => go('FAM5-Check')} style={btn(true)}>Add a video</button>))
 
   // ── FAM17 and FAM17u · the Learn tab. Before the club joins it is a picture of the page, dimmed, under a panel that says what it is and why it is closed. After, the page itself ──
@@ -762,25 +1020,13 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
       <span style={note}>Picked for under {age < 12 ? age : age + 1} from {club}’s library. Luke can send {name} clips here too.</span>
     </>, 'learn')
     // The page behind is a picture of the feature, not the feature: it cannot be tapped, focused or read out. The panel cannot be dismissed; the tabs still work.
-    return shell('FAM17-Learn', head('With your club', 'Learn'), <div style={{ position: 'relative', flexGrow: 1, margin: '-12px -14px -16px', padding: '12px 14px 16px', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-      <div aria-hidden inert style={{ position: 'absolute', inset: 0, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 12, filter: 'blur(1.5px)', pointerEvents: 'none', userSelect: 'none', overflow: 'hidden' }}>{page}</div>
-      <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'rgba(250,245,236,0.22)' }} />
-      <section aria-label="Learn, with your club" style={{ position: 'relative', flex: 'none', marginTop: short ? 16 : 118, borderRadius: 22, background: 'rgba(51,33,43,0.88)', color: '#fff', padding: '18px 18px 12px', display: 'flex', flexDirection: 'column', gap: 10, boxShadow: '0 14px 34px rgba(0,0,0,0.3)' }}>
-        <span style={{ alignSelf: 'flex-start' }}>{withClub}</span>
-        {title(`Learn opens when ${f.club ? club : 'your club'} joins.`, 26)}
-        <span style={{ fontSize: 15.5, lineHeight: '22px' }}><strong>What it is.</strong> Short clips and games for {name} to try at home, matched to what {his} reels show.</span>
-        <span style={{ fontSize: 15.5, lineHeight: '22px' }}><strong>Why it’s closed.</strong> It is made from the club’s own clips and its coaches’ picks, so there is nothing to show until the club is on board.</span>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>{['A game picked from each reel', `Clips and practice sent by ${name}’s coach`, 'Warm-ups that help prevent injuries'].map(x => <span key={x} style={{ display: 'flex', alignItems: 'center', gap: 9, fontSize: 15, lineHeight: '20px' }}><span style={{ flex: 'none', width: 20, height: 20, borderRadius: 999, background: 'rgba(255,255,255,0.16)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><I d={TICK} size={11} w={3} /></span>{x}</span>)}</div>
-        <button onClick={tour} style={{ ...big('club'), marginTop: 4 }}>See what your club adds</button>
-        <button onClick={() => { setView('FAM12-TellClub'); top() }} style={{ ...under, color: '#fff', fontSize: 15, alignSelf: 'center' }}>Tell my club</button>
-      </section>
-    </div>, 'learn') }
+    return closed('FAM17-Learn', 'Learn', `Short clips and games for ${name} to try at home, matched to what ${his} reels show.`, 'It is made from the club’s own clips and its coaches’ picks, so there is nothing to show until the club is on board.', ['A game picked from each reel', `Clips and practice sent by ${name}’s coach`, 'Warm-ups that help prevent injuries'], page, 'learn') }
 
   // ── FAM14 · home after the club joins ──
   if (v === 'FAM14-HomeWithClub') { const own = f.videos.filter(x => x.state === 'ready' && x.kid === kid.id).slice(0, 2)
     return shell('FAM14-HomeWithClub', head(`U11 Luke · ${club.replace(/ FC$/, '')}`, `Hi ${f.parent}`), <>
-      <section style={card}><span style={{ ...cap, color: MUT }}>FROM YOUR CLUB · FREE</span><strong style={{ fontSize: 18, lineHeight: '24px' }}>Sunday 9:30 v Ridgeway, home</strong><span style={{ fontSize: 14, color: MUT }}>Luke: two things to try before Tuesday</span>
-        <div style={{ display: 'flex', gap: 8, paddingTop: 4 }}><button aria-pressed={f.coming} onClick={() => { setFamily({ coming: true }); say(`Luke can see ${name} is coming.`) }} style={btn(true)}>{name} is coming</button><button onClick={() => { setView('ECp1-FamilyLibrary'); top() }} style={btn(false)}>From Luke</button></div></section>
+      <section style={card}><span style={{ ...cap, color: MUT }}>FROM YOUR CLUB · FREE</span><strong style={{ fontSize: 18, lineHeight: '24px' }}>Sunday 9:30 v Eastbank, home</strong><span style={{ fontSize: 14, color: MUT }}>Luke: two things to try before Tuesday</span>
+        <div style={{ display: 'flex', gap: 8, paddingTop: 4 }}><button aria-pressed={f.rsvp.sun === true} onClick={() => { rsvp('sun', true); say(`Luke can see ${name} is coming.`) }} style={btn(true)}>{name} is coming</button><button onClick={hop('FAM37-FromCoach')} style={btn(false)}>From Luke</button></div></section>
       <section aria-label="Your own filming" style={{ borderRadius: 16, border: `2px dashed ${MUT}`, padding: '10px 14px 14px', display: 'flex', flexDirection: 'column', gap: 4 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, paddingBottom: 4 }}><I d={LOCK} size={16} /><strong style={{ flexGrow: 1, fontSize: 16 }}>Your own filming</strong><span style={{ fontSize: 13, fontWeight: 700, color: MUT }}>Private to your family</span></div>
         {own.map((x, n) => <button key={x.id} onClick={() => openVideo(x)} style={{ ...row, minHeight: 70, borderTop: n ? `1px solid ${HAIR}` : 0 }}><span style={{ flex: 'none', width: 96 }}><Thumb kind="team" len={reelOf(x.clips)} wide /></span><span style={{ display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 15, lineHeight: '20px' }}>{x.title} · {x.clips.length} moments</strong><span style={{ fontSize: 13, color: MUT }}>{x.date} · {x.note ?? 'before the club joined'}</span></span></button>)}

@@ -207,7 +207,7 @@ export function XG2ChancesSeason({ t, s, go }: ChanceProps) {
   ]
   return (
     <Page id={ids(t).season} title="Chances this season" sub={`${t.name} · ${t.seasonLine} · ${t.format}`} go={go} cols="minmax(0,1fr) 348px"
-      right={<><Btn big onClick={() => go(ids(t).game)}>Saturday’s game</Btn><Btn primary big onClick={() => go('XG4-ThreatMap')}>Where the danger comes from</Btn></>}>
+      right={<><Btn big onClick={() => go('XG5-ClubChances')}>Whole club</Btn><Btn big onClick={() => go(ids(t).game)}>Saturday’s game</Btn><Btn primary big onClick={() => go('XG4-ThreatMap')}>Where the danger comes from</Btn></>}>
       <div style={col}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,minmax(0,1fr))', gap: 10 }}>
           <Tile head="Chances made · xG" value={fmt1(se.xg)} mark={est} sub={mini ? `About ${Math.round((se.xg / se.games) * 2) / 2} a game` : `You scored ${t.goalsFor}`} />

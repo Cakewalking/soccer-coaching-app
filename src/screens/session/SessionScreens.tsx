@@ -139,7 +139,7 @@ export function GS2DrillWhy({ s, k, go, say, part }: GsProps) {
   const long = ev?.long ? ev.long.split('{num}') : null
   return (
     <Page id="GS2-DrillWhy" title={d.name} sub={`${day(t)}, ${p.at} · ${p.mins} minutes · ${p.tag.toLowerCase()}`} go={go} cols="minmax(0,1fr) 348px"
-      right={<><Btn big onClick={() => { go('GS1-ProposedSession'); say('Three other games for the same reason. Pick one and the session changes.') }}>Swap for another</Btn><Btn primary big onClick={() => go('GS1-ProposedSession')}>Back to the session</Btn></>}>
+      right={<><Btn big onClick={() => go('GS11-DrillSources')}>Where this comes from</Btn><Btn big onClick={() => { go('GS1-ProposedSession'); say('Three other games for the same reason. Pick one and the session changes.') }}>Swap for another</Btn><Btn primary big onClick={() => go('GS1-ProposedSession')}>Back to the session</Btn></>}>
       <div style={col}>
         <section aria-label="Why you are doing this" style={{ ...tile, padding: '12px 18px 14px', display: 'grid', gridTemplateColumns: strong ? 'minmax(0,1fr) 250px' : 'minmax(0,1fr)', gap: 16 }}>
           <span style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>

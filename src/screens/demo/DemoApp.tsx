@@ -356,6 +356,7 @@ import JoinFlow             from '../join/JoinFlow'
 import JuniorCoachApp        from '../JuniorCoachApp'
 import SignInFlow            from '../signin/SignInFlow'
 import { SB1SandboxEnding, SB2SandboxEnded, SB3NoSandbox, SB4KeepGoing } from '../signin/SandboxScreens'
+import { PLT1PlanEnding, PLT2PaymentFailed, PLT3CancelPlan, PLT4PlanEnded, PLT5LostAccess, PLT6ConsentChanged } from '../signin/PlatformScreens'
 import { ER1SomethingWrong, ER2UploadFailed, ER3Loading, ER4NotFound, ER5NoAccess, ERp1SomethingWrong, ERp2NotFound } from '../signin/ErrorScreens'
 import ScreenErrorBoundary from '../ScreenErrorBoundary'
 import CoachPhoneApp, { CPh1CoachPhoneHome, CPh2CoachPhoneComing, CPh3CoachPhoneMessages, CPh4CoachPhoneGame, CPh5CoachPhonePlan, CPh1eCoachPhoneHomeEmpty, CPh2eCoachPhoneComingEmpty, CPh3eCoachPhoneMessagesEmpty, CPh4eCoachPhoneGameEmpty } from '../coachphone/CoachPhoneApp'
@@ -1773,6 +1774,13 @@ function renderScreenInner(key: string): ReactNode {
     case 'sb3':               return <SB3NoSandbox />
     case 'SB4':
     case 'sb4':               return <SB4KeepGoing />
+    // Platform moments (handover v12): plan ending, payment failed, cancelling, plan ended, lost access, consent taken back
+    case 'PLT1':              return <PLT1PlanEnding />
+    case 'PLT2':              return <PLT2PaymentFailed />
+    case 'PLT3':              return <PLT3CancelPlan />
+    case 'PLT4':              return <PLT4PlanEnded />
+    case 'PLT5':              return <PLT5LostAccess />
+    case 'PLT6':              return <PLT6ConsentChanged />
     // Error / fault screens (ER screens)
     case 'ER1':
     case 'er1':               return <ER1SomethingWrong />

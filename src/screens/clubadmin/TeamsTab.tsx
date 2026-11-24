@@ -1,5 +1,5 @@
 import { useBackState } from '../../backState'
-import { openThing } from '../openThing'
+import { openThing, openScreen } from '../openThing'
 import { useState } from 'react'
 import { MINIROOS, JUNIORS, GRADING } from './data'
 import { SubTabBar, ResultChip, BackBtn, EmptyCard, FOOTER_DEFAULT } from './ui'
@@ -357,7 +357,8 @@ export default function TeamsTab({ empty, initialView, onNav }: { empty?: boolea
               { name: "Women's 1sts", badge: 'State League 2', coach: 'Steph Lau', squad: 19, ladder: '2nd of 10', lastFive: ['W','W','W','D','W'] },
               { name: 'Over 35s', badge: 'Metro league', coach: 'Phil Ainsley · player-coach', squad: 18, ladder: '5th of 9', lastFive: ['D','W','L','W','D'] },
             ].map((t, i) => (
-              <div key={i} style={{ background: '#fff', borderRadius: 14, padding: '16px', border: '1px solid #e9eae8' }}>
+              // Tap a team to open it (FN3). Only Men's Reserves has a team page drawn, so only that card opens.
+              <div key={i} {...(t.name === "Men's Reserves" ? { role: 'button', tabIndex: 0, 'aria-label': `${t.name}, open the team`, onClick: () => openScreen('FN3-SeniorTeam'), onKeyDown: (e: React.KeyboardEvent) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openScreen('FN3-SeniorTeam') } } } : {})} style={{ background: '#fff', borderRadius: 14, padding: '16px', border: '1px solid #e9eae8', cursor: t.name === "Men's Reserves" ? 'pointer' : undefined }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 4 }}>
                   <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>{t.name}</div>
                   <span style={{ fontSize: 10, fontWeight: 700, color: '#2f6252', background: '#e4f2eb', borderRadius: 6, padding: '2px 6px' }}>{t.badge}</span>

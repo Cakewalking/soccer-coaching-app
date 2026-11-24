@@ -1,4 +1,4 @@
-import { openThing } from '../openThing'
+import { openThing, openScreen } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', PALE = '#eef5f2'
@@ -11,6 +11,7 @@ interface Props {
   phone?: boolean
   onDemo?: () => void
   onBack?: () => void
+  onNav?: (s: string) => void
 }
 
 function AuthShell({ children, phone }: { children: React.ReactNode; phone?: boolean }) {
@@ -124,11 +125,13 @@ function IconCircle({ children }: { children: React.ReactNode }) {
   )
 }
 
-export default function SignInFlow({ initialState = 'email', phone, onDemo, onBack }: Props) {
+export default function SignInFlow({ initialState = 'email', phone, onDemo, onBack, onNav }: Props) {
   const [state, setState] = useState<SIState>(initialState)
   const [email, setEmail] = useState('sam@example.com')
   const [toast, setToast] = useState<string|null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  // Lost access to the email or the phone (PLT5): in place where the page can, or over the top with a Back bar.
+  const lostAccess = () => onNav ? onNav('PLT5-LostAccess') : openScreen('PLT5-LostAccess')
 
   const phone_w = phone ? PHONE_CARD : CARD_STYLE
   const p = phone ? { padding: '28px 20px' } : {}
@@ -242,6 +245,9 @@ export default function SignInFlow({ initialState = 'email', phone, onDemo, onBa
             Nothing there? Look in junk or spam.{phone ? '' : ' The email comes from Clean Sheet.'}
           </p>
         )}
+        {!isWrong && !phone && (
+          <button style={{ ...LINK, minHeight: 44 }} onClick={lostAccess}>Can’t get the code?</button>
+        )}
         {phone && !isWrong && (
           <p style={{ position: 'absolute', bottom: 20, left: 20, right: 20, fontSize: 13, color: MUT, textAlign: 'center' }}>
             Codes run out after 10 minutes. If yours has, ask for a new one.
@@ -316,7 +322,7 @@ export default function SignInFlow({ initialState = 'email', phone, onDemo, onBa
         <button style={BTN_GREEN} onClick={() => st('Signing in.')}>Finish signing in</button>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 16 }}>
           <button style={LINK} onClick={() => st('New code sent.')}>Text it again</button>
-          <button style={LINK} onClick={() => openThing("number change", 'entry')}>I've changed my number</button>
+          <button style={LINK} onClick={lostAccess}>I've changed my number</button>
         </div>
         <p style={{ margin: '16px 0 0', fontSize: 13, color: MUT, lineHeight: 1.5 }}>
           You asked for this in Settings › Account. You can turn it off there.

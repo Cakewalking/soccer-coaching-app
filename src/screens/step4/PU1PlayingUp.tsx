@@ -19,7 +19,7 @@ function DirFrame({ onNav, tool }: { onNav?: (s: string) => void; tool: (n: stri
       </nav>
       <nav style={{ background: '#fff', borderBottom: `1px solid ${HAIR}`, height: 44, display: 'flex', alignItems: 'center', padding: '0 20px', flexShrink: 0 }}>
         <button onClick={() => tool('All players')} style={snb}>All players</button>
-        <button onClick={() => onNav?.('DP1-Pathway')} style={snb}>Pathway</button>
+        <button onClick={() => onNav?.('PU1-PlayingUp')} style={snb}>Pathway</button>
         <button onClick={() => onNav?.('PU1-PlayingUp')} style={snba}>Playing across</button>
         <button onClick={() => tool('Fair game time')} style={snb}>Fair game time</button>
         <div style={{ flex: 1 }} />

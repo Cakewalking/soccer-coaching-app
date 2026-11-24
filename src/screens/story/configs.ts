@@ -51,8 +51,8 @@ const CLUB_TOPNAV = [
 ]
 const CLUB_SUBNAV = [
   { label: 'Overview', target: 'D1-ClubOverview', active: true }, { label: 'Messages', target: 'MSG4-DirectorMessages' },
-  { label: 'Calendar', target: 'DC1-Calendar' }, { label: 'Season plan', target: 'D7-SeasonPlan' },
-  { label: 'Playing style', target: 'D8-ClubStyle' }, { label: 'Files', target: 'FIL5-ClubFiles' },
+  { label: 'Calendar', target: 'DC1-Calendar' }, { label: 'Season plan', target: 'FY1-SeasonPlan' },
+  { label: 'Playing style', target: 'S1-PlayingStyle' }, { label: 'Files', target: 'FIL5-ClubFiles' },
   { label: 'Features and billing', target: 'PRM1-FeaturesByTeam' },
 ]
 const CLUB_TEAM_FACES = (ls: string[]): { ini: string; has: boolean }[] => ls.map((ini, i) => ({ ini, has: i % 3 !== 1 }))
@@ -376,7 +376,7 @@ export const STO11: HomeCfg = {
       { label: 'Open concerns', value: '2 · on track' },
     ],
     statusCaption: 'Counts only. Names and details stay with the welfare officer.',
-    mainBtn: 'Read the board report', mainTarget: 'D6-BoardReport', outlineBtn: 'The two teams', outlineTarget: 'DP1-Pathway',
+    mainBtn: 'Read the board report', mainTarget: 'D6-BoardReport', outlineBtn: 'The two teams', outlineTarget: 'DP1-FairGameTime',
   },
   ready: {
     when: 'WED 10 JUNE · 7:30 pm · CLUBROOMS', title: 'The board report is ready',

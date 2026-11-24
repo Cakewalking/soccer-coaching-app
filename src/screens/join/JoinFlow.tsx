@@ -351,7 +351,8 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
           <button onClick={() => setReminders(r => !r)} style={{ marginTop: 20, width: '100%', height: 44, borderRadius: '999px', border: `1.5px solid ${reminders ? '#2f6252' : '#d4d7d4'}`, background: reminders ? '#eef5f2' : '#fff', color: reminders ? G : INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', marginBottom: 10 }}>
             {reminders ? 'Game-day reminders on ✓' : 'Turn on game-day reminders'}
           </button>
-          <button onClick={() => openThing("Mia's week", 'entry')} style={{ width: '100%', height: 52, borderRadius: '999px', border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer' }}>
+          {/* The family app is the only parent app (handover v12): a parent who joins from a club invite lands on its home, with the club joined. The board address is used because /family/FAM14-HomeWithClub shows the welcome page to a family with nothing saved. */}
+          <button onClick={() => window.location.assign('/__screen/FAM14-HomeWithClub')} style={{ width: '100%', height: 52, borderRadius: '999px', border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer' }}>
             Go to Mia's week
           </button>
           <div style={{ fontSize: 12, color: MUT, textAlign: 'center', marginTop: 10, lineHeight: 1.5 }}>

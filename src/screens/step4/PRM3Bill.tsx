@@ -97,6 +97,8 @@ export default function PRM3Bill({ onNav }: { onNav?: (s: string) => void }) {
             </div>
           </div>
           <div style={{ fontSize: 12, color: MUT }}>All prices are placeholders, before GST. Changes during a month are charged by the day.</div>
+          {/* The way in to PLT1 from the bill (platform handover v1). The handover names no label; this one is the build's. */}
+          <button onClick={() => onNav?.('PLT1-PlanEnding')} style={{ minHeight: 44, marginTop: 4, padding: 0, border: 0, background: 'none', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>When the plan ends</button>
         </div>
 
         {/* Right sidebar */}

@@ -1,12 +1,52 @@
-# Clean Sheet Family v16: report back (24 Nov)
+# Clean Sheet Family v18: report back (24 Nov)
 
-Build: the commit that adds this file. 50 phone screens, a fourth walkthrough panel and the club's web page, as a demo of the flows on sample data. **Nothing analyses real film.** This replaces the v15 build.
+Build: the commit that adds this file. 73 phone screens, a fourth walkthrough panel and the club's web page, as a demo of the flows on sample data. **Nothing analyses real film.** This replaces the v16 build.
 
 ## Where it is
 
 - Every screen opens by its id, in the state it is drawn in (for example `/__screen/FAM1-Welcome`, `/__screen/FAM3-Home`, `/__screen/FAM20-GameStats`).
 - **Nothing in the demo's role picker opens it yet.** The pack does not say where a parent with no club comes in.
 - Once the club has joined, an item on the Learn tab opens from the Education centre's library with no "We did it".
+
+## v17 and v18: one parent app (handovers v12 and v13, 24 Nov)
+
+The Family app is now the only parent app. There are five tabs: Home, Reels, Team, Learn, Club. Team and Learn are closed under a panel until the club joins, and then the same tabs open. The platform screens and the audit fixes from the same handover are reported in `PLATFORM-MOMENTS-NOTES.md`.
+
+**Built, and not to go live until the children's privacy review has covered them:** send to the team (`TEAM_LINK`) and taking back filming consent (`CONSENT_BACK`). Both are switches in `src/screens/family/familyStore.ts`, and both are on in the demo.
+
+What was built:
+
+- **The Team tab.** `FAM30-TeamLocked` is the Team page dimmed under the same panel as Learn: it cannot be tapped, focused or read out, and the panel cannot be dismissed. `FAM31-Team` is the open page.
+- **The club's pages, once it has joined:** `FAM32-TeamChat`, `FAM33-Coming`, `FAM34-Lineup`, `FAM35-Forms`, `FAM36-Consent`, `FAM36w-ConsentBack`, `FAM37-FromCoach`, `FAM38-Concern`, `FAM39-Fees` and `FAM40-ClubHome`. Opened before the club joins, the Team ones show `FAM30` and the Club ones show `FAM11`.
+- **`FAM41-ClubPaused`** shows once when the club's plan ends. After OK, Home, Team, Learn and Club are as they were before the club joined, and the family keeps its reels and credits.
+- **The chat button (v18).** Once the club has joined, every green header has a chat button left of the avatar, with a white count. It opens the chat and the count clears. It is not shown before the club joins.
+- **The flows that were missing:** `FAM7u-Uploading`, `FAM7x-UploadStopped`, `FAM6x-PaymentFailed`, Restore on `FAM6`, `FAM2n-ClubNotListed`, `FAM18d-DeleteVideo`, `FAM15c-EditChild`, `FAMi4-LinkEnded`, `FAMi5-NotAvailable`, `FAM24-Help` and `FAM25-RemovalRequest`.
+- **`FAM7-Working`** is redrawn with the four steps and "Open the reel when it's ready". The screen still changes by itself; the button goes there now.
+- **Changed boards:** `FAM13` (Team, Learn and the coach are open; "Answer the club's questions" opens `FAM36`), `FAM14` (v Eastbank; "From Luke" opens `FAM37`), `FAM11` (the table's new rows), `FAM15` ("The same at every age", "Edit or remove a child"), `FAM18` ("Delete a video") and `FAM19` (help opens `FAM24`).
+
+All 662 controls in the v18 table were pressed on this build: 623 work as written. Nineteen are behind the panel on the closed Learn and Team pages, which is how those pages are meant to work. The other 20 are listed in the table with what they do instead; the new ones are explained below. A further test of 93 checks walks the new flows by hand (the club joining, the plan ending, an upload stopping, deleting a video, removing a child, a refused and an ended link, help): all 93 pass. The earlier test of 130 checks has 127 passing: one now differs on purpose (a child's row opens the edit page), and two are the brand-new visitor described under v12. The tap-target check passes.
+
+What stands in, in dashed "Demo" boxes:
+
+- `FAM40`: "Hillview FC's plan ends" shows `FAM41`.
+- `FAM6`: "The app store declines the payment" shows `FAM6x`.
+- `FAM7u`: "The upload finishes" and "The phone loses its connection". The board stays at 62%; in the app an upload takes about four seconds.
+- `FAMi3`: "Dana says no" shows `FAMi5`. `FAM23`, after Stop: "Open the stopped link as another parent" shows `FAMi4`.
+- `FAM24`: "Open the page another parent would use" shows `FAM25`, which has a box to come back. Nothing else in the app links to `FAM25`, because the handover puts its link on the website.
+
+Where the build differs from the pack, and why:
+
+- **"Add a video" opens the uploading page first, then the check.** The table sends it straight to `FAM5-Check`, and nothing in the table opens `FAM7u` except "Carry on". The handover puts `FAM7u` after the phone's own check, and the check cannot read a video that has not been uploaded, so a later video now goes: upload, then check. The first video still uploads while the parent says who to look for (`FAM2`). A game the club filmed, and a video the phone's own check stops, skip the upload. **Say if you want "Add a video" to go straight to the check as the table has it.**
+- **A child's row on `FAM15` opens `FAM15c` for that child.** The table has the row say a line. "Edit or remove a child" opens it for the child in the switch.
+- **"Remove Ari" asks in a sheet** with the table's words, and Keep and Remove buttons. The only child on an account cannot be removed here: a line points to "How we handle your film". The pack does not say what should happen to the last child.
+- **"Delete a video" opens `FAM18d` for the video last opened.** The board does not say how the parent picks which one, so `FAM18d` has a link, "Pick a different video", which returns to Reels with "Tap the video to delete." and a Cancel link. That is not in the pack.
+- **Typing is real.** The chat box, the concern and help notes, the club name and suburb, and the removal page's fields are text boxes, not buttons. Send in the chat needs a message, "Add my club" needs a name and a suburb, and the removal page needs an email.
+- **Announcements switches the tab** as well as saying its line, and shows Luke's one announcement.
+- **`FAM7-Working`** shows the video's own length. The board says 50 minutes, which is the first-run sample.
+- **The team pages follow the child in the switch**, with the same sample week. With Mia showing they read "U15 Luke" and "Luke has Mia starting on the left", which is sample data standing in.
+- **The club is the family's, not each child's.** Changing club on `FAM15c` changes it for the family. If the new club is not the one that has joined, the club features close.
+- **Wording not in the pack:** "From Luke and Mel" and "Nothing to answer" on Team once the chat has been opened and the questions answered; "Answered" on Forms; "Only the coach and the manager can post here."; "Write a message first."; "The upload is paused." and "Carrying on."; "Pick a different video", "Tap the video to delete."; "The video goes" and "The video and the reel go" for a video with no reel or no numbers; "One team-mate's family keeps their own reel"; "Not at a club"; "Add your email so we can reply."; and the last-child line above.
+- **Not built:** notifications for chat and for a stopped upload; muting the chat; the list of chats for two children in two teams; the note to Luke and the away dates on `FAM33`; swapping a turn; the files and sign-ups behind `FAM35`; booking a catch-up; the season report; messaging a contact; the staff screens behind Help; what the club's side shows after consent is taken back (that is `PLT6`); and the 24 hours a deleted video takes to leave the servers.
 
 ## v16: send to the team (handover v11, 24 Nov)
 
@@ -20,7 +60,7 @@ Build: the commit that adds this file. 50 phone screens, a fourth walkthrough pa
 - **One family for each child in a video.** A shirt that already has a family, and the uploader's own child's shirt, cannot be asked for.
 - All of it comes from `TEAM` in `familyStore.ts`: 20 credits back, 10 families, 14 days, half the credits.
 
-All 414 controls in the v16 table were pressed on this build: 387 work as written, including all 31 new ones. Twelve are behind the panel on the closed Learn page, and the other 15 are listed under "The controls". A test of 130 checks covers v11 to v16; 128 pass, and the other two are the brand-new visitor described under v12.
+At v16, all 414 controls in that table were pressed: 387 work as written, including all 31 new ones. Twelve are behind the panel on the closed Learn page, and the other 15 are listed under "The controls". A test of 130 checks covers v11 to v16; 128 pass, and the other two are the brand-new visitor described under v12.
 
 What stands in, because nobody is on the other end of the link:
 

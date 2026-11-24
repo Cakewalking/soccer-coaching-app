@@ -18,8 +18,9 @@ FAM10-ShareFamily#7,FAM10-ShareFamily,Cancel,Opens,FAM8-Results,works
 FAM10-ShareFamily#8,FAM10-ShareFamily,Share with 2,Says,Shared with Kerem and with Nan and Pop.,works
 FAM10-ShareFamily#9,FAM10-ShareFamily,Home,Opens,FAM3-Home,works
 FAM10-ShareFamily#10,FAM10-ShareFamily,Reels,Opens,FAM18-Reels,works
-FAM10-ShareFamily#11,FAM10-ShareFamily,Learn,Opens,FAM17-Learn,works
-FAM10-ShareFamily#12,FAM10-ShareFamily,Club,Opens,FAM11-Locked,works
+FAM10-ShareFamily#11,FAM10-ShareFamily,Team,Opens,FAM30-TeamLocked,works
+FAM10-ShareFamily#12,FAM10-ShareFamily,Learn,Opens,FAM17-Learn,works
+FAM10-ShareFamily#13,FAM10-ShareFamily,Club,Opens,FAM11-Locked,works
 FAM10v-FamilyLink#1,FAM10v-FamilyLink,Play,Says,"Plays here, in the page. Tap again to pause.",works
 FAM10v-FamilyLink#2,FAM10v-FamilyLink,Play,Says,"Plays here, in the page.",works
 FAM10v-FamilyLink#3,FAM10v-FamilyLink,Reel,Says,Jumps to: Reel.,works
@@ -34,8 +35,9 @@ FAM11-Locked#3,FAM11-Locked,Show me,Opens,FAMk1-ClubTour,works
 FAM11-Locked#4,FAM11-Locked,Tell my club,Opens,FAM12-TellClub,works
 FAM11-Locked#5,FAM11-Locked,Home,Opens,FAM3-Home,works
 FAM11-Locked#6,FAM11-Locked,Reels,Opens,FAM18-Reels,works
-FAM11-Locked#7,FAM11-Locked,Learn,Opens,FAM17-Learn,works
-FAM11-Locked#8,FAM11-Locked,Club,Opens,FAM11-Locked,works
+FAM11-Locked#7,FAM11-Locked,Team,Opens,FAM30-TeamLocked,works
+FAM11-Locked#8,FAM11-Locked,Learn,Opens,FAM17-Learn,works
+FAM11-Locked#9,FAM11-Locked,Club,Opens,FAM11-Locked,works
 FAM12-TellClub#1,FAM12-TellClub,Back,Opens,FAM11-Locked,works
 FAM12-TellClub#2,FAM12-TellClub,DB,Opens,FAM19-Account,works
 FAM12-TellClub#3,FAM12-TellClub,Change the wording,Says,Edit the message. It stays yours.,works
@@ -43,31 +45,49 @@ FAM12-TellClub#4,FAM12-TellClub,Not now,Opens,FAM11-Locked,works
 FAM12-TellClub#5,FAM12-TellClub,Send it myself,Says,Your phone’s share sheet opens with the message and the link.,works
 FAM12-TellClub#6,FAM12-TellClub,Home,Opens,FAM3-Home,works
 FAM12-TellClub#7,FAM12-TellClub,Reels,Opens,FAM18-Reels,works
-FAM12-TellClub#8,FAM12-TellClub,Learn,Opens,FAM17-Learn,works
-FAM12-TellClub#9,FAM12-TellClub,Club,Opens,FAM11-Locked,works
-FAM13-ClubJoined#1,FAM13-ClubJoined,DB,Opens,FAM19-Account,works
-FAM13-ClubJoined#2,FAM13-ClubJoined,Later,Opens,FAM14-HomeWithClub,works
-FAM13-ClubJoined#3,FAM13-ClubJoined,Answer the club’s questions,Says,Three questions from Hillview FC about film and sharing.,works
-FAM14-HomeWithClub#1,FAM14-HomeWithClub,DB,Opens,FAM19-Account,works
-FAM14-HomeWithClub#2,FAM14-HomeWithClub,Ari is coming,Says,Luke can see Ari is coming.,works
-FAM14-HomeWithClub#3,FAM14-HomeWithClub,From Luke,Opens,ECp1-FamilyLibrary,works
-FAM14-HomeWithClub#4,FAM14-HomeWithClub,0:36 · · Wednesday futsal · 4 moments · Wed 17 June · your own film,Opens,FAM8-Results,works
-FAM14-HomeWithClub#5,FAM14-HomeWithClub,0:39 · · v Parkside · 4 moments · Sun 7 June · before the club joined,Opens,FAM8-Results,works
-FAM14-HomeWithClub#6,FAM14-HomeWithClub,Add a video · half the credits,Opens,FAM5-Check,works
-FAM14-HomeWithClub#7,FAM14-HomeWithClub,300 · credits · about 3 full games · · Get more,Opens,FAM6-Credits,"works, reads ""about 6 full games"""
-FAM14-HomeWithClub#8,FAM14-HomeWithClub,Home,Opens,FAM3-Home,works: Home is already this page
-FAM14-HomeWithClub#9,FAM14-HomeWithClub,Reels,Opens,FAM18-Reels,works
-FAM14-HomeWithClub#10,FAM14-HomeWithClub,Learn,Opens,FAM17u-LearnWithClub,works
-FAM14-HomeWithClub#11,FAM14-HomeWithClub,Club,Opens,FAM11-Locked,opens FAM13-ClubJoined
+FAM12-TellClub#8,FAM12-TellClub,Team,Opens,FAM30-TeamLocked,works
+FAM12-TellClub#9,FAM12-TellClub,Learn,Opens,FAM17-Learn,works
+FAM12-TellClub#10,FAM12-TellClub,Club,Opens,FAM11-Locked,works
+FAM13-ClubJoined#1,FAM13-ClubJoined,"Team chat, 2 new",Opens,FAM32-TeamChat,works
+FAM13-ClubJoined#2,FAM13-ClubJoined,DB,Opens,FAM19-Account,works
+FAM13-ClubJoined#3,FAM13-ClubJoined,Later,Opens,FAM14-HomeWithClub,works
+FAM13-ClubJoined#4,FAM13-ClubJoined,Answer the club’s questions,Opens,FAM36-Consent,works
+FAM14-HomeWithClub#1,FAM14-HomeWithClub,"Team chat, 2 new",Opens,FAM32-TeamChat,works
+FAM14-HomeWithClub#2,FAM14-HomeWithClub,DB,Opens,FAM19-Account,works
+FAM14-HomeWithClub#3,FAM14-HomeWithClub,Ari is coming,Says,Luke can see Ari is coming.,works
+FAM14-HomeWithClub#4,FAM14-HomeWithClub,From Luke,Opens,FAM37-FromCoach,works
+FAM14-HomeWithClub#5,FAM14-HomeWithClub,0:36 · · Wednesday futsal · 4 moments · Wed 17 June · your own film,Opens,FAM8-Results,works
+FAM14-HomeWithClub#6,FAM14-HomeWithClub,0:39 · · v Parkside · 4 moments · Sun 7 June · before the club joined,Opens,FAM8-Results,works
+FAM14-HomeWithClub#7,FAM14-HomeWithClub,Add a video · half the credits,Opens,FAM5-Check,"opens the uploading page first (FAM7u), then this: a later video uploads before the check can read it. Pressed by hand"
+FAM14-HomeWithClub#8,FAM14-HomeWithClub,300 · credits · about 3 full games · · Get more,Opens,FAM6-Credits,"works, reads ""about 6 full games"""
+FAM14-HomeWithClub#9,FAM14-HomeWithClub,Home,Opens,FAM14-HomeWithClub,works
+FAM14-HomeWithClub#10,FAM14-HomeWithClub,Reels,Opens,FAM18-Reels,works
+FAM14-HomeWithClub#11,FAM14-HomeWithClub,Team,Opens,FAM31-Team,works
+FAM14-HomeWithClub#12,FAM14-HomeWithClub,Learn,Opens,FAM17u-LearnWithClub,works
+FAM14-HomeWithClub#13,FAM14-HomeWithClub,Club,Opens,FAM40-ClubHome,works
 FAM15-Children#1,FAM15-Children,Back,Opens,FAM19-Account,works
 FAM15-Children#2,FAM15-Children,DB,Opens,FAM19-Account,works
-FAM15-Children#3,FAM15-Children,A · Ari · Born 2015 · Hillview FC · 3 reels,Says,"Ari: change name, birth year, club or shirt.",works
-FAM15-Children#4,FAM15-Children,M · Mia · Born 2012 · Hillview FC · 1 reel,Says,"Mia: change name, birth year, club or shirt.","works, reads ""3 reels"""
+FAM15-Children#3,FAM15-Children,A · Ari · Born 2015 · Hillview FC · 3 reels,Says,"Ari: change name, birth year, club or shirt.","opens FAM15c-EditChild for Ari, which is where those things are changed. Pressed by hand"
+FAM15-Children#4,FAM15-Children,M · Mia · Born 2012 · Hillview FC · 1 reel,Says,"Mia: change name, birth year, club or shirt.","opens FAM15c-EditChild for Mia. The sample Mia has 3 reels, so the label differs. Pressed by hand"
 FAM15-Children#5,FAM15-Children,Add a child,Opens,FAM2-AddChild,works
-FAM15-Children#6,FAM15-Children,Home,Opens,FAM3-Home,works
-FAM15-Children#7,FAM15-Children,Reels,Opens,FAM18-Reels,works
-FAM15-Children#8,FAM15-Children,Learn,Opens,FAM17-Learn,works
-FAM15-Children#9,FAM15-Children,Club,Opens,FAM11-Locked,works
+FAM15-Children#6,FAM15-Children,Edit or remove a child,Opens,FAM15c-EditChild,works
+FAM15-Children#7,FAM15-Children,Home,Opens,FAM3-Home,works
+FAM15-Children#8,FAM15-Children,Reels,Opens,FAM18-Reels,works
+FAM15-Children#9,FAM15-Children,Team,Opens,FAM30-TeamLocked,works
+FAM15-Children#10,FAM15-Children,Learn,Opens,FAM17-Learn,works
+FAM15-Children#11,FAM15-Children,Club,Opens,FAM11-Locked,works
+FAM15c-EditChild#1,FAM15c-EditChild,Back,Opens,FAM15-Children,works
+FAM15c-EditChild#2,FAM15c-EditChild,DB,Opens,FAM19-Account,works
+FAM15c-EditChild#3,FAM15c-EditChild,Club · Hillview FC · · Change,Opens,FAM2c-PickClub,works
+FAM15c-EditChild#4,FAM15c-EditChild,Left the club? · Choose “Ari isn’t at a club”,Opens,FAM2c-PickClub,works
+FAM15c-EditChild#5,FAM15c-EditChild,Remove Ari · Deletes Ari’s 3 reels and their numbers,Says,"Remove Ari? Ari’s 3 reels, their numbers and family links are deleted. This can’t be undone.","works: it asks in a sheet with these words, and Keep and Remove buttons. Pressed by hand"
+FAM15c-EditChild#6,FAM15c-EditChild,Cancel,Opens,FAM15-Children,works
+FAM15c-EditChild#7,FAM15c-EditChild,Save,Says,Saved.,works
+FAM15c-EditChild#8,FAM15c-EditChild,Home,Opens,FAM3-Home,works
+FAM15c-EditChild#9,FAM15c-EditChild,Reels,Opens,FAM18-Reels,works
+FAM15c-EditChild#10,FAM15c-EditChild,Team,Opens,FAM30-TeamLocked,works
+FAM15c-EditChild#11,FAM15c-EditChild,Learn,Opens,FAM17-Learn,works
+FAM15c-EditChild#12,FAM15c-EditChild,Club,Opens,FAM11-Locked,works
 FAM16-Privacy#1,FAM16-Privacy,Back,Opens,FAM3-Home,works
 FAM16-Privacy#2,FAM16-Privacy,DB,Opens,FAM19-Account,works
 FAM16-Privacy#3,FAM16-Privacy,Get a copy of everything,Says,A copy of everything we hold is emailed to you within a day.,works
@@ -75,44 +95,48 @@ FAM16-Privacy#4,FAM16-Privacy,Delete everything,Says,"Sheet opens: delete all ga
 FAM16-Privacy#5,FAM16-Privacy,Close my account,Says,Sheet opens: unused credits are refunded when you close your account.,works
 FAM16-Privacy#6,FAM16-Privacy,Home,Opens,FAM3-Home,works
 FAM16-Privacy#7,FAM16-Privacy,Reels,Opens,FAM18-Reels,works
-FAM16-Privacy#8,FAM16-Privacy,Learn,Opens,FAM17-Learn,works
-FAM16-Privacy#9,FAM16-Privacy,Club,Opens,FAM11-Locked,works
+FAM16-Privacy#8,FAM16-Privacy,Team,Opens,FAM30-TeamLocked,works
+FAM16-Privacy#9,FAM16-Privacy,Learn,Opens,FAM17-Learn,works
+FAM16-Privacy#10,FAM16-Privacy,Club,Opens,FAM11-Locked,works
 FAM17-Learn#1,FAM17-Learn,DB,Opens,FAM19-Account,works
-FAM17-Learn#2,FAM17-Learn,Ari [radio],Says,Showing Ari.,"not a control: it is behind the panel, which the handover says cannot be tapped"
-FAM17-Learn#3,FAM17-Learn,Mia [radio],Says,Showing Mia.,"not a control: it is behind the panel, which the handover says cannot be tapped"
-FAM17-Learn#4,FAM17-Learn,Add or change a child,Opens,FAM15-Children,"not a control: it is behind the panel, which the handover says cannot be tapped"
-FAM17-Learn#5,FAM17-Learn,King of the ring · 2:30,Opens,ECp2-FamilyItem,"not a control: it is behind the panel, which the handover says cannot be tapped"
-FAM17-Learn#6,FAM17-Learn,See all,Says,All of Just a ball.,"not a control: it is behind the panel, which the handover says cannot be tapped"
-FAM17-Learn#7,FAM17-Learn,0:08 · · The drag-back · Clip · 0:08,Opens,ECp2-FamilyItem,"not a control: it is behind the panel, which the handover says cannot be tapped"
-FAM17-Learn#8,FAM17-Learn,2:00 · · Wall ball to 20 · Game,Opens,ECp2-FamilyItem,"not a control: it is behind the panel, which the handover says cannot be tapped"
-FAM17-Learn#9,FAM17-Learn,1:30 · · Toe taps and rolls · Game,Opens,ECp2-FamilyItem,"not a control: it is behind the panel, which the handover says cannot be tapped"
-FAM17-Learn#10,FAM17-Learn,See all,Says,All of Warm-ups that protect you.,"not a control: it is behind the panel, which the handover says cannot be tapped"
-FAM17-Learn#11,FAM17-Learn,5:00 · · Five minutes at home · Warm-up,Opens,ECp2-FamilyItem,"not a control: it is behind the panel, which the handover says cannot be tapped"
-FAM17-Learn#12,FAM17-Learn,0:35 · · Jump and land softly · Warm-up,Opens,ECp2-FamilyItem,"not a control: it is behind the panel, which the handover says cannot be tapped"
-FAM17-Learn#13,FAM17-Learn,0:35 · · Hop and hold · Warm-up,Opens,ECp2-FamilyItem,"not a control: it is behind the panel, which the handover says cannot be tapped"
+FAM17-Learn#2,FAM17-Learn,Ari [radio],Says,Showing Ari.,"not a control: it is behind the panel, which is how the closed page is meant to work"
+FAM17-Learn#3,FAM17-Learn,Mia [radio],Says,Showing Mia.,"not a control: it is behind the panel, which is how the closed page is meant to work"
+FAM17-Learn#4,FAM17-Learn,Add or change a child,Opens,FAM15-Children,"not a control: it is behind the panel, which is how the closed page is meant to work"
+FAM17-Learn#5,FAM17-Learn,King of the ring · 2:30,Opens,ECp2-FamilyItem,"not a control: it is behind the panel, which is how the closed page is meant to work"
+FAM17-Learn#6,FAM17-Learn,See all,Says,All of Just a ball.,"not a control: it is behind the panel, which is how the closed page is meant to work"
+FAM17-Learn#7,FAM17-Learn,0:08 · · The drag-back · Clip · 0:08,Opens,ECp2-FamilyItem,"not a control: it is behind the panel, which is how the closed page is meant to work"
+FAM17-Learn#8,FAM17-Learn,2:00 · · Wall ball to 20 · Game,Opens,ECp2-FamilyItem,"not a control: it is behind the panel, which is how the closed page is meant to work"
+FAM17-Learn#9,FAM17-Learn,1:30 · · Toe taps and rolls · Game,Opens,ECp2-FamilyItem,"not a control: it is behind the panel, which is how the closed page is meant to work"
+FAM17-Learn#10,FAM17-Learn,See all,Says,All of Warm-ups that protect you.,"not a control: it is behind the panel, which is how the closed page is meant to work"
+FAM17-Learn#11,FAM17-Learn,5:00 · · Five minutes at home · Warm-up,Opens,ECp2-FamilyItem,"not a control: it is behind the panel, which is how the closed page is meant to work"
+FAM17-Learn#12,FAM17-Learn,0:35 · · Jump and land softly · Warm-up,Opens,ECp2-FamilyItem,"not a control: it is behind the panel, which is how the closed page is meant to work"
+FAM17-Learn#13,FAM17-Learn,0:35 · · Hop and hold · Warm-up,Opens,ECp2-FamilyItem,"not a control: it is behind the panel, which is how the closed page is meant to work"
 FAM17-Learn#14,FAM17-Learn,See what your club adds,Opens,FAMk1-ClubTour,works
 FAM17-Learn#15,FAM17-Learn,Tell my club,Opens,FAM12-TellClub,works
 FAM17-Learn#16,FAM17-Learn,Home,Opens,FAM3-Home,works
 FAM17-Learn#17,FAM17-Learn,Reels,Opens,FAM18-Reels,works
-FAM17-Learn#18,FAM17-Learn,Learn,Opens,FAM17-Learn,works
-FAM17-Learn#19,FAM17-Learn,Club,Opens,FAM11-Locked,works
-FAM17u-LearnWithClub#1,FAM17u-LearnWithClub,DB,Opens,FAM19-Account,works
-FAM17u-LearnWithClub#2,FAM17u-LearnWithClub,Ari [radio],Says,Showing Ari.,works
-FAM17u-LearnWithClub#3,FAM17u-LearnWithClub,Mia [radio],Says,Showing Mia.,works
-FAM17u-LearnWithClub#4,FAM17u-LearnWithClub,Add or change a child,Opens,FAM15-Children,works
-FAM17u-LearnWithClub#5,FAM17u-LearnWithClub,King of the ring · 2:30,Opens,ECp2-FamilyItem,works
-FAM17u-LearnWithClub#6,FAM17u-LearnWithClub,See all,Says,All of Just a ball.,works
-FAM17u-LearnWithClub#7,FAM17u-LearnWithClub,0:08 · · The drag-back · Clip · 0:08,Opens,ECp2-FamilyItem,works
-FAM17u-LearnWithClub#8,FAM17u-LearnWithClub,2:00 · · Wall ball to 20 · Game,Opens,ECp2-FamilyItem,works
-FAM17u-LearnWithClub#9,FAM17u-LearnWithClub,1:30 · · Toe taps and rolls · Game,Opens,ECp2-FamilyItem,works
-FAM17u-LearnWithClub#10,FAM17u-LearnWithClub,See all,Says,All of Warm-ups that protect you.,works
-FAM17u-LearnWithClub#11,FAM17u-LearnWithClub,5:00 · · Five minutes at home · Warm-up,Opens,ECp2-FamilyItem,works
-FAM17u-LearnWithClub#12,FAM17u-LearnWithClub,0:35 · · Jump and land softly · Warm-up,Opens,ECp2-FamilyItem,works
-FAM17u-LearnWithClub#13,FAM17u-LearnWithClub,0:35 · · Hop and hold · Warm-up,Opens,ECp2-FamilyItem,works
-FAM17u-LearnWithClub#14,FAM17u-LearnWithClub,Home,Opens,FAM3-Home,opens FAM14-HomeWithClub
-FAM17u-LearnWithClub#15,FAM17u-LearnWithClub,Reels,Opens,FAM18-Reels,works
-FAM17u-LearnWithClub#16,FAM17u-LearnWithClub,Learn,Opens,FAM17u-LearnWithClub,works
-FAM17u-LearnWithClub#17,FAM17u-LearnWithClub,Club,Opens,FAM11-Locked,opens FAM13-ClubJoined
+FAM17-Learn#18,FAM17-Learn,Team,Opens,FAM30-TeamLocked,works
+FAM17-Learn#19,FAM17-Learn,Learn,Opens,FAM17-Learn,works
+FAM17-Learn#20,FAM17-Learn,Club,Opens,FAM11-Locked,works
+FAM17u-LearnWithClub#1,FAM17u-LearnWithClub,"Team chat, 2 new",Opens,FAM32-TeamChat,works
+FAM17u-LearnWithClub#2,FAM17u-LearnWithClub,DB,Opens,FAM19-Account,works
+FAM17u-LearnWithClub#3,FAM17u-LearnWithClub,Ari [radio],Says,Showing Ari.,works
+FAM17u-LearnWithClub#4,FAM17u-LearnWithClub,Mia [radio],Says,Showing Mia.,works
+FAM17u-LearnWithClub#5,FAM17u-LearnWithClub,Add or change a child,Opens,FAM15-Children,works
+FAM17u-LearnWithClub#6,FAM17u-LearnWithClub,King of the ring · 2:30,Opens,ECp2-FamilyItem,works
+FAM17u-LearnWithClub#7,FAM17u-LearnWithClub,See all,Says,All of Just a ball.,works
+FAM17u-LearnWithClub#8,FAM17u-LearnWithClub,0:08 · · The drag-back · Clip · 0:08,Opens,ECp2-FamilyItem,works
+FAM17u-LearnWithClub#9,FAM17u-LearnWithClub,2:00 · · Wall ball to 20 · Game,Opens,ECp2-FamilyItem,works
+FAM17u-LearnWithClub#10,FAM17u-LearnWithClub,1:30 · · Toe taps and rolls · Game,Opens,ECp2-FamilyItem,works
+FAM17u-LearnWithClub#11,FAM17u-LearnWithClub,See all,Says,All of Warm-ups that protect you.,works
+FAM17u-LearnWithClub#12,FAM17u-LearnWithClub,5:00 · · Five minutes at home · Warm-up,Opens,ECp2-FamilyItem,works
+FAM17u-LearnWithClub#13,FAM17u-LearnWithClub,0:35 · · Jump and land softly · Warm-up,Opens,ECp2-FamilyItem,works
+FAM17u-LearnWithClub#14,FAM17u-LearnWithClub,0:35 · · Hop and hold · Warm-up,Opens,ECp2-FamilyItem,works
+FAM17u-LearnWithClub#15,FAM17u-LearnWithClub,Home,Opens,FAM14-HomeWithClub,works
+FAM17u-LearnWithClub#16,FAM17u-LearnWithClub,Reels,Opens,FAM18-Reels,works
+FAM17u-LearnWithClub#17,FAM17u-LearnWithClub,Team,Opens,FAM31-Team,works
+FAM17u-LearnWithClub#18,FAM17u-LearnWithClub,Learn,Opens,FAM17u-LearnWithClub,works
+FAM17u-LearnWithClub#19,FAM17u-LearnWithClub,Club,Opens,FAM40-ClubHome,works
 FAM18-Reels#1,FAM18-Reels,DB,Opens,FAM19-Account,works
 FAM18-Reels#2,FAM18-Reels,Ari [radio],Says,Showing Ari.,works
 FAM18-Reels#3,FAM18-Reels,Mia [radio],Says,Showing Mia.,works
@@ -124,11 +148,22 @@ FAM18-Reels#8,FAM18-Reels,0:48 · · v Ridgeway · 5 moments · Sun 14 June,Open
 FAM18-Reels#9,FAM18-Reels,0:39 · · v Parkside · 4 moments · Sun 7 June,Opens,FAM8-Results,works
 FAM18-Reels#10,FAM18-Reels,0:55 · · v Northgate City · 6 moments · Sun 31 May,Opens,FAM8-Results,works
 FAM18-Reels#11,FAM18-Reels,"Backyard · Sat 23 May · couldn’t read it, no credits used",Opens,FAM5x-CantRead,works
-FAM18-Reels#12,FAM18-Reels,Add a video,Opens,FAM5-Check,works
-FAM18-Reels#13,FAM18-Reels,Home,Opens,FAM3-Home,works
-FAM18-Reels#14,FAM18-Reels,Reels,Opens,FAM18-Reels,works
-FAM18-Reels#15,FAM18-Reels,Learn,Opens,FAM17-Learn,works
-FAM18-Reels#16,FAM18-Reels,Club,Opens,FAM11-Locked,works
+FAM18-Reels#12,FAM18-Reels,Delete a video,Opens,FAM18d-DeleteVideo,works
+FAM18-Reels#13,FAM18-Reels,Add a video,Opens,FAM5-Check,"opens the uploading page first (FAM7u), then this: a later video uploads before the check can read it. Pressed by hand"
+FAM18-Reels#14,FAM18-Reels,Home,Opens,FAM3-Home,works
+FAM18-Reels#15,FAM18-Reels,Reels,Opens,FAM18-Reels,works
+FAM18-Reels#16,FAM18-Reels,Team,Opens,FAM30-TeamLocked,works
+FAM18-Reels#17,FAM18-Reels,Learn,Opens,FAM17-Learn,works
+FAM18-Reels#18,FAM18-Reels,Club,Opens,FAM11-Locked,works
+FAM18d-DeleteVideo#1,FAM18d-DeleteVideo,Back,Opens,FAM18-Reels,works
+FAM18d-DeleteVideo#2,FAM18d-DeleteVideo,DB,Opens,FAM19-Account,works
+FAM18d-DeleteVideo#3,FAM18d-DeleteVideo,Keep it,Opens,FAM18-Reels,works
+FAM18d-DeleteVideo#4,FAM18d-DeleteVideo,Delete,Says,Deleted. It leaves our servers within 24 hours.,works
+FAM18d-DeleteVideo#5,FAM18d-DeleteVideo,Home,Opens,FAM3-Home,works
+FAM18d-DeleteVideo#6,FAM18d-DeleteVideo,Reels,Opens,FAM18-Reels,works
+FAM18d-DeleteVideo#7,FAM18d-DeleteVideo,Team,Opens,FAM30-TeamLocked,works
+FAM18d-DeleteVideo#8,FAM18d-DeleteVideo,Learn,Opens,FAM17-Learn,works
+FAM18d-DeleteVideo#9,FAM18d-DeleteVideo,Club,Opens,FAM11-Locked,works
 FAM19-Account#1,FAM19-Account,Back,Opens,FAM3-Home,works
 FAM19-Account#2,FAM19-Account,DB,Opens,FAM19-Account,works
 FAM19-Account#3,FAM19-Account,Your children · Ari and Mia,Opens,FAM15-Children,works
@@ -137,13 +172,14 @@ FAM19-Account#5,FAM19-Account,"Family who can watch · Kerem, Nan and Pop · · 
 FAM19-Account#6,FAM19-Account,Tell me when a reel is ready · · On,Says,Notifications turned off. We only ever send this one.,works
 FAM19-Account#7,FAM19-Account,"How we handle your film · Copy, delete or close your account",Opens,FAM16-Privacy,works
 FAM19-Account#8,FAM19-Account,Filming tips,Opens,FAM4-BeforeYouFilm,works
-FAM19-Account#9,FAM19-Account,"Something wrong with a reel? · Wrong child, a missed moment, a refund",Says,"Pick the reel, say what is wrong. A person replies within a day.",works
+FAM19-Account#9,FAM19-Account,"Something wrong with a reel? · Wrong child, a missed moment, a refund",Opens,FAM24-Help,works
 FAM19-Account#10,FAM19-Account,Terms,Says,The terms open.,works
 FAM19-Account#11,FAM19-Account,Sign out,Opens,FAM1-Welcome,works
 FAM19-Account#12,FAM19-Account,Home,Opens,FAM3-Home,works
 FAM19-Account#13,FAM19-Account,Reels,Opens,FAM18-Reels,works
-FAM19-Account#14,FAM19-Account,Learn,Opens,FAM17-Learn,works
-FAM19-Account#15,FAM19-Account,Club,Opens,FAM11-Locked,works
+FAM19-Account#14,FAM19-Account,Team,Opens,FAM30-TeamLocked,works
+FAM19-Account#15,FAM19-Account,Learn,Opens,FAM17-Learn,works
+FAM19-Account#16,FAM19-Account,Club,Opens,FAM11-Locked,works
 FAM2-AddChild#1,FAM2-AddChild,Back,Opens,FAM3e-HomeEmpty,works
 FAM2-AddChild#2,FAM2-AddChild,DB,Opens,FAM19-Account,works
 FAM2-AddChild#3,FAM2-AddChild,"Hillview FC · Hillview, Victoria · · Change",Opens,FAM2c-PickClub,works
@@ -161,8 +197,9 @@ FAM20-GameStats#10,FAM20-GameStats,5 · · · · Won the ball back · 3 in the o
 FAM20-GameStats#11,FAM20-GameStats,"Minutes, positions and the team’s numbers · From the club’s team sheet and film. · · With your club",Opens,FAMk1-ClubTour,works
 FAM20-GameStats#12,FAM20-GameStats,Home,Opens,FAM3-Home,works
 FAM20-GameStats#13,FAM20-GameStats,Reels,Opens,FAM18-Reels,works
-FAM20-GameStats#14,FAM20-GameStats,Learn,Opens,FAM17-Learn,works
-FAM20-GameStats#15,FAM20-GameStats,Club,Opens,FAM11-Locked,works
+FAM20-GameStats#14,FAM20-GameStats,Team,Opens,FAM30-TeamLocked,works
+FAM20-GameStats#15,FAM20-GameStats,Learn,Opens,FAM17-Learn,works
+FAM20-GameStats#16,FAM20-GameStats,Club,Opens,FAM11-Locked,works
 FAM21-StatClips#1,FAM21-StatClips,Back,Opens,FAM20-GameStats,works
 FAM21-StatClips#2,FAM21-StatClips,DB,Opens,FAM19-Account,works
 FAM21-StatClips#3,FAM21-StatClips,Play,Says,"Plays here, in the page. Tap again to pause.",works
@@ -179,8 +216,9 @@ FAM21-StatClips#13,FAM21-StatClips,We missed one,Opens,FAM9a-AddMoment,works
 FAM21-StatClips#14,FAM21-StatClips,One of these isn’t a shot,Says,Thanks. That clip is removed and the number changes to 2.,works
 FAM21-StatClips#15,FAM21-StatClips,Home,Opens,FAM3-Home,works
 FAM21-StatClips#16,FAM21-StatClips,Reels,Opens,FAM18-Reels,works
-FAM21-StatClips#17,FAM21-StatClips,Learn,Opens,FAM17-Learn,works
-FAM21-StatClips#18,FAM21-StatClips,Club,Opens,FAM11-Locked,works
+FAM21-StatClips#17,FAM21-StatClips,Team,Opens,FAM30-TeamLocked,works
+FAM21-StatClips#18,FAM21-StatClips,Learn,Opens,FAM17-Learn,works
+FAM21-StatClips#19,FAM21-StatClips,Club,Opens,FAM11-Locked,works
 FAM22-ThreeGames#1,FAM22-ThreeGames,Not now,Opens,FAM3-Home,works
 FAM22-ThreeGames#2,FAM22-ThreeGames,"Ari’s whole season · With your club · · On the ball, every game · · · · · · · · · · Minutes played · · · · · · · · · · · Every round, filmed the same way.",Opens,FAMk1-ClubTour,works
 FAM22-ThreeGames#3,FAM22-ThreeGames,Tell my club14 families at Hillview FC already use this,Opens,FAM12-TellClub,works
@@ -192,24 +230,41 @@ FAM23-InviteTeam#4,FAM23-InviteTeam,The link works for 12 more days · Stopping 
 FAM23-InviteTeam#5,FAM23-InviteTeam,Send the link again,Says,Your phone’s share sheet opens with the link and a short message you can change.,works
 FAM23-InviteTeam#6,FAM23-InviteTeam,Home,Opens,FAM3-Home,works
 FAM23-InviteTeam#7,FAM23-InviteTeam,Reels,Opens,FAM18-Reels,works
-FAM23-InviteTeam#8,FAM23-InviteTeam,Learn,Opens,FAM17-Learn,works
-FAM23-InviteTeam#9,FAM23-InviteTeam,Club,Opens,FAM11-Locked,works
+FAM23-InviteTeam#8,FAM23-InviteTeam,Team,Opens,FAM30-TeamLocked,works
+FAM23-InviteTeam#9,FAM23-InviteTeam,Learn,Opens,FAM17-Learn,works
+FAM23-InviteTeam#10,FAM23-InviteTeam,Club,Opens,FAM11-Locked,works
 FAM23a-InviteConfirm#1,FAM23a-InviteConfirm,Back,Opens,FAM23-InviteTeam,works
 FAM23a-InviteConfirm#2,FAM23a-InviteConfirm,DB,Opens,FAM19-Account,works
 FAM23a-InviteConfirm#3,FAM23a-InviteConfirm,No,Says,They are told this video isn’t available to them. They are not told why.,works
 FAM23a-InviteConfirm#4,FAM23a-InviteConfirm,"Yes, I know them",Says,Sam’s family get their reel. 20 credits are back in your balance.,works
 FAM23a-InviteConfirm#5,FAM23a-InviteConfirm,Home,Opens,FAM3-Home,works
 FAM23a-InviteConfirm#6,FAM23a-InviteConfirm,Reels,Opens,FAM18-Reels,works
-FAM23a-InviteConfirm#7,FAM23a-InviteConfirm,Learn,Opens,FAM17-Learn,works
-FAM23a-InviteConfirm#8,FAM23a-InviteConfirm,Club,Opens,FAM11-Locked,works
+FAM23a-InviteConfirm#7,FAM23a-InviteConfirm,Team,Opens,FAM30-TeamLocked,works
+FAM23a-InviteConfirm#8,FAM23a-InviteConfirm,Learn,Opens,FAM17-Learn,works
+FAM23a-InviteConfirm#9,FAM23a-InviteConfirm,Club,Opens,FAM11-Locked,works
 FAM23e-InviteTeamFirst#1,FAM23e-InviteTeamFirst,Back,Opens,FAM10-ShareFamily,works
 FAM23e-InviteTeamFirst#2,FAM23e-InviteTeamFirst,DB,Opens,FAM19-Account,works
 FAM23e-InviteTeamFirst#3,FAM23e-InviteTeamFirst,Not now,Opens,FAM10-ShareFamily,works
 FAM23e-InviteTeamFirst#4,FAM23e-InviteTeamFirst,Send the link,Says,Your phone’s share sheet opens with the link and a short message you can change.,works
 FAM23e-InviteTeamFirst#5,FAM23e-InviteTeamFirst,Home,Opens,FAM3-Home,works
 FAM23e-InviteTeamFirst#6,FAM23e-InviteTeamFirst,Reels,Opens,FAM18-Reels,works
-FAM23e-InviteTeamFirst#7,FAM23e-InviteTeamFirst,Learn,Opens,FAM17-Learn,works
-FAM23e-InviteTeamFirst#8,FAM23e-InviteTeamFirst,Club,Opens,FAM11-Locked,works
+FAM23e-InviteTeamFirst#7,FAM23e-InviteTeamFirst,Team,Opens,FAM30-TeamLocked,works
+FAM23e-InviteTeamFirst#8,FAM23e-InviteTeamFirst,Learn,Opens,FAM17-Learn,works
+FAM23e-InviteTeamFirst#9,FAM23e-InviteTeamFirst,Club,Opens,FAM11-Locked,works
+FAM24-Help#1,FAM24-Help,Back,Opens,FAM19-Account,works
+FAM24-Help#2,FAM24-Help,DB,Opens,FAM19-Account,works
+FAM24-Help#3,FAM24-Help,"A reel is wrong · Wrong child, a missed moment",Says,Pick the reel. We look again for free.,works
+FAM24-Help#4,FAM24-Help,"Credits or a payment · A refund, a failed payment",Says,Picked. Tell us what happened below.,works
+FAM24-Help#5,FAM24-Help,The free video · It says mine has been used,Says,Picked. Tell us what happened below.,works
+FAM24-Help#6,FAM24-Help,A link from another parent,Says,Picked. Tell us what happened below.,works
+FAM24-Help#7,FAM24-Help,Something else,Says,Picked. Tell us what happened below.,works
+FAM24-Help#8,FAM24-Help,Send,Says,"Sent. A person replies within a day, to dana@example.com.",works
+FAM24-Help#9,FAM24-Help,Home,Opens,FAM3-Home,works
+FAM24-Help#10,FAM24-Help,Reels,Opens,FAM18-Reels,works
+FAM24-Help#11,FAM24-Help,Team,Opens,FAM30-TeamLocked,works
+FAM24-Help#12,FAM24-Help,Learn,Opens,FAM17-Learn,works
+FAM24-Help#13,FAM24-Help,Club,Opens,FAM11-Locked,works
+FAM25-RemovalRequest#1,FAM25-RemovalRequest,Send,Says,Sent. We reply within two working days.,"works once an email is typed; without one it says ""Add your email so we can reply."" Pressed by hand"
 FAM2c-PickClub#1,FAM2c-PickClub,Back,Opens,FAM2-AddChild,works
 FAM2c-PickClub#2,FAM2c-PickClub,DB,Opens,FAM19-Account,works
 FAM2c-PickClub#3,FAM2c-PickClub,Clear,Says,Search cleared.,works
@@ -217,8 +272,12 @@ FAM2c-PickClub#4,FAM2c-PickClub,"Hillview FC · Hillview, Victoria · 2 km away 
 FAM2c-PickClub#5,FAM2c-PickClub,"Hillview Heights SC · Hillview Heights, Victoria · 9 km away · uses Clean Sheet [radio]",Opens,FAM2-AddChild,works
 FAM2c-PickClub#6,FAM2c-PickClub,"Hillvale United · Hillvale, New South Wales [radio]",Opens,FAM2-AddChild,works
 FAM2c-PickClub#7,FAM2c-PickClub,"Hillview Futsal Club · Hillview, Victoria · futsal [radio]",Opens,FAM2-AddChild,works
-FAM2c-PickClub#8,FAM2c-PickClub,I can’t find it,Says,"Type the club’s name and suburb. We check it and add it to the list, usually within a day.",works
+FAM2c-PickClub#8,FAM2c-PickClub,I can’t find it,Opens,FAM2n-ClubNotListed,works
 FAM2c-PickClub#9,FAM2c-PickClub,Ari isn’t at a club,Opens,FAM2-AddChild,works
+FAM2n-ClubNotListed#1,FAM2n-ClubNotListed,Back,Opens,FAM2c-PickClub,works
+FAM2n-ClubNotListed#2,FAM2n-ClubNotListed,DB,Opens,FAM19-Account,works
+FAM2n-ClubNotListed#3,FAM2n-ClubNotListed,Back,Opens,FAM2c-PickClub,works
+FAM2n-ClubNotListed#4,FAM2n-ClubNotListed,Add my club,Opens,FAM2-AddChild,"works once a name and suburb are typed; without them it says ""Add the club’s name and its suburb."" Pressed by hand"
 FAM3-Home#1,FAM3-Home,DB,Opens,FAM19-Account,works
 FAM3-Home#2,FAM3-Home,Ari [radio],Says,Showing Ari.,works
 FAM3-Home#3,FAM3-Home,Mia [radio],Says,Showing Mia.,works
@@ -228,12 +287,150 @@ FAM3-Home#6,FAM3-Home,"41 · times on the ball · · 27/33 · passes reached · 
 FAM3-Home#7,FAM3-Home,v Ridgeway · Sun 14 June · 44 min on screen · · 41 · 27/33 · 0.9 xG,Opens,FAM20-GameStats,works
 FAM3-Home#8,FAM3-Home,v Parkside · Sun 7 June · 31 min on screen · · 26 · 15/21 · 0.4 xG,Opens,FAM20-GameStats,works
 FAM3-Home#9,FAM3-Home,"Ari’s whole season · With your club · · On the ball, every game · · · · · · · · · · Minutes played · · · · · · · · · · · Each video stands alone here. With every game filmed the same way, numbers can be compared across the season.",Opens,FAMk1-ClubTour,works
-FAM3-Home#10,FAM3-Home,Add a video,Opens,FAM5-Check,works
+FAM3-Home#10,FAM3-Home,Add a video,Opens,FAM5-Check,"opens the uploading page first (FAM7u), then this: a later video uploads before the check can read it. Pressed by hand"
 FAM3-Home#11,FAM3-Home,300 credits · about 3 full games,Opens,FAM6-Credits,works
 FAM3-Home#12,FAM3-Home,Home,Opens,FAM3-Home,works
 FAM3-Home#13,FAM3-Home,Reels,Opens,FAM18-Reels,works
-FAM3-Home#14,FAM3-Home,Learn,Opens,FAM17-Learn,works
-FAM3-Home#15,FAM3-Home,Club,Opens,FAM11-Locked,works
+FAM3-Home#14,FAM3-Home,Team,Opens,FAM30-TeamLocked,works
+FAM3-Home#15,FAM3-Home,Learn,Opens,FAM17-Learn,works
+FAM3-Home#16,FAM3-Home,Club,Opens,FAM11-Locked,works
+FAM30-TeamLocked#1,FAM30-TeamLocked,DB,Opens,FAM19-Account,works
+FAM30-TeamLocked#2,FAM30-TeamLocked,Ari is coming,Says,Luke can see Ari is coming.,"not a control: it is behind the panel, which is how the closed page is meant to work"
+FAM30-TeamLocked#3,FAM30-TeamLocked,Can’t make it,Opens,FAM33-Coming,"not a control: it is behind the panel, which is how the closed page is meant to work"
+FAM30-TeamLocked#4,FAM30-TeamLocked,Team chat · 2 new from Luke · · 2,Opens,FAM32-TeamChat,"not a control: it is behind the panel, which is how the closed page is meant to work"
+FAM30-TeamLocked#5,FAM30-TeamLocked,Who’s coming · Training Tuesday · game Sunday,Opens,FAM33-Coming,"not a control: it is behind the panel, which is how the closed page is meant to work"
+FAM30-TeamLocked#6,FAM30-TeamLocked,Line-up · Sunday v Eastbank,Opens,FAM34-Lineup,"not a control: it is behind the panel, which is how the closed page is meant to work"
+FAM30-TeamLocked#7,FAM30-TeamLocked,Forms and files · 1 to answer · · 1,Opens,FAM35-Forms,"not a control: it is behind the panel, which is how the closed page is meant to work"
+FAM30-TeamLocked#8,FAM30-TeamLocked,Fees and helping out · Paid · oranges on 28 June,Opens,FAM39-Fees,"not a control: it is behind the panel, which is how the closed page is meant to work"
+FAM30-TeamLocked#9,FAM30-TeamLocked,See what your club adds,Opens,FAMk1-ClubTour,works
+FAM30-TeamLocked#10,FAM30-TeamLocked,Tell my club,Opens,FAM12-TellClub,works
+FAM30-TeamLocked#11,FAM30-TeamLocked,Home,Opens,FAM3-Home,works
+FAM30-TeamLocked#12,FAM30-TeamLocked,Reels,Opens,FAM18-Reels,works
+FAM30-TeamLocked#13,FAM30-TeamLocked,Team,Opens,FAM30-TeamLocked,works
+FAM30-TeamLocked#14,FAM30-TeamLocked,Learn,Opens,FAM17-Learn,works
+FAM30-TeamLocked#15,FAM30-TeamLocked,Club,Opens,FAM11-Locked,works
+FAM31-Team#1,FAM31-Team,"Team chat, 2 new",Opens,FAM32-TeamChat,works
+FAM31-Team#2,FAM31-Team,DB,Opens,FAM19-Account,works
+FAM31-Team#3,FAM31-Team,Ari is coming,Says,Luke can see Ari is coming.,works
+FAM31-Team#4,FAM31-Team,Can’t make it,Opens,FAM33-Coming,works
+FAM31-Team#5,FAM31-Team,Team chat · 2 new from Luke · · 2,Opens,FAM32-TeamChat,works
+FAM31-Team#6,FAM31-Team,Who’s coming · Training Tuesday · game Sunday,Opens,FAM33-Coming,works
+FAM31-Team#7,FAM31-Team,Line-up · Sunday v Eastbank,Opens,FAM34-Lineup,works
+FAM31-Team#8,FAM31-Team,Forms and files · 1 to answer · · 1,Opens,FAM35-Forms,works
+FAM31-Team#9,FAM31-Team,Fees and helping out · Paid · oranges on 28 June,Opens,FAM39-Fees,works
+FAM31-Team#10,FAM31-Team,Home,Opens,FAM14-HomeWithClub,works
+FAM31-Team#11,FAM31-Team,Reels,Opens,FAM18-Reels,works
+FAM31-Team#12,FAM31-Team,Team,Opens,FAM31-Team,works
+FAM31-Team#13,FAM31-Team,Learn,Opens,FAM17u-LearnWithClub,works
+FAM31-Team#14,FAM31-Team,Club,Opens,FAM40-ClubHome,works
+FAM32-TeamChat#1,FAM32-TeamChat,Back,Opens,FAM31-Team,works
+FAM32-TeamChat#2,FAM32-TeamChat,Team chat,Opens,FAM32-TeamChat,works
+FAM32-TeamChat#3,FAM32-TeamChat,DB,Opens,FAM19-Account,works
+FAM32-TeamChat#4,FAM32-TeamChat,Chat [tab],Opens,FAM32-TeamChat,"works: it is a tab, and is already showing. Pressed by hand"
+FAM32-TeamChat#5,FAM32-TeamChat,Announcements [tab],Says,Announcements: only the coach and manager can post. 1 this week.,works
+FAM32-TeamChat#6,FAM32-TeamChat,Message the team,Says,The keyboard opens.,a real text box: tapping it brings up the keyboard
+FAM32-TeamChat#7,FAM32-TeamChat,Send,Says,Sent to the team.,"works once a message is typed; an empty one says ""Write a message first."" Pressed by hand"
+FAM32-TeamChat#8,FAM32-TeamChat,Home,Opens,FAM14-HomeWithClub,works
+FAM32-TeamChat#9,FAM32-TeamChat,Reels,Opens,FAM18-Reels,works
+FAM32-TeamChat#10,FAM32-TeamChat,Team,Opens,FAM31-Team,works
+FAM32-TeamChat#11,FAM32-TeamChat,Learn,Opens,FAM17u-LearnWithClub,works
+FAM32-TeamChat#12,FAM32-TeamChat,Club,Opens,FAM40-ClubHome,works
+FAM33-Coming#1,FAM33-Coming,Back,Opens,FAM31-Team,works
+FAM33-Coming#2,FAM33-Coming,"Team chat, 2 new",Opens,FAM32-TeamChat,works
+FAM33-Coming#3,FAM33-Coming,DB,Opens,FAM19-Account,works
+FAM33-Coming#4,FAM33-Coming,Yes [radio],Says,Training: yes. Luke can see it.,works
+FAM33-Coming#5,FAM33-Coming,No [radio],Says,Training: no. Luke can see it.,works
+FAM33-Coming#6,FAM33-Coming,Yes [radio],Says,Game v Eastbank: yes. Luke can see it.,works
+FAM33-Coming#7,FAM33-Coming,No [radio],Says,Game v Eastbank: no. Luke can see it.,works
+FAM33-Coming#8,FAM33-Coming,Yes [radio],Says,Game v Northgate City: yes. Luke can see it.,works
+FAM33-Coming#9,FAM33-Coming,No [radio],Says,Game v Northgate City: no. Luke can see it.,works
+FAM33-Coming#10,FAM33-Coming,Tell Luke why · Only if you want to,Says,A short note to Luke opens. Only he and the manager see it.,works
+FAM33-Coming#11,FAM33-Coming,Away for a while? · Set dates once,Says,Pick the dates. Every session in them is set to no.,works
+FAM33-Coming#12,FAM33-Coming,Home,Opens,FAM14-HomeWithClub,works
+FAM33-Coming#13,FAM33-Coming,Reels,Opens,FAM18-Reels,works
+FAM33-Coming#14,FAM33-Coming,Team,Opens,FAM31-Team,works
+FAM33-Coming#15,FAM33-Coming,Learn,Opens,FAM17u-LearnWithClub,works
+FAM33-Coming#16,FAM33-Coming,Club,Opens,FAM40-ClubHome,works
+FAM34-Lineup#1,FAM34-Lineup,Back,Opens,FAM31-Team,works
+FAM34-Lineup#2,FAM34-Lineup,"Team chat, 2 new",Opens,FAM32-TeamChat,works
+FAM34-Lineup#3,FAM34-Lineup,DB,Opens,FAM19-Account,works
+FAM34-Lineup#4,FAM34-Lineup,Home,Opens,FAM14-HomeWithClub,works
+FAM34-Lineup#5,FAM34-Lineup,Reels,Opens,FAM18-Reels,works
+FAM34-Lineup#6,FAM34-Lineup,Team,Opens,FAM31-Team,works
+FAM34-Lineup#7,FAM34-Lineup,Learn,Opens,FAM17u-LearnWithClub,works
+FAM34-Lineup#8,FAM34-Lineup,Club,Opens,FAM40-ClubHome,works
+FAM35-Forms#1,FAM35-Forms,Back,Opens,FAM31-Team,works
+FAM35-Forms#2,FAM35-Forms,"Team chat, 2 new",Opens,FAM32-TeamChat,works
+FAM35-Forms#3,FAM35-Forms,DB,Opens,FAM19-Account,works
+FAM35-Forms#4,FAM35-Forms,Filming and photos · Three questions from Hillview FC · · Answer,Opens,FAM36-Consent,works
+FAM35-Forms#5,FAM35-Forms,Canteen roster · Sun 5 July · 2 places left,Says,"You’re down for the canteen on 5 July, 9 to 10.",works
+FAM35-Forms#6,FAM35-Forms,End of season day · Sat 12 September · 24 coming,Says,Say how many of you are coming.,works
+FAM35-Forms#7,FAM35-Forms,Team sheet · Sunday · From Mel,Says,The team sheet opens. You can read it and save a copy.,works
+FAM35-Forms#8,FAM35-Forms,Code of conduct · Hillview FC,Says,The code of conduct opens.,works
+FAM35-Forms#9,FAM35-Forms,Home,Opens,FAM14-HomeWithClub,works
+FAM35-Forms#10,FAM35-Forms,Reels,Opens,FAM18-Reels,works
+FAM35-Forms#11,FAM35-Forms,Team,Opens,FAM31-Team,works
+FAM35-Forms#12,FAM35-Forms,Learn,Opens,FAM17u-LearnWithClub,works
+FAM35-Forms#13,FAM35-Forms,Club,Opens,FAM40-ClubHome,works
+FAM36-Consent#1,FAM36-Consent,Back,Opens,FAM40-ClubHome,works
+FAM36-Consent#2,FAM36-Consent,"Team chat, 2 new",Opens,FAM32-TeamChat,works
+FAM36-Consent#3,FAM36-Consent,DB,Opens,FAM19-Account,works
+FAM36-Consent#4,FAM36-Consent,Film games and training for coaching · Seen by Ari’s coaches only [switch],Says,Film games and training for coaching: off. Saved.,works
+FAM36-Consent#5,FAM36-Consent,"Show Ari in team-mates’ clips · Unblurred, for families in this team [switch]",Says,Show Ari in team-mates’ clips: off. Saved.,works
+FAM36-Consent#6,FAM36-Consent,Photos in club news · The club’s website and newsletter [switch],Says,Photos in club news: on. Saved.,works
+FAM36-Consent#7,FAM36-Consent,Take back all filming consent · Ari is blurred in everything from then on,Opens,FAM36w-ConsentBack,works
+FAM36-Consent#8,FAM36-Consent,Home,Opens,FAM14-HomeWithClub,works
+FAM36-Consent#9,FAM36-Consent,Reels,Opens,FAM18-Reels,works
+FAM36-Consent#10,FAM36-Consent,Team,Opens,FAM31-Team,works
+FAM36-Consent#11,FAM36-Consent,Learn,Opens,FAM17u-LearnWithClub,works
+FAM36-Consent#12,FAM36-Consent,Club,Opens,FAM40-ClubHome,works
+FAM36w-ConsentBack#1,FAM36w-ConsentBack,Back,Opens,FAM36-Consent,works
+FAM36w-ConsentBack#2,FAM36w-ConsentBack,"Team chat, 2 new",Opens,FAM32-TeamChat,works
+FAM36w-ConsentBack#3,FAM36w-ConsentBack,DB,Opens,FAM19-Account,works
+FAM36w-ConsentBack#4,FAM36w-ConsentBack,Cancel,Opens,FAM36-Consent,works
+FAM36w-ConsentBack#5,FAM36w-ConsentBack,Take it back,Says,Done. Ari is blurred in club film from now. Luke and Helen have been told.,works
+FAM36w-ConsentBack#6,FAM36w-ConsentBack,Home,Opens,FAM14-HomeWithClub,works
+FAM36w-ConsentBack#7,FAM36w-ConsentBack,Reels,Opens,FAM18-Reels,works
+FAM36w-ConsentBack#8,FAM36w-ConsentBack,Team,Opens,FAM31-Team,works
+FAM36w-ConsentBack#9,FAM36w-ConsentBack,Learn,Opens,FAM17u-LearnWithClub,works
+FAM36w-ConsentBack#10,FAM36w-ConsentBack,Club,Opens,FAM40-ClubHome,works
+FAM37-FromCoach#1,FAM37-FromCoach,Back,Opens,FAM40-ClubHome,works
+FAM37-FromCoach#2,FAM37-FromCoach,"Team chat, 2 new",Opens,FAM32-TeamChat,works
+FAM37-FromCoach#3,FAM37-FromCoach,DB,Opens,FAM19-Account,works
+FAM37-FromCoach#4,FAM37-FromCoach,"0:11 · · “This is the one. Head up, then the pass.” · Sun 14 June · 22nd minute",Opens,FAM9-Clip,works
+FAM37-FromCoach#5,FAM37-FromCoach,Two things to try at home · Picked by Luke,Opens,FAM17u-LearnWithClub,works
+FAM37-FromCoach#6,FAM37-FromCoach,Season report · Ready after the last round,Says,Luke writes it after the last round. You’ll be told when it is ready.,works
+FAM37-FromCoach#7,FAM37-FromCoach,Book a catch-up · Ten minutes with Luke,Says,Pick a time Luke has offered.,works
+FAM37-FromCoach#8,FAM37-FromCoach,Home,Opens,FAM14-HomeWithClub,works
+FAM37-FromCoach#9,FAM37-FromCoach,Reels,Opens,FAM18-Reels,works
+FAM37-FromCoach#10,FAM37-FromCoach,Team,Opens,FAM31-Team,works
+FAM37-FromCoach#11,FAM37-FromCoach,Learn,Opens,FAM17u-LearnWithClub,works
+FAM37-FromCoach#12,FAM37-FromCoach,Club,Opens,FAM40-ClubHome,works
+FAM38-Concern#1,FAM38-Concern,Back,Opens,FAM40-ClubHome,works
+FAM38-Concern#2,FAM38-Concern,"Team chat, 2 new",Opens,FAM32-TeamChat,works
+FAM38-Concern#3,FAM38-Concern,DB,Opens,FAM19-Account,works
+FAM38-Concern#4,FAM38-Concern,How my child is treated [radio],Says,How my child is treated picked.,works
+FAM38-Concern#5,FAM38-Concern,Another adult [radio],Says,Another adult picked.,works
+FAM38-Concern#6,FAM38-Concern,Game time [radio],Says,Game time picked.,works
+FAM38-Concern#7,FAM38-Concern,Filming [radio],Says,Filming picked.,works
+FAM38-Concern#8,FAM38-Concern,Something else [radio],Says,Something else picked.,works
+FAM38-Concern#9,FAM38-Concern,Cancel,Opens,FAM40-ClubHome,works
+FAM38-Concern#10,FAM38-Concern,Send to Helen,Says,Sent to Helen Park. She replies within two days.,works
+FAM38-Concern#11,FAM38-Concern,Home,Opens,FAM14-HomeWithClub,works
+FAM38-Concern#12,FAM38-Concern,Reels,Opens,FAM18-Reels,works
+FAM38-Concern#13,FAM38-Concern,Team,Opens,FAM31-Team,works
+FAM38-Concern#14,FAM38-Concern,Learn,Opens,FAM17u-LearnWithClub,works
+FAM38-Concern#15,FAM38-Concern,Club,Opens,FAM40-ClubHome,works
+FAM39-Fees#1,FAM39-Fees,Back,Opens,FAM31-Team,works
+FAM39-Fees#2,FAM39-Fees,"Team chat, 2 new",Opens,FAM32-TeamChat,works
+FAM39-Fees#3,FAM39-Fees,DB,Opens,FAM19-Account,works
+FAM39-Fees#4,FAM39-Fees,Oranges · Sun 28 June · · Swap,Says,Ask to swap. The manager and the other families see the request.,works
+FAM39-Fees#5,FAM39-Fees,Canteen · Sun 5 July · 9 to 10 · · Swap,Says,Ask to swap. The manager and the other families see the request.,works
+FAM39-Fees#6,FAM39-Fees,Home,Opens,FAM14-HomeWithClub,works
+FAM39-Fees#7,FAM39-Fees,Reels,Opens,FAM18-Reels,works
+FAM39-Fees#8,FAM39-Fees,Team,Opens,FAM31-Team,works
+FAM39-Fees#9,FAM39-Fees,Learn,Opens,FAM17u-LearnWithClub,works
+FAM39-Fees#10,FAM39-Fees,Club,Opens,FAM40-ClubHome,works
 FAM3e-HomeEmpty#1,FAM3e-HomeEmpty,DB,Opens,FAM19-Account,works
 FAM3e-HomeEmpty#2,FAM3e-HomeEmpty,Upload a video · From your phone or your camera · Your first one is free,Opens,FAM2-AddChild,works
 FAM3e-HomeEmpty#3,FAM3e-HomeEmpty,Filming tips,Opens,FAM4-BeforeYouFilm,works
@@ -242,12 +439,29 @@ FAM3m-HomeStats#1,FAM3m-HomeStats,DB,Opens,FAM19-Account,works
 FAM3m-HomeStats#2,FAM3m-HomeStats,Open the screen that replaces it,Opens,FAM3-Home,works
 FAM3m-HomeStats#3,FAM3m-HomeStats,Home,Opens,FAM3-Home,works
 FAM3m-HomeStats#4,FAM3m-HomeStats,Reels,Opens,FAM18-Reels,works
-FAM3m-HomeStats#5,FAM3m-HomeStats,Learn,Opens,FAM17-Learn,works
-FAM3m-HomeStats#6,FAM3m-HomeStats,Club,Opens,FAM11-Locked,works
+FAM3m-HomeStats#5,FAM3m-HomeStats,Team,Opens,FAM30-TeamLocked,works
+FAM3m-HomeStats#6,FAM3m-HomeStats,Learn,Opens,FAM17-Learn,works
+FAM3m-HomeStats#7,FAM3m-HomeStats,Club,Opens,FAM11-Locked,works
 FAM4-BeforeYouFilm#1,FAM4-BeforeYouFilm,Back,Opens,FAM3e-HomeEmpty,opens FAM3-Home
 FAM4-BeforeYouFilm#2,FAM4-BeforeYouFilm,DB,Opens,FAM19-Account,works
 FAM4-BeforeYouFilm#3,FAM4-BeforeYouFilm,How we handle your film,Opens,FAM16-Privacy,works
 FAM4-BeforeYouFilm#4,FAM4-BeforeYouFilm,Got it,Opens,FAM3e-HomeEmpty,opens FAM3-Home
+FAM40-ClubHome#1,FAM40-ClubHome,"Team chat, 2 new",Opens,FAM32-TeamChat,works
+FAM40-ClubHome#2,FAM40-ClubHome,DB,Opens,FAM19-Account,works
+FAM40-ClubHome#3,FAM40-ClubHome,"From Luke · Ari’s goal, a clip, the season report · · 1",Opens,FAM37-FromCoach,works
+FAM40-ClubHome#4,FAM40-ClubHome,Filming and photos · What the club may film and share,Opens,FAM36-Consent,works
+FAM40-ClubHome#5,FAM40-ClubHome,Raise a concern · Goes to the welfare officer,Opens,FAM38-Concern,works
+FAM40-ClubHome#6,FAM40-ClubHome,"Who to contact · Coach, manager, welfare officer",Says,"Luke (coach), Mel (manager), Helen Park (welfare officer). Tap one to message them.",works
+FAM40-ClubHome#7,FAM40-ClubHome,Club games · Free. They arrive in Reels,Opens,FAM18-Reels,works
+FAM40-ClubHome#8,FAM40-ClubHome,Your own filming · Half the credits. Private to your family,Opens,FAM6-Credits,works
+FAM40-ClubHome#9,FAM40-ClubHome,Home,Opens,FAM14-HomeWithClub,works
+FAM40-ClubHome#10,FAM40-ClubHome,Reels,Opens,FAM18-Reels,works
+FAM40-ClubHome#11,FAM40-ClubHome,Team,Opens,FAM31-Team,works
+FAM40-ClubHome#12,FAM40-ClubHome,Learn,Opens,FAM17u-LearnWithClub,works
+FAM40-ClubHome#13,FAM40-ClubHome,Club,Opens,FAM40-ClubHome,works
+FAM41-ClubPaused#1,FAM41-ClubPaused,DB,Opens,FAM19-Account,works
+FAM41-ClubPaused#2,FAM41-ClubPaused,OK,Opens,FAM3-Home,works
+FAM41-ClubPaused#3,FAM41-ClubPaused,Tell my club I want it back,Opens,FAM12-TellClub,works
 FAM5-Check#1,FAM5-Check,Back,Opens,FAM3-Home,works
 FAM5-Check#2,FAM5-Check,DB,Opens,FAM19-Account,works
 FAM5-Check#3,FAM5-Check,"That’s Ari, red 7 · change",Says,Tap the player who is Ari. We follow that shirt for the whole game.,works
@@ -255,24 +469,28 @@ FAM5-Check#4,FAM5-Check,Not now,Opens,FAM3-Home,works
 FAM5-Check#5,FAM5-Check,Use 100 credits,Opens,FAM7-Working,works
 FAM5-Check#6,FAM5-Check,Home,Opens,FAM3-Home,works
 FAM5-Check#7,FAM5-Check,Reels,Opens,FAM18-Reels,works
-FAM5-Check#8,FAM5-Check,Learn,Opens,FAM17-Learn,works
-FAM5-Check#9,FAM5-Check,Club,Opens,FAM11-Locked,works
+FAM5-Check#8,FAM5-Check,Team,Opens,FAM30-TeamLocked,works
+FAM5-Check#9,FAM5-Check,Learn,Opens,FAM17-Learn,works
+FAM5-Check#10,FAM5-Check,Club,Opens,FAM11-Locked,works
 FAM5b-Maybe#1,FAM5b-Maybe,Back,Opens,FAM3-Home,works
 FAM5b-Maybe#2,FAM5b-Maybe,DB,Opens,FAM19-Account,works
 FAM5b-Maybe#3,FAM5b-Maybe,Not now,Opens,FAM3-Home,works
 FAM5b-Maybe#4,FAM5b-Maybe,Go ahead · 30 credits,Opens,FAM7-Working,works
 FAM5b-Maybe#5,FAM5b-Maybe,Home,Opens,FAM3-Home,works
 FAM5b-Maybe#6,FAM5b-Maybe,Reels,Opens,FAM18-Reels,works
-FAM5b-Maybe#7,FAM5b-Maybe,Learn,Opens,FAM17-Learn,works
-FAM5b-Maybe#8,FAM5b-Maybe,Club,Opens,FAM11-Locked,works
+FAM5b-Maybe#7,FAM5b-Maybe,Team,Opens,FAM30-TeamLocked,works
+FAM5b-Maybe#8,FAM5b-Maybe,Learn,Opens,FAM17-Learn,works
+FAM5b-Maybe#9,FAM5b-Maybe,Club,Opens,FAM11-Locked,works
 FAM5c-ClubFilmedThis#1,FAM5c-ClubFilmedThis,Back,Opens,FAM14-HomeWithClub,works
-FAM5c-ClubFilmedThis#2,FAM5c-ClubFilmedThis,DB,Opens,FAM19-Account,works
-FAM5c-ClubFilmedThis#3,FAM5c-ClubFilmedThis,Add a different video,Opens,FAM5-Check,works
-FAM5c-ClubFilmedThis#4,FAM5c-ClubFilmedThis,See Ari’s moments,Opens,FAM14-HomeWithClub,works
-FAM5c-ClubFilmedThis#5,FAM5c-ClubFilmedThis,Home,Opens,FAM3-Home,opens FAM14-HomeWithClub
-FAM5c-ClubFilmedThis#6,FAM5c-ClubFilmedThis,Reels,Opens,FAM18-Reels,works
-FAM5c-ClubFilmedThis#7,FAM5c-ClubFilmedThis,Learn,Opens,FAM17u-LearnWithClub,works
-FAM5c-ClubFilmedThis#8,FAM5c-ClubFilmedThis,Club,Opens,FAM11-Locked,opens FAM13-ClubJoined
+FAM5c-ClubFilmedThis#2,FAM5c-ClubFilmedThis,"Team chat, 2 new",Opens,FAM32-TeamChat,works
+FAM5c-ClubFilmedThis#3,FAM5c-ClubFilmedThis,DB,Opens,FAM19-Account,works
+FAM5c-ClubFilmedThis#4,FAM5c-ClubFilmedThis,Add a different video,Opens,FAM5-Check,works
+FAM5c-ClubFilmedThis#5,FAM5c-ClubFilmedThis,See Ari’s moments,Opens,FAM14-HomeWithClub,works
+FAM5c-ClubFilmedThis#6,FAM5c-ClubFilmedThis,Home,Opens,FAM14-HomeWithClub,works
+FAM5c-ClubFilmedThis#7,FAM5c-ClubFilmedThis,Reels,Opens,FAM18-Reels,works
+FAM5c-ClubFilmedThis#8,FAM5c-ClubFilmedThis,Team,Opens,FAM31-Team,works
+FAM5c-ClubFilmedThis#9,FAM5c-ClubFilmedThis,Learn,Opens,FAM17u-LearnWithClub,works
+FAM5c-ClubFilmedThis#10,FAM5c-ClubFilmedThis,Club,Opens,FAM40-ClubHome,works
 FAM5f-CheckFree#1,FAM5f-CheckFree,Back,Opens,FAM2-AddChild,works
 FAM5f-CheckFree#2,FAM5f-CheckFree,Find Ari’s momentsAbout 20 minutes,Opens,FAM7-Working,works
 FAM5n-NotEnough#1,FAM5n-NotEnough,Back,Opens,FAM3-Home,works
@@ -283,13 +501,14 @@ FAM5n-NotEnough#5,FAM5n-NotEnough,Not now,Opens,FAM3-Home,works
 FAM5n-NotEnough#6,FAM5n-NotEnough,Get 100 · $10,Says,Paid through your app store. 100 credits added. Back to your video.,works
 FAM5n-NotEnough#7,FAM5n-NotEnough,Home,Opens,FAM3-Home,works
 FAM5n-NotEnough#8,FAM5n-NotEnough,Reels,Opens,FAM18-Reels,works
-FAM5n-NotEnough#9,FAM5n-NotEnough,Learn,Opens,FAM17-Learn,works
-FAM5n-NotEnough#10,FAM5n-NotEnough,Club,Opens,FAM11-Locked,works
+FAM5n-NotEnough#9,FAM5n-NotEnough,Team,Opens,FAM30-TeamLocked,works
+FAM5n-NotEnough#10,FAM5n-NotEnough,Learn,Opens,FAM17-Learn,works
+FAM5n-NotEnough#11,FAM5n-NotEnough,Club,Opens,FAM11-Locked,works
 FAM5p-PhoneCheck#1,FAM5p-PhoneCheck,Back,Opens,FAM3-Home,works
 FAM5p-PhoneCheck#2,FAM5p-PhoneCheck,Pick another video,Says,Your phone’s video picker opens.,works
-FAM5p-PhoneCheck#3,FAM5p-PhoneCheck,Upload this one anyway,Opens,FAM5b-Maybe,opens FAM5x-CantRead
+FAM5p-PhoneCheck#3,FAM5p-PhoneCheck,Upload this one anyway,Opens,FAM5b-Maybe,"opens the uploading page first (FAM7u), then the check for this video. Pressed by hand"
 FAM5u-FreeUsed#1,FAM5u-FreeUsed,Back,Opens,FAM2-AddChild,works
-FAM5u-FreeUsed#2,FAM5u-FreeUsed,That’s not right,Says,Help opens with this video and account filled in. A person replies within a day.,works
+FAM5u-FreeUsed#2,FAM5u-FreeUsed,That’s not right,Says,Help opens with this video and account filled in. A person replies within a day.,"opens FAM24-Help with ""The free video"" picked, now that Help has a page. Pressed by hand"
 FAM5u-FreeUsed#3,FAM5u-FreeUsed,Get credits100 credits is $10,Opens,FAM6-Credits,works
 FAM5u-FreeUsed#4,FAM5u-FreeUsed,Not now,Opens,FAM3e-HomeEmpty,works
 FAM5x-CantRead#1,FAM5x-CantRead,Back,Opens,FAM3-Home,works
@@ -298,24 +517,44 @@ FAM5x-CantRead#3,FAM5x-CantRead,Filming tips,Opens,FAM4-BeforeYouFilm,works
 FAM5x-CantRead#4,FAM5x-CantRead,Try another video,Opens,FAM5-Check,works
 FAM5x-CantRead#5,FAM5x-CantRead,Home,Opens,FAM3-Home,works
 FAM5x-CantRead#6,FAM5x-CantRead,Reels,Opens,FAM18-Reels,works
-FAM5x-CantRead#7,FAM5x-CantRead,Learn,Opens,FAM17-Learn,works
-FAM5x-CantRead#8,FAM5x-CantRead,Club,Opens,FAM11-Locked,works
+FAM5x-CantRead#7,FAM5x-CantRead,Team,Opens,FAM30-TeamLocked,works
+FAM5x-CantRead#8,FAM5x-CantRead,Learn,Opens,FAM17-Learn,works
+FAM5x-CantRead#9,FAM5x-CantRead,Club,Opens,FAM11-Locked,works
 FAM6-Credits#1,FAM6-Credits,Back,Opens,FAM3-Home,works
 FAM6-Credits#2,FAM6-Credits,DB,Opens,FAM19-Account,works
 FAM6-Credits#3,FAM6-Credits,100 credits · 1 full game · · $10 [radio],Says,100 credits picked.,works
 FAM6-Credits#4,FAM6-Credits,275 credits · Nearly 3 full games · 25 extra · · $25 [radio],Says,275 credits picked.,works
 FAM6-Credits#5,FAM6-Credits,600 credits · 6 full games · 100 extra · · $50 [radio],Says,600 credits picked.,works
-FAM6-Credits#6,FAM6-Credits,Buy 275 for $25,Says,Paid through your app store. 275 credits added.,works
-FAM6-Credits#7,FAM6-Credits,Home,Opens,FAM3-Home,works
-FAM6-Credits#8,FAM6-Credits,Reels,Opens,FAM18-Reels,works
-FAM6-Credits#9,FAM6-Credits,Learn,Opens,FAM17-Learn,works
-FAM6-Credits#10,FAM6-Credits,Club,Opens,FAM11-Locked,works
+FAM6-Credits#6,FAM6-Credits,Restore,Says,Checked with your app store. Anything you paid for is back in your balance.,works
+FAM6-Credits#7,FAM6-Credits,Buy 275 for $25,Says,Paid through your app store. 275 credits added.,works
+FAM6-Credits#8,FAM6-Credits,Home,Opens,FAM3-Home,works
+FAM6-Credits#9,FAM6-Credits,Reels,Opens,FAM18-Reels,works
+FAM6-Credits#10,FAM6-Credits,Team,Opens,FAM30-TeamLocked,works
+FAM6-Credits#11,FAM6-Credits,Learn,Opens,FAM17-Learn,works
+FAM6-Credits#12,FAM6-Credits,Club,Opens,FAM11-Locked,works
 FAM6f-AfterFree#1,FAM6f-AfterFree,Not now,Opens,FAM3-Home,works
 FAM6f-AfterFree#2,FAM6f-AfterFree,100 credits · 1 full game · · $10 [radio],Says,100 credits picked.,works
 FAM6f-AfterFree#3,FAM6f-AfterFree,275 credits · Nearly 3 full games · 25 extra · · $25 [radio],Says,275 credits picked.,works
 FAM6f-AfterFree#4,FAM6f-AfterFree,600 credits · 6 full games · 100 extra · · $50 [radio],Says,600 credits picked.,works
 FAM6f-AfterFree#5,FAM6f-AfterFree,Get 275 credits · $25,Says,Paid through your app store. 275 credits added.,works
-FAM7-Working#1,FAM7-Working,Tell me when it’s ready,Says,"Your phone asks to allow notifications. We send one when the reel is ready, and nothing else.",works
+FAM6x-PaymentFailed#1,FAM6x-PaymentFailed,"Paid, but no credits? · Restore purchases",Says,Checked with your app store. Anything you paid for is back in your balance.,works
+FAM6x-PaymentFailed#2,FAM6x-PaymentFailed,Get help · A person replies within a day,Opens,FAM24-Help,works
+FAM6x-PaymentFailed#3,FAM6x-PaymentFailed,Try again,Opens,FAM6-Credits,works
+FAM6x-PaymentFailed#4,FAM6x-PaymentFailed,Not now,Opens,FAM3-Home,works
+FAM7-Working#1,FAM7-Working,Back,Opens,FAM3-Home,works
+FAM7-Working#2,FAM7-Working,DB,Opens,FAM19-Account,works
+FAM7-Working#3,FAM7-Working,Open the reel when it’s ready,Opens,FAM8r-Reveal,works
+FAM7-Working#4,FAM7-Working,Home,Opens,FAM3-Home,works
+FAM7-Working#5,FAM7-Working,Reels,Opens,FAM18-Reels,works
+FAM7-Working#6,FAM7-Working,Team,Opens,FAM30-TeamLocked,works
+FAM7-Working#7,FAM7-Working,Learn,Opens,FAM17-Learn,works
+FAM7-Working#8,FAM7-Working,Club,Opens,FAM11-Locked,works
+FAM7u-Uploading#1,FAM7u-Uploading,Only upload on Wi-Fi · Saves your mobile data [switch],Says,Only upload on Wi-Fi: off. Saved.,works
+FAM7u-Uploading#2,FAM7u-Uploading,Pause,Says,Paused at 62%. Nothing is lost.,works
+FAM7u-Uploading#3,FAM7u-Uploading,Cancel the upload,Says,Cancelled. Nothing was uploaded and no credits were used.,works
+FAM7x-UploadStopped#1,FAM7x-UploadStopped,Back,Opens,FAM3-Home,works
+FAM7x-UploadStopped#2,FAM7x-UploadStopped,Carry on,Opens,FAM7u-Uploading,works
+FAM7x-UploadStopped#3,FAM7x-UploadStopped,Wait for Wi-Fi,Says,We carry on by ourselves when you’re next on Wi-Fi.,works
 FAM8-Results#1,FAM8-Results,Back,Opens,FAM3-Home,works
 FAM8-Results#2,FAM8-Results,DB,Opens,FAM19-Account,works
 FAM8-Results#3,FAM8-Results,Reel [radio],Opens,FAM8-Results,works
@@ -332,18 +571,20 @@ FAM8-Results#13,FAM8-Results,4 more,Opens,FAM9-Clip,works
 FAM8-Results#14,FAM8-Results,Missed a moment?,Opens,FAM9a-AddMoment,works
 FAM8-Results#15,FAM8-Results,Save to phone,Says,Saved to your phone. Other players stay blurred in the saved film.,works
 FAM8-Results#16,FAM8-Results,Moments with his team-mates · Everyone else is blurred here. The club asks every family first. · · With your club,Opens,FAMk1-ClubTour,works
-FAM8-Results#17,FAM8-Results,Share with family,Opens,FAM10-ShareFamily,works
+FAM8-Results#17,FAM8-Results,Share,Opens,FAM10-ShareFamily,works
 FAM8-Results#18,FAM8-Results,Done,Opens,FAM6f-AfterFree,opens FAM3-Home
 FAM8-Results#19,FAM8-Results,Home,Opens,FAM3-Home,works
 FAM8-Results#20,FAM8-Results,Reels,Opens,FAM18-Reels,works
-FAM8-Results#21,FAM8-Results,Learn,Opens,FAM17-Learn,works
-FAM8-Results#22,FAM8-Results,Club,Opens,FAM11-Locked,works
+FAM8-Results#21,FAM8-Results,Team,Opens,FAM30-TeamLocked,works
+FAM8-Results#22,FAM8-Results,Learn,Opens,FAM17-Learn,works
+FAM8-Results#23,FAM8-Results,Club,Opens,FAM11-Locked,works
 FAM8b-Results13#1,FAM8b-Results13,DB,Opens,FAM19-Account,works
 FAM8b-Results13#2,FAM8b-Results13,Open the screen that replaces it,Opens,FAM8-Results,works
 FAM8b-Results13#3,FAM8b-Results13,Home,Opens,FAM3-Home,works
 FAM8b-Results13#4,FAM8b-Results13,Reels,Opens,FAM18-Reels,works
-FAM8b-Results13#5,FAM8b-Results13,Learn,Opens,FAM17-Learn,works
-FAM8b-Results13#6,FAM8b-Results13,Club,Opens,FAM11-Locked,works
+FAM8b-Results13#5,FAM8b-Results13,Team,Opens,FAM30-TeamLocked,works
+FAM8b-Results13#6,FAM8b-Results13,Learn,Opens,FAM17-Learn,works
+FAM8b-Results13#7,FAM8b-Results13,Club,Opens,FAM11-Locked,works
 FAM8r-Reveal#1,FAM8r-Reveal,Play the reel,Opens,FAM8-Results,works
 FAM8r-Reveal#2,FAM8r-Reveal,Watch it,Opens,FAM8-Results,works
 FAM8r-Reveal#3,FAM8r-Reveal,Share with family,Opens,FAM10-ShareFamily,works
@@ -354,8 +595,9 @@ FAM8x-TooFew#4,FAM8x-TooFew,Add a moment,Opens,FAM9a-AddMoment,works
 FAM8x-TooFew#5,FAM8x-TooFew,Done,Opens,FAM3-Home,works
 FAM8x-TooFew#6,FAM8x-TooFew,Home,Opens,FAM3-Home,works
 FAM8x-TooFew#7,FAM8x-TooFew,Reels,Opens,FAM18-Reels,works
-FAM8x-TooFew#8,FAM8x-TooFew,Learn,Opens,FAM17-Learn,works
-FAM8x-TooFew#9,FAM8x-TooFew,Club,Opens,FAM11-Locked,works
+FAM8x-TooFew#8,FAM8x-TooFew,Team,Opens,FAM30-TeamLocked,works
+FAM8x-TooFew#9,FAM8x-TooFew,Learn,Opens,FAM17-Learn,works
+FAM8x-TooFew#10,FAM8x-TooFew,Club,Opens,FAM11-Locked,works
 FAM9-Clip#1,FAM9-Clip,Back,Opens,FAM8-Results,works
 FAM9-Clip#2,FAM9-Clip,DB,Opens,FAM19-Account,works
 FAM9-Clip#3,FAM9-Clip,Play,Says,"Plays here, in the page. Tap again to pause.",works
@@ -370,8 +612,9 @@ FAM9-Clip#11,FAM9-Clip,Next clip,Opens,FAM9-Clip,works
 FAM9-Clip#12,FAM9-Clip,Share with family,Opens,FAM10-ShareFamily,works
 FAM9-Clip#13,FAM9-Clip,Home,Opens,FAM3-Home,works
 FAM9-Clip#14,FAM9-Clip,Reels,Opens,FAM18-Reels,works
-FAM9-Clip#15,FAM9-Clip,Learn,Opens,FAM17-Learn,works
-FAM9-Clip#16,FAM9-Clip,Club,Opens,FAM11-Locked,works
+FAM9-Clip#15,FAM9-Clip,Team,Opens,FAM30-TeamLocked,works
+FAM9-Clip#16,FAM9-Clip,Learn,Opens,FAM17-Learn,works
+FAM9-Clip#17,FAM9-Clip,Club,Opens,FAM11-Locked,works
 FAM9a-AddMoment#1,FAM9a-AddMoment,Back,Opens,FAM8-Results,works
 FAM9a-AddMoment#2,FAM9a-AddMoment,DB,Opens,FAM19-Account,works
 FAM9a-AddMoment#3,FAM9a-AddMoment,Play,Says,"Plays here, in the page. Tap again to pause.",works
@@ -389,8 +632,9 @@ FAM9a-AddMoment#14,FAM9a-AddMoment,Cancel,Opens,FAM8-Results,works
 FAM9a-AddMoment#15,FAM9a-AddMoment,Add this moment,Says,Added. It joins the reel in about a minute.,works
 FAM9a-AddMoment#16,FAM9a-AddMoment,Home,Opens,FAM3-Home,works
 FAM9a-AddMoment#17,FAM9a-AddMoment,Reels,Opens,FAM18-Reels,works
-FAM9a-AddMoment#18,FAM9a-AddMoment,Learn,Opens,FAM17-Learn,works
-FAM9a-AddMoment#19,FAM9a-AddMoment,Club,Opens,FAM11-Locked,works
+FAM9a-AddMoment#18,FAM9a-AddMoment,Team,Opens,FAM30-TeamLocked,works
+FAM9a-AddMoment#19,FAM9a-AddMoment,Learn,Opens,FAM17-Learn,works
+FAM9a-AddMoment#20,FAM9a-AddMoment,Club,Opens,FAM11-Locked,works
 FAMc1-ClubInterest#1,FAMc1-ClubInterest,Look around,Opens,STA3-PickRole,works
 FAMc1-ClubInterest#2,FAMc1-ClubInterest,Talk to us,Says,"A short form: your name, your role at the club, and a time to talk.",works
 FAMc1-ClubInterest#3,FAMc1-ClubInterest,See what coaches get,Opens,STA3-PickRole,works
@@ -401,6 +645,10 @@ FAMi2-InviteTap#1,FAMi2-InviteTap,Back,Opens,FAMi1-InviteLanding,works
 FAMi2-InviteTap#2,FAMi2-InviteTap,Ask Dana to confirm,Opens,FAMi3-InviteWaiting,works
 FAMi3-InviteWaiting#1,FAMi3-InviteWaiting,Tell me when it’s ready,Says,Notifications are on. You can close the app.,works
 FAMi3-InviteWaiting#2,FAMi3-InviteWaiting,Film a game of your own,Opens,FAM4-BeforeYouFilm,works
+FAMi4-LinkEnded#1,FAMi4-LinkEnded,Film a game of your ownYour first video is free,Opens,FAM1-Welcome,works
+FAMi4-LinkEnded#2,FAMi4-LinkEnded,Close,Says,Closed.,works
+FAMi5-NotAvailable#1,FAMi5-NotAvailable,Film a game of your ownYour first video is free,Opens,FAM4-BeforeYouFilm,works
+FAMi5-NotAvailable#2,FAMi5-NotAvailable,Ask for help,Opens,FAM24-Help,works
 FAMk1-ClubTour#1,FAMk1-ClubTour,Close,Opens,FAM11-Locked,works
 FAMk1-ClubTour#2,FAMk1-ClubTour,Next,Opens,FAMk2-ClubTour,works
 FAMk2-ClubTour#1,FAMk2-ClubTour,Close,Opens,FAM11-Locked,works
