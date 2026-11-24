@@ -13,13 +13,14 @@ Build: the commit that adds this file. 50 phone screens, a fourth walkthrough pa
 **Built, and not to go live until the children's privacy review has covered it.** `TEAM_LINK` in `src/screens/family/familyStore.ts` takes its row off the Share page when set to false; it is on in the demo.
 
 - **`FAM10-ShareFamily`** is titled "Share", with "Family who can watch Ari's reel", three lines, and the new row "Other parents from the team". The row opens `FAM23e` the first time and `FAM23` once a link exists for that video.
+- **The same row is on the results page** (Booker, 24 Nov), under "Things Ari did well", so the link can be found without opening Share first. It is not on the `FAM8` board or in the wiring table. It shows only for a video that made a reel.
 - **`FAM23e`, `FAM23`, `FAM23a`** for the uploader, as the boards draw them. "Send the link" opens the share sheet (a stub) and starts a 14-day link for that one video. "Check" opens "Is this Sam's family?", which shows only the account's first name, the child's first name and birth year, and the shirt tapped. Yes adds the family to "Joined" and puts 20 credits back; No removes them and says they are not told why. "Stop" stops the link and leaves joined families as they are; "Send the link again" starts it again.
 - **`FAMi1`, `FAMi2`, `FAMi3`** for the invited parent. They tap their child, give a first name and birth year, and wait. The club is the video's.
 - **Nothing is made until the uploader says yes**, and the confirm screen cannot be skipped: no family reaches "Joined", and no credits come back, any other way.
 - **One family for each child in a video.** A shirt that already has a family, and the uploader's own child's shirt, cannot be asked for.
 - All of it comes from `TEAM` in `familyStore.ts`: 20 credits back, 10 families, 14 days, half the credits.
 
-All 414 controls in the v16 table were pressed on this build: 387 work as written, including all 31 new ones. Twelve are behind the panel on the closed Learn page, and the other 15 are listed under "The controls". A test of 126 checks covers v11 to v16; 124 pass, and the other two are the brand-new visitor described under v12.
+All 414 controls in the v16 table were pressed on this build: 387 work as written, including all 31 new ones. Twelve are behind the panel on the closed Learn page, and the other 15 are listed under "The controls". A test of 130 checks covers v11 to v16; 128 pass, and the other two are the brand-new visitor described under v12.
 
 What stands in, because nobody is on the other end of the link:
 
