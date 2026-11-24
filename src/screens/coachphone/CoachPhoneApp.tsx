@@ -6,6 +6,8 @@ import { useState } from 'react'
 import QCp1BeforeKickOffPhone from '../capture/QCp1BeforeKickOffPhone'
 import CaptureFlow, { isCaptureId } from '../capture/CaptureFlow'
 import { CNp18IncidentLog } from '../connected/CnPhone'
+import PhoneHome from '../homesphone/PhoneHome'
+import { CPH1 } from '../homesphone/data'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', PALE = '#eef5f2'
 
@@ -82,7 +84,7 @@ function PhoneShell({ children, tab, onTab, onPlan, askOpen, onAskToggle }: {
     },
   ]
   return (
-    <div style={{ width: 390, minHeight: 844, background: '#f5f6f4', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    <div data-screen-at={{ home: 'CPh1-CoachPhoneHome', coming: 'CPh2-CoachPhoneComing', messages: 'CPh3-CoachPhoneMessages', game: 'CPh4-CoachPhoneGame' }[tab]} style={{ width: 390, minHeight: 844, background: '#f5f6f4', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
       {/* Status bar stub */}
       <div style={{ background: GD, height: 44, display: 'flex', alignItems: 'flex-end', padding: '0 16px 10px', justifyContent: 'space-between', flexShrink: 0 }}>
         <span style={{ fontSize: 14, fontWeight: 800, letterSpacing: '-0.02em', color: '#fff' }}>Clean Sheet</span>
@@ -142,9 +144,6 @@ function Row({ icon, label, sub, right, onPress }: { icon?: React.ReactNode; lab
   )
 }
 
-function Pill({ label, color = G }: { label: string; color?: string }) {
-  return <div style={{ height: 22, padding: '0 8px', borderRadius: 11, background: color + '20', display: 'inline-flex', alignItems: 'center', fontSize: 11, fontWeight: 700, color, flexShrink: 0 }}>{label}</div>
-}
 
 /* ---- Phase-specific Home tabs ---- */
 function CoachPhonePreSeasonHome() {
@@ -273,105 +272,7 @@ function CoachPhoneRestMonthHome() {
   )
 }
 
-/* ---- CPh1 Home (populated) ---- */
-function PhoneAskLine({ onAsk }: { onAsk: () => void }) {
-  return (
-    <button onClick={onAsk} aria-label="Ask Clean Sheet" style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '10px 12px 0', padding: '0 14px', height: 52, borderRadius: 14, border: '1px solid #d4dbd8', background: '#fff', cursor: 'pointer', textAlign: 'left', width: 'calc(100% - 24px)', boxSizing: 'border-box' as const }}>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={SPARKLE_D}/></svg>
-      <span style={{ flex: 1, fontSize: 14, color: MUT }}>Ask about U12 Sam…</span>
-    </button>
-  )
-}
-
-function CoachPhoneHomeTab({ onPlan, onAsk, onKick, onIncident }: { onPlan: () => void; onAsk: () => void; onKick?: () => void; onIncident?: () => void }) {
-  const [toast, setToast] = useState<string|null>(null)
-  void st   // kept for lines this screen may still need to say
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
-  return (
-    <>
-      <PhoneAskLine onAsk={onAsk} />
-      {/* Tonight's training card */}
-      <SectionHead>Tonight</SectionHead>
-      <Card>
-        <div style={{ padding: '14px 14px 10px' }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 4 }}>Training · Thu 4 June · 6 pm</div>
-          <div style={{ fontSize: 18, fontWeight: 800, letterSpacing: '-0.02em', color: INK, marginBottom: 8 }}>U12 Sam · Wattle Creek</div>
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' as const }}>
-            <Pill label="14 of 16 coming" />
-            <Pill label="Pitch 3" />
-          </div>
-        </div>
-        <div style={{ borderTop: '1px solid #f0f1f0', padding: '10px 14px', display: 'flex', gap: 8 }}>
-          <button onClick={onPlan} style={{ flex: 1, height: 44, borderRadius: 10, border: 0, background: GD, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Tonight's plan</button>
-          <button onClick={() => openThing("tonight's availability", 'phone')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #d4d6d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Coming</button>
-        </div>
-      </Card>
-
-      {/* Sunday's game: the four checks before recording */}
-      {onKick && (
-        <Card>
-          <button onClick={onKick} style={{ width: '100%', minHeight: 60, padding: '10px 14px', display: 'flex', alignItems: 'center', gap: 12, textAlign: 'left', background: 'none', border: 0, fontFamily: 'inherit', color: INK, cursor: 'pointer' }}>
-            <span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-              <strong style={{ fontSize: 15 }}>Before kick-off</strong>
-              <span style={{ fontSize: 13, color: MUT }}>Sunday v Harbour Rovers · four checks, about 2 minutes</span>
-            </span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </button>
-        </Card>
-      )}
-
-      {onIncident && (
-        <Card>
-          <button onClick={onIncident} style={{ width: '100%', minHeight: 60, padding: '10px 14px', display: 'flex', alignItems: 'center', gap: 12, textAlign: 'left', background: 'none', border: 0, fontFamily: 'inherit', color: INK, cursor: 'pointer' }}>
-            <span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-              <strong style={{ fontSize: 15 }}>Log an incident</strong>
-              <span style={{ fontSize: 13, color: MUT }}>A knock, a head knock, behaviour or the sideline. Goes to Helen</span>
-            </span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-          </button>
-        </Card>
-      )}
-
-      {/* Needs you */}
-      <SectionHead>Needs you</SectionHead>
-      <Card>
-        <Row
-          icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>}
-          label="Set the line-up"
-          sub="2 of 16 not placed"
-          right={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6"/></svg>}
-        />
-        <Row
-          icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>}
-          label="2 haven't replied"
-          sub="Tom Blake · Isla Chen"
-          right={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6"/></svg>}
-        />
-      </Card>
-
-      {/* Sunday game */}
-      <SectionHead>Sunday</SectionHead>
-      <Card>
-        <div style={{ padding: '14px 14px 10px' }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 4 }}>Game · Sun 7 June · 10 am</div>
-          <div style={{ fontSize: 16, fontWeight: 800, letterSpacing: '-0.02em', color: INK, marginBottom: 4 }}>vs Banksia Park</div>
-          <div style={{ fontSize: 14, color: MUT }}>Home · Wattle Creek Reserve</div>
-        </div>
-        <div style={{ borderTop: '1px solid #f0f1f0', padding: '10px 14px', display: 'flex', gap: 8 }}>
-          <button onClick={() => openThing('team sheet', 'phone')} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #d4d6d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Team sheet</button>
-          <button onClick={() => openThing('game day', 'phone')} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #d4d6d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Game day</button>
-        </div>
-      </Card>
-
-      {/* Tablet note */}
-      <div style={{ margin: '8px 12px 20px', padding: '12px 14px', borderRadius: 12, background: '#f0f1f0', display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ flex: 'none', marginTop: 1 }}><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        <span style={{ fontSize: 13, color: MUT, lineHeight: 1.4 }}>Review, clips and planning are on the tablet.</span>
-      </div>
-      {toast && <div role="status" style={{ position: 'fixed', bottom: 80, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '10px 18px', borderRadius: 10, background: '#1f4a3e', color: '#fff', fontSize: 14, fontWeight: 600, whiteSpace: 'nowrap' }}>{toast}</div>}
-    </>
-  )
-}
+/* ---- CPh1 Home (populated) is the four-part phone home: ../homesphone/PhoneHome with the CPH1 words (homes handover v26) ---- */
 
 /* ---- CPh2 Coming (populated) ---- */
 function CoachPhoneComingTab() {
@@ -647,6 +548,17 @@ export default function CoachPhoneApp({ initialTab = 'home', phase = 'season' as
   const [kick, setKick] = useBackState<string | null>(null)
   const [incident, setIncident] = useBackState(false)   // CNp18: log an incident, from the home
   const [review, setReview] = useBackState(initialReview)   // RD5: the game review, from the Game tab
+  const [reviewFromHome, setReviewFromHome] = useState(false)   // "Play 60 seconds" on the home opens the review; Back returns to the home
+  // The home's controls name screens by id. Each is one of this app's own tabs or pages.
+  const homeGo = (id: string) => {
+    if (id === 'CPh5-CoachPhonePlan') setShowPlan(true)
+    else if (id === 'RD5-CoachPhoneReview') { setReviewFromHome(true); setReview(true) }
+    else if (id === 'CPh2-CoachPhoneComing') setTab('coming')
+    else if (id === 'CPh3-CoachPhoneMessages') setTab('messages')
+    else if (id === 'CPh4-CoachPhoneGame') setTab('game')
+    else if (id === 'QCp1-BeforeKickOffPhone') setKick(id)
+    else if (id === 'CNp18-IncidentLog') setIncident(true)
+  }
   const kickNav = (s: string) => setKick(isCaptureId(s) ? s : s === 'QCp1-BeforeKickOffPhone' ? s : null)
 
   if (incident) return <CNp18IncidentLog onNav={() => setIncident(false)} />
@@ -661,15 +573,17 @@ export default function CoachPhoneApp({ initialTab = 'home', phase = 'season' as
       <CaptureFlow narrow step={kick} onStep={setKick} onNav={s => setKick(s === 'REC1-RecordHub' || s === 'R1-MatchReview' ? null : 'QCp1-BeforeKickOffPhone')} />
     </div>
   )
-  if (showPlan) return <CoachPhonePlanScreen onBack={() => setShowPlan(false)} />
-  if (review) return <div data-screen-at="RD5-CoachPhoneReview"><RD5CoachPhoneReview onBack={() => { setReview(false); setTab('game') }} /></div>
+  if (showPlan) return <div data-screen-at="CPh5-CoachPhonePlan"><CoachPhonePlanScreen onBack={() => setShowPlan(false)} /></div>
+  if (review) return <div data-screen-at="RD5-CoachPhoneReview"><RD5CoachPhoneReview onBack={() => { setReview(false); if (!reviewFromHome) setTab('game'); setReviewFromHome(false) }} /></div>
+
+  // In season the Home is the four-part home, with its own bar and tabs as drawn (CPh1).
+  if (tab === 'home' && phase === 'season') return <div data-screen-at="CPh1-CoachPhoneHome" style={{ display: 'flex', justifyContent: 'center' }}><PhoneHome cfg={CPH1} onNav={homeGo} /></div>
 
   return (
-    <PhoneShell tab={tab} onTab={setTab} onPlan={tab === 'home' && phase === 'season' ? () => setShowPlan(true) : undefined} askOpen={askOpen} onAskToggle={() => setAskOpen(o => !o)}>
+    <PhoneShell tab={tab} onTab={setTab} askOpen={askOpen} onAskToggle={() => setAskOpen(o => !o)}>
       {tab === 'home' && phase === 'preseason'  && <CoachPhonePreSeasonHome />}
       {tab === 'home' && phase === 'postseason' && <CoachPhonePostSeasonHome />}
       {tab === 'home' && phase === 'restmonth'  && <CoachPhoneRestMonthHome />}
-      {tab === 'home' && phase === 'season'     && <CoachPhoneHomeTab onPlan={() => setShowPlan(true)} onAsk={() => setAskOpen(true)} onKick={() => setKick('QCp1-BeforeKickOffPhone')} onIncident={() => setIncident(true)} />}
       {tab === 'coming'   && <CoachPhoneComingTab />}
       {tab === 'messages' && <CoachPhoneMessagesTab />}
       {tab === 'game'     && <CoachPhoneGameTab onReview={() => setReview(true)} />}

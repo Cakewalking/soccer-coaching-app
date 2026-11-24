@@ -95,6 +95,8 @@ function emit(node, acts, depth, links, used, parent) {
     const name = ATTR[k] ?? k
     props.push(v === true ? name : name === 'tabIndex' ? `tabIndex={${v}}` : `${name}=${v.includes('"') ? `{${str(v)}}` : `"${v}"`}`)
   }
+  // A link set in a line of words, with a look of its own (Tap only pads one that has none): padding above and below makes it a 44px target without moving the line.
+  if (tag === 'Tap' && pairs.length && !pairs.some(([k]) => /^(height|minHeight|padding|display|flex)/.test(k)) && !classes.length) pairs.push(['paddingTop', '13px'], ['paddingBottom', '13px'], ['marginTop', '-13px'], ['marginBottom', '-13px'])   // the margins undo the padding where the link is a flex item
   const inline = pairs.map(([k, v]) => `${k}: ${val(k, v)}`).join(', ')
   const spread = classes.map(c => `...S.${c}`).join(', ')
   if (classes.length === 1 && !inline) props.push(`style={S.${classes[0]}}`)
@@ -117,11 +119,13 @@ for (const file of readdirSync(srcDir).filter(f => /^(A[CD]\d+|DCK1|ADS1)e?-.*\.
   if (start < 0 || end < 0) throw new Error(id + ': frame not found')
   const frame = parse(html.slice(start, end) + '</div>').kids[0]
   const blocks = frame.kids.filter(k => k.tag)
-  if (blocks.length !== 4 || blocks[3].tag !== 'main') throw new Error(`${id}: expected bar, menu, heading, main; found ${blocks.map(b => b.tag).join(', ')}`)
+  // The rebuilt home (v26) has no heading line of its own: the bar, the menu, then the page.
+  const bare = blocks.length === 3 && blocks[2].tag === 'main'
+  if (!bare && (blocks.length !== 4 || blocks[3].tag !== 'main')) throw new Error(`${id}: expected bar, menu, heading, main; found ${blocks.map(b => b.tag).join(', ')}`)
   const acts = new Map(JSON.parse(html.match(/const ACTS = (\[.*\]);/)?.[1] ?? '[]').map(([n, kind, line]) => { if (kind !== 'toast') throw new Error(id + ': a sheet'); return [n, line] }))
   const links = []
   const used = new Set()
-  const body = emit(blocks[2], acts, 3, links, used) + emit(blocks[3], acts, 3, links, used)
+  const body = bare ? emit(blocks[2], acts, 3, links, used) : emit(blocks[2], acts, 3, links, used) + emit(blocks[3], acts, 3, links, used)
   // The club's children checks sit in the director's frame, in another folder; they use the same pieces.
   const club = id.startsWith('DCK'), from = club ? '../academy/' : './'
   const out = `// ${id}: ${title}.\n// Drawn from the board in the academy handover (24 Nov). The menus above it are ${club ? "the director's frame (ClubAdminScreen)" : "the owner app's own (OwnerHeader)"}.\nimport { S } from '${from}adStyles'\nimport Tap from '${from}Tap'\n${used.size ? `import { ${[...used].sort().join(', ')} } from '${from}formKit'\n` : ''}\nexport default function ${name}() {\n  return (\n    <>\n${body}    </>\n  )\n}\n`

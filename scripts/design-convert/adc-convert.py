@@ -203,6 +203,12 @@ def convert(src_dir, out_dir, bid):
             if kk is None: continue
             props.append(f'{kk}={js(v)}')
         if click: props.append(f'onClick={{() => {click}}}')
+        # a round control drawn smaller than 44px (a player's dot): the button is a clear 44px-tall target and the dot sits inside it, so the row does not move
+        px = lambda v: int(v[:-2]) if re.fullmatch(r'\d+px', v or '') else None
+        if n.tag == 'a' and tag == 'button' and px(own.get('height')) and px(own.get('height')) < 44 and own.get('width') == own.get('height') and all(isinstance(k, str) for k in n.kids):
+            h = px(own['height']); look = {k: v for k, v in own.items() if k not in ('flex', 'textDecoration')}
+            hit = {'border': '0', 'padding': '0', 'margin': f'-{(44 - h) // 2}px 0', 'background': 'transparent', 'font': 'inherit', 'cursor': 'pointer', 'flex': 'none', 'width': own['width'], 'height': '44px', 'display': 'flex', 'alignItems': 'center', 'justifyContent': 'center'}
+            return f"{pad}<button {' '.join(props)} style={{{{ {', '.join(f'{k}: {js(v)}' for k, v in hit.items())} }}}}><span style={{{{ {', '.join(f'{k}: {js(v)}' for k, v in look.items())} }}}}>{text(''.join(n.kids), True)}</span></button>\n"
         if parts: props.append('style={{ ' + ', '.join(parts) + ' }}')
         open_ = f'<{tag}' + (' ' + ' '.join(props) if props else '')
         if tag == 'textarea':

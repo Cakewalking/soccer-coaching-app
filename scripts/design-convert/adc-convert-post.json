@@ -42,5 +42,11 @@
       "        <span style={{ ...C.cap, fontSize: \"13px\", lineHeight: \"18px\" }}>Only you and the academy owner can see fees. Coaches and Kai can’t.</span>\n",
       "        <span style={{ ...C.cap, fontSize: \"13px\", lineHeight: \"18px\" }}>Only you and the academy owner can see fees. Coaches and Kai can’t.</span>\n        {/* Handover v23 asks for this way in to ADP16; the board does not draw it, so it is a plain link. */}\n        <button onClick={() => go(\"ADP16-Voucher\")} style={{ alignSelf: \"flex-start\", minHeight: \"44px\", margin: \"-8px 0\", border: \"0\", padding: \"0\", background: \"transparent\", font: \"inherit\", fontSize: \"14px\", fontWeight: \"700\", color: \"#2f6252\", textDecoration: \"underline\", cursor: \"pointer\" }}>Have a sport voucher?</button>\n"
     ]
+  ],
+  "ACC1-CoachToday": [
+    [
+      "// ACC1-CoachToday, as the academy pack draws it (handover v24)",
+      "// ACC1-CoachToday, as the academy pack draws it (handover v26, the home rebuilt in four parts: Now, Progress, Development, Oversight)"
+    ]
   ]
 }

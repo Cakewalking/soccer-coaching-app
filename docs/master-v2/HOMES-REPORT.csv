@@ -1,0 +1,558 @@
+id,screen,control,does,target or line,status
+STO1#1,STO1-HomeStoryMiniRoos,Home,Opens,MS5-HomeMiniRoosSame,works
+STO1#2,STO1-HomeStoryMiniRoos,Squad,Opens,HM2-SquadMiniRoos,works
+STO1#3,STO1-HomeStoryMiniRoos,Training,Opens,HM3-TrainingMiniRoos,works
+STO1#4,STO1-HomeStoryMiniRoos,Game day,Opens,HM4-GameDayMiniRoos,works
+STO1#5,STO1-HomeStoryMiniRoos,Clips,Opens,RCm2-MiniRoosClips,works
+STO1#6,STO1-HomeStoryMiniRoos,Record,Opens,RCm1-RecordMiniRoos,works
+STO1#7,STO1-HomeStoryMiniRoos,Ask Clean Sheet,Opens,ASKd4-PanelFirst,works
+STO1#8,STO1-HomeStoryMiniRoos,U9 Tom,Opens,VS1-SwitchView,works
+STO1#9,STO1-HomeStoryMiniRoos,Overview,Opens,MS5-HomeMiniRoosSame,works
+STO1#10,STO1-HomeStoryMiniRoos,Messages,Opens,HM7-InboxMiniRoos,works
+STO1#11,STO1-HomeStoryMiniRoos,Calendar,Opens,HM8-CalendarMiniRoos,works
+STO1#12,STO1-HomeStoryMiniRoos,Fixtures,Opens,HM9-FixturesMiniRoos,works
+STO1#13,STO1-HomeStoryMiniRoos,Our style,Opens,MS1-MiniRoosStyle,works
+STO1#14,STO1-HomeStoryMiniRoos,Where we’re at,Opens,MS2-MiniRoosWhereWeAt,works
+STO1#15,STO1-HomeStoryMiniRoos,Team staff,Opens,HM10-StaffMiniRoos,works
+STO1#16,STO1-HomeStoryMiniRoos,Thu 5:00 Training / 4 games · ready,Opens,HM3-TrainingMiniRoos,works
+STO1#17,STO1-HomeStoryMiniRoos,Sun 8:30 at home / 8 coming · 2 to answer,Opens,HM3-TrainingMiniRoos,works
+STO1#18,STO1-HomeStoryMiniRoos,Swap a game,Opens,SGm1-SuggestedMiniRoos,works
+STO1#19,STO1-HomeStoryMiniRoos,Open Thursday,Opens,HM3-TrainingMiniRoos,works
+STO1#20,STO1-HomeStoryMiniRoos,Play 40 seconds,Says,"Seven moments, one from each child who took a player on. From Sunday’s film.",works
+STO1#21,STO1-HomeStoryMiniRoos,What we saw,Opens,RD3-MiniRoosReview,works
+STO1#22,STO1-HomeStoryMiniRoos,All moments,Says,"Every moment this term, by child, A to Z.",works
+STO1#23,STO1-HomeStoryMiniRoos,"The 10 dots, pressed as one row",Opens,GP7-MiniGoal,works: the board has one 30px link per dot and all open this screen; built as one 44px row so it can be pressed
+STO1#24,STO1-HomeStoryMiniRoos,Send to his dad,Says,Sent to Arlo’s dad with your note. He can reply with a thank you.,works
+STO1#25,STO1-HomeStoryMiniRoos,Watch for one,Says,Ivy is pinned. One tap during the session saves a moment for her.,works
+STO1#26,STO1-HomeStoryMiniRoos,Set one,Opens,GP7-MiniGoal,works
+STO1#27,STO1-HomeStoryMiniRoos,"Played in both halves on Sunday / 10 of 10 / Everyone, for the fourth week running",Opens,MS3-MiniRoosReview,works
+STO1#28,STO1-HomeStoryMiniRoos,A turn in goal this term / 8 of 10 / Ivy and Sami are next,Opens,HM3-TrainingMiniRoos,works
+STO1#29,STO1-HomeStoryMiniRoos,"A moment sent home this term / 7 of 10 / Ivy, Max and Sami have had none",Opens,RCm2-MiniRoosClips,works
+STO1#30,STO1-HomeStoryMiniRoos,Been captain / 6 of 10 / Four to go before the end of term,Opens,MS3-MiniRoosReview,works
+STO1#31,STO1-HomeStoryMiniRoos,2 / Two things need you / A game leader for Sunday · one message,Opens,HM7-InboxMiniRoos,works
+STO1#32,STO1-HomeStoryMiniRoos,Avatar (your profile),Opens,SET1-Account,works: opens the account page over the home (the board draws the avatar as a plain circle with no target; kept from the old home)
+STO2#1,STO2-HomeStoryMiniRoosTraining,Home,Opens,MS5-HomeMiniRoosSame,works
+STO2#2,STO2-HomeStoryMiniRoosTraining,Squad,Opens,HM2-SquadMiniRoos,works
+STO2#3,STO2-HomeStoryMiniRoosTraining,Training,Opens,HM3-TrainingMiniRoos,works
+STO2#4,STO2-HomeStoryMiniRoosTraining,Game day,Opens,HM4-GameDayMiniRoos,works
+STO2#5,STO2-HomeStoryMiniRoosTraining,Clips,Opens,RCm2-MiniRoosClips,works
+STO2#6,STO2-HomeStoryMiniRoosTraining,Record,Opens,RCm1-RecordMiniRoos,works
+STO2#7,STO2-HomeStoryMiniRoosTraining,Ask Clean Sheet,Opens,ASKd4-PanelFirst,works
+STO2#8,STO2-HomeStoryMiniRoosTraining,U9 Tom,Opens,VS1-SwitchView,works
+STO2#9,STO2-HomeStoryMiniRoosTraining,Overview,Opens,MS5-HomeMiniRoosSame,works
+STO2#10,STO2-HomeStoryMiniRoosTraining,Messages,Opens,HM7-InboxMiniRoos,works
+STO2#11,STO2-HomeStoryMiniRoosTraining,Calendar,Opens,HM8-CalendarMiniRoos,works
+STO2#12,STO2-HomeStoryMiniRoosTraining,Fixtures,Opens,HM9-FixturesMiniRoos,works
+STO2#13,STO2-HomeStoryMiniRoosTraining,Our style,Opens,MS1-MiniRoosStyle,works
+STO2#14,STO2-HomeStoryMiniRoosTraining,Where we’re at,Opens,MS2-MiniRoosWhereWeAt,works
+STO2#15,STO2-HomeStoryMiniRoosTraining,Team staff,Opens,HM10-StaffMiniRoos,works
+STO2#16,STO2-HomeStoryMiniRoosTraining,5:00 Training / 4 games · 8 coming,Opens,HM3-TrainingMiniRoos,works
+STO2#17,STO2-HomeStoryMiniRoosTraining,Tonight is about / Finding a friend in space,Opens,SGm1-SuggestedMiniRoos,works
+STO2#18,STO2-HomeStoryMiniRoosTraining,Swap a game,Opens,SGm1-SuggestedMiniRoos,works
+STO2#19,STO2-HomeStoryMiniRoosTraining,Start tonight,Opens,HM3-TrainingMiniRoos,works
+STO2#20,STO2-HomeStoryMiniRoosTraining,Play 25 seconds,Says,"Why tonight: 25 seconds of Sunday’s bunching, to watch before you go.",works
+STO2#21,STO2-HomeStoryMiniRoosTraining,What we saw,Opens,RD3-MiniRoosReview,works
+STO2#22,STO2-HomeStoryMiniRoosTraining,All moments,Says,"Every moment this term, by child, A to Z.",works
+STO2#23,STO2-HomeStoryMiniRoosTraining,"The 10 dots, pressed as one row",Opens,GP7-MiniGoal,works: the board has one 30px link per dot and all open this screen; built as one 44px row so it can be pressed
+STO2#24,STO2-HomeStoryMiniRoosTraining,Watch for one,Says,Ivy is pinned for tonight.,works
+STO2#25,STO2-HomeStoryMiniRoosTraining,Watch for one,Says,Max is pinned for tonight.,works
+STO2#26,STO2-HomeStoryMiniRoosTraining,Send to her mum,Says,Sent to Poppy’s mum with your note.,works
+STO2#27,STO2-HomeStoryMiniRoosTraining,"Played in both halves on Sunday / 10 of 10 / Everyone, for the fourth week running",Opens,MS3-MiniRoosReview,works
+STO2#28,STO2-HomeStoryMiniRoosTraining,A turn in goal this term / 8 of 10 / Ivy and Sami are next,Opens,HM3-TrainingMiniRoos,works
+STO2#29,STO2-HomeStoryMiniRoosTraining,"A moment sent home this term / 7 of 10 / Ivy, Max and Sami have had none",Opens,RCm2-MiniRoosClips,works
+STO2#30,STO2-HomeStoryMiniRoosTraining,Been captain / 6 of 10 / Four to go before the end of term,Opens,MS3-MiniRoosReview,works
+STO2#31,STO2-HomeStoryMiniRoosTraining,1 / One thing needs you / A message from Omar’s dad,Opens,HM7-InboxMiniRoos,works
+STO2#32,STO2-HomeStoryMiniRoosTraining,Avatar (your profile),Opens,SET1-Account,works: opens the account page over the home (the board draws the avatar as a plain circle with no target; kept from the old home)
+STO3#1,STO3-HomeStoryMiniRoosNoFilm,Home,Opens,MS5-HomeMiniRoosSame,works
+STO3#2,STO3-HomeStoryMiniRoosNoFilm,Squad,Opens,HM2-SquadMiniRoos,works
+STO3#3,STO3-HomeStoryMiniRoosNoFilm,Training,Opens,HM3-TrainingMiniRoos,works
+STO3#4,STO3-HomeStoryMiniRoosNoFilm,Game day,Opens,HM4-GameDayMiniRoos,works
+STO3#5,STO3-HomeStoryMiniRoosNoFilm,Clips,Opens,RCm2-MiniRoosClips,works
+STO3#6,STO3-HomeStoryMiniRoosNoFilm,Record,Opens,RCm1-RecordMiniRoos,works
+STO3#7,STO3-HomeStoryMiniRoosNoFilm,Ask Clean Sheet,Opens,ASKd4-PanelFirst,works
+STO3#8,STO3-HomeStoryMiniRoosNoFilm,U9 Tom,Opens,VS1-SwitchView,works
+STO3#9,STO3-HomeStoryMiniRoosNoFilm,Overview,Opens,MS5-HomeMiniRoosSame,works
+STO3#10,STO3-HomeStoryMiniRoosNoFilm,Messages,Opens,HM7-InboxMiniRoos,works
+STO3#11,STO3-HomeStoryMiniRoosNoFilm,Calendar,Opens,HM8-CalendarMiniRoos,works
+STO3#12,STO3-HomeStoryMiniRoosNoFilm,Fixtures,Opens,HM9-FixturesMiniRoos,works
+STO3#13,STO3-HomeStoryMiniRoosNoFilm,Our style,Opens,MS1-MiniRoosStyle,works
+STO3#14,STO3-HomeStoryMiniRoosNoFilm,Where we’re at,Opens,MS2-MiniRoosWhereWeAt,works
+STO3#15,STO3-HomeStoryMiniRoosNoFilm,Team staff,Opens,HM10-StaffMiniRoos,works
+STO3#16,STO3-HomeStoryMiniRoosNoFilm,Thu 5:00 Training / 4 games · ready,Opens,HM3-TrainingMiniRoos,works
+STO3#17,STO3-HomeStoryMiniRoosNoFilm,Sun 8:30 at home / 8 coming · 2 to answer,Opens,HM3-TrainingMiniRoos,works
+STO3#18,STO3-HomeStoryMiniRoosNoFilm,Swap a game,Opens,SGm1-SuggestedMiniRoos,works
+STO3#19,STO3-HomeStoryMiniRoosNoFilm,Open Thursday,Opens,HM3-TrainingMiniRoos,works
+STO3#20,STO3-HomeStoryMiniRoosNoFilm,What you tapped,Opens,MS3-MiniRoosReview,works
+STO3#21,STO3-HomeStoryMiniRoosNoFilm,Film one game,Opens,RCm1-RecordMiniRoos,works
+STO3#22,STO3-HomeStoryMiniRoosNoFilm,All moments,Says,"Every moment this term, by child, A to Z.",works
+STO3#23,STO3-HomeStoryMiniRoosNoFilm,"The 10 dots, pressed as one row",Opens,GP7-MiniGoal,works: the board has one 30px link per dot and all open this screen; built as one 44px row so it can be pressed
+STO3#24,STO3-HomeStoryMiniRoosNoFilm,Send to his dad,Says,Sent to Arlo’s dad with your note.,works
+STO3#25,STO3-HomeStoryMiniRoosNoFilm,Send to her mum,Says,Sent to Poppy’s mum with the photo and your note.,works
+STO3#26,STO3-HomeStoryMiniRoosNoFilm,Watch for one,Says,Ivy is pinned for Sunday.,works
+STO3#27,STO3-HomeStoryMiniRoosNoFilm,"Played in both halves on Sunday / 10 of 10 / Everyone, for the fourth week running",Opens,MS3-MiniRoosReview,works
+STO3#28,STO3-HomeStoryMiniRoosNoFilm,A turn in goal this term / 8 of 10 / Ivy and Sami are next,Opens,HM3-TrainingMiniRoos,works
+STO3#29,STO3-HomeStoryMiniRoosNoFilm,"A moment sent home this term / 7 of 10 / Ivy, Max and Sami have had none",Opens,RCm2-MiniRoosClips,works
+STO3#30,STO3-HomeStoryMiniRoosNoFilm,Been captain / 6 of 10 / Four to go before the end of term,Opens,MS3-MiniRoosReview,works
+STO3#31,STO3-HomeStoryMiniRoosNoFilm,2 / Two things need you / A game leader for Sunday · one message,Opens,HM7-InboxMiniRoos,works
+STO3#32,STO3-HomeStoryMiniRoosNoFilm,Avatar (your profile),Opens,SET1-Account,works: opens the account page over the home (the board draws the avatar as a plain circle with no target; kept from the old home)
+STO4#1,STO4-HomeStorySeniors,Home,Opens,T1-TabletTraining,works
+STO4#2,STO4-HomeStorySeniors,Squad,Opens,T4-SquadTab,works
+STO4#3,STO4-HomeStorySeniors,Training,Opens,T3-TrainingTab,works
+STO4#4,STO4-HomeStorySeniors,Match day,Opens,T2-TabletMatch,works
+STO4#5,STO4-HomeStorySeniors,Clips,Opens,C1-ClipsTab,works
+STO4#6,STO4-HomeStorySeniors,Record,Opens,REC1-RecordHub,works
+STO4#7,STO4-HomeStorySeniors,Ask Clean Sheet,Opens,ASKd4-PanelFirst,works
+STO4#8,STO4-HomeStorySeniors,Men’s 1sts,Opens,VS1-SwitchView,works
+STO4#9,STO4-HomeStorySeniors,Overview,Opens,PH3-HomeSeniorsSame,works
+STO4#10,STO4-HomeStorySeniors,Messages,Opens,I1-Inbox,works
+STO4#11,STO4-HomeStorySeniors,Calendar,Opens,CF1-Fixtures,works
+STO4#12,STO4-HomeStorySeniors,Fixtures and results,Opens,CF1-Fixtures,works
+STO4#13,STO4-HomeStorySeniors,Our style,Opens,S1-PlayingStyle,works
+STO4#14,STO4-HomeStorySeniors,Where we’re at,Opens,WA1-WhereWeAt,works
+STO4#15,STO4-HomeStorySeniors,Team staff,Opens,ST1-TeamStaff,works
+STO4#16,STO4-HomeStorySeniors,7:30 Training / 75 minutes · plan ready,Opens,T3-TrainingTab,works
+STO4#17,STO4-HomeStorySeniors,Sat 3:00 away / Banksia Park · scouted,Opens,T2-TabletMatch,works
+STO4#18,STO4-HomeStorySeniors,Saturday’s review,Opens,RD1-GameReview,works
+STO4#19,STO4-HomeStorySeniors,Open tonight’s plan,Opens,T3-TrainingTab,works
+STO4#20,STO4-HomeStorySeniors,Play 90 seconds,Says,"Six clips: the middle closing four times, and both goals.",works
+STO4#21,STO4-HomeStorySeniors,Season so far,Opens,RD2-SeasonSoFar,works
+STO4#22,STO4-HomeStorySeniors,Squad,Opens,T4-SquadTab,works
+STO4#23,STO4-HomeStorySeniors,"The 21 dots, pressed as one row",Opens,T4-SquadTab,works: the board has one 30px link per dot and all open this screen; built as one 44px row so it can be pressed
+STO4#24,STO4-HomeStorySeniors,Send to Liam,Says,Sent to Liam with your note. Only he sees it.,works
+STO4#25,STO4-HomeStorySeniors,Send to Cal,Says,Sent to Cal with your note.,works
+STO4#26,STO4-HomeStorySeniors,Watch for one,Says,All four are pinned for Saturday.,works
+STO4#27,STO4-HomeStorySeniors,Answered for Saturday / 18 of 21 / 3 still to answer,Opens,AV1-Availability,works
+STO4#28,STO4-HomeStorySeniors,A clip this month / 17 of 21 / Four to go,Opens,C1-ClipsTab,works
+STO4#29,STO4-HomeStorySeniors,Their own goal set / 16 of 21 / Optional for adults. 5 have not,Opens,T4-SquadTab,works
+STO4#30,STO4-HomeStorySeniors,Load in a safe range / 19 of 21 / Sprints capped for Theo and Dev,Opens,WL1-Wellness,works
+STO4#31,STO4-HomeStorySeniors,2 / Two things need you / Ryan’s suspension · 2 clearances pending,Opens,I1-Inbox,works
+STO4#32,STO4-HomeStorySeniors,Avatar (your profile),Opens,SET1-Account,works: opens the account page over the home (the board draws the avatar as a plain circle with no target; kept from the old home)
+STO5#1,STO5-HomeStoryJuniors,Home,Opens,T1-TabletTraining,works
+STO5#2,STO5-HomeStoryJuniors,Squad,Opens,T4-SquadTab,works
+STO5#3,STO5-HomeStoryJuniors,Training,Opens,T3-TrainingTab,works
+STO5#4,STO5-HomeStoryJuniors,Match day,Opens,T2-TabletMatch,works
+STO5#5,STO5-HomeStoryJuniors,Clips,Opens,C1-ClipsTab,works
+STO5#6,STO5-HomeStoryJuniors,Record,Opens,REC1-RecordHub,works
+STO5#7,STO5-HomeStoryJuniors,Ask Clean Sheet,Opens,ASKd4-PanelFirst,works
+STO5#8,STO5-HomeStoryJuniors,U12 Sam,Opens,VS1-SwitchView,works
+STO5#9,STO5-HomeStoryJuniors,Overview,Opens,PH1-HomeJuniorsSame,works
+STO5#10,STO5-HomeStoryJuniors,Messages,Opens,I1-Inbox,works
+STO5#11,STO5-HomeStoryJuniors,Calendar,Opens,CF1-Fixtures,works
+STO5#12,STO5-HomeStoryJuniors,Fixtures and results,Opens,CF1-Fixtures,works
+STO5#13,STO5-HomeStoryJuniors,Our style,Opens,S1-PlayingStyle,works
+STO5#14,STO5-HomeStoryJuniors,Where we’re at,Opens,WA1-WhereWeAt,works
+STO5#15,STO5-HomeStoryJuniors,Team staff,Opens,ST1-TeamStaff,works
+STO5#16,STO5-HomeStoryJuniors,5:45 Training / 90 minutes · plan ready,Opens,T3-TrainingTab,works
+STO5#17,STO5-HomeStoryJuniors,Sun 9:30 away / Harbour Rovers · 14 coming,Opens,T2-TabletMatch,works
+STO5#18,STO5-HomeStoryJuniors,Sunday’s review,Opens,RD1-GameReview,works
+STO5#19,STO5-HomeStoryJuniors,Open tonight’s plan,Opens,T3-TrainingTab,works
+STO5#20,STO5-HomeStoryJuniors,Play 60 seconds,Says,Five clips from Sunday: four wins of the ball and the goal that came from one.,works
+STO5#21,STO5-HomeStoryJuniors,Season so far,Opens,RD2-SeasonSoFar,works
+STO5#22,STO5-HomeStoryJuniors,Squad,Opens,T4-SquadTab,works
+STO5#23,STO5-HomeStoryJuniors,"The 16 dots, pressed as one row",Opens,T4-SquadTab,works: the board has one 30px link per dot and all open this screen; built as one 44px row so it can be pressed
+STO5#24,STO5-HomeStoryJuniors,Send to her family,Says,Sent to Mia and her mum with your note.,works
+STO5#25,STO5-HomeStoryJuniors,Watch for one,Says,Finn is pinned for Sunday.,works
+STO5#26,STO5-HomeStoryJuniors,Set one,Opens,T4-SquadTab,works
+STO5#27,STO5-HomeStoryJuniors,Over half of every game / 14 of 16 / Finn and Isla were under on Sunday,Opens,WA1-WhereWeAt,works
+STO5#28,STO5-HomeStoryJuniors,"A clip this month / 12 of 16 / Finn, Lily, Sam and Ruby are next",Opens,C1-ClipsTab,works
+STO5#29,STO5-HomeStoryJuniors,A goal set / 15 of 16 / Only Ruby to go,Opens,T4-SquadTab,works
+STO5#30,STO5-HomeStoryJuniors,Check-ins answered this week / 14 of 16 / Ella has felt low two days running,Opens,WL1-Wellness,works
+STO5#31,STO5-HomeStoryJuniors,3 / Three things need you / Ella low two days running · 3 vests didn’t sync,Opens,I1-Inbox,works
+STO5#32,STO5-HomeStoryJuniors,Avatar (your profile),Opens,SET1-Account,works: opens the account page over the home (the board draws the avatar as a plain circle with no target; kept from the old home)
+STO6#1,STO6-HomeStoryYouth,Home,Opens,T1-TabletTraining,works
+STO6#2,STO6-HomeStoryYouth,Squad,Opens,T4-SquadTab,works
+STO6#3,STO6-HomeStoryYouth,Training,Opens,T3-TrainingTab,works
+STO6#4,STO6-HomeStoryYouth,Match day,Opens,T2-TabletMatch,works
+STO6#5,STO6-HomeStoryYouth,Clips,Opens,C1-ClipsTab,works
+STO6#6,STO6-HomeStoryYouth,Record,Opens,REC1-RecordHub,works
+STO6#7,STO6-HomeStoryYouth,Ask Clean Sheet,Opens,ASKd4-PanelFirst,works
+STO6#8,STO6-HomeStoryYouth,U16 Ollie,Opens,VS1-SwitchView,works
+STO6#9,STO6-HomeStoryYouth,Overview,Opens,PH2-HomeYouthSame,works
+STO6#10,STO6-HomeStoryYouth,Messages,Opens,I1-Inbox,works
+STO6#11,STO6-HomeStoryYouth,Calendar,Opens,CF1-Fixtures,works
+STO6#12,STO6-HomeStoryYouth,Fixtures and results,Opens,CF1-Fixtures,works
+STO6#13,STO6-HomeStoryYouth,Our style,Opens,S1-PlayingStyle,works
+STO6#14,STO6-HomeStoryYouth,Where we’re at,Opens,WA1-WhereWeAt,works
+STO6#15,STO6-HomeStoryYouth,Team staff,Opens,ST1-TeamStaff,works
+STO6#16,STO6-HomeStoryYouth,"6:30 Training / 75 minutes · shorter, load is high",Opens,T3-TrainingTab,works
+STO6#17,STO6-HomeStoryYouth,Sun 11:00 at home / Tealside Town · 15 fit,Opens,T2-TabletMatch,works
+STO6#18,STO6-HomeStoryYouth,Sunday’s review,Opens,RD1-GameReview,works
+STO6#19,STO6-HomeStoryYouth,Open tonight’s plan,Opens,T3-TrainingTab,works
+STO6#20,STO6-HomeStoryYouth,Play 90 seconds,Says,Six clips: four clean build-outs and the two counters that cost goals.,works
+STO6#21,STO6-HomeStoryYouth,Season so far,Opens,RD2-SeasonSoFar,works
+STO6#22,STO6-HomeStoryYouth,Squad,Opens,T4-SquadTab,works
+STO6#23,STO6-HomeStoryYouth,"The 16 dots, pressed as one row",Opens,T4-SquadTab,works: the board has one 30px link per dot and all open this screen; built as one 44px row so it can be pressed
+STO6#24,STO6-HomeStoryYouth,Send to Cal,Says,Sent to Cal with your note. Only he sees it.,works
+STO6#25,STO6-HomeStoryYouth,Send to Hugo,Says,Sent to Hugo with your note.,works
+STO6#26,STO6-HomeStoryYouth,Watch for one,Says,All four are pinned for Sunday.,works
+STO6#27,STO6-HomeStoryYouth,Over half of every game / 15 of 16 / Only Isak was under on Sunday,Opens,WA1-WhereWeAt,works
+STO6#28,STO6-HomeStoryYouth,A clip this month / 12 of 16 / Four to go,Opens,C1-ClipsTab,works
+STO6#29,STO6-HomeStoryYouth,A goal set / 16 of 16 / Everyone,Opens,T4-SquadTab,works
+STO6#30,STO6-HomeStoryYouth,Load in a safe range / 10 of 16 / Up 30% two weeks running. Priya has capped sprints,Opens,WL1-Wellness,works
+STO6#31,STO6-HomeStoryYouth,2 / Two things need you / Tane’s playing-up view · one message,Opens,I1-Inbox,works
+STO6#32,STO6-HomeStoryYouth,Avatar (your profile),Opens,SET1-Account,works: opens the account page over the home (the board draws the avatar as a plain circle with no target; kept from the old home)
+STO7#1,STO7-HomeStoryAssistant,Home,Opens,T1-TabletTraining,works
+STO7#2,STO7-HomeStoryAssistant,Squad,Opens,T4-SquadTab,works
+STO7#3,STO7-HomeStoryAssistant,Training,Opens,T3-TrainingTab,works
+STO7#4,STO7-HomeStoryAssistant,Match day,Opens,T2-TabletMatch,works
+STO7#5,STO7-HomeStoryAssistant,Clips,Opens,C1-ClipsTab,works
+STO7#6,STO7-HomeStoryAssistant,Record,Opens,REC1-RecordHub,works
+STO7#7,STO7-HomeStoryAssistant,Ask Clean Sheet,Opens,ASKd4-PanelFirst,works
+STO7#8,STO7-HomeStoryAssistant,U12 Sam,Opens,VS1-SwitchView,works
+STO7#9,STO7-HomeStoryAssistant,Overview,Opens,PH4-HomeAssistantSame,works
+STO7#10,STO7-HomeStoryAssistant,Messages,Opens,I1-Inbox,works
+STO7#11,STO7-HomeStoryAssistant,Calendar,Opens,CF1-Fixtures,works
+STO7#12,STO7-HomeStoryAssistant,Fixtures and results,Opens,CF1-Fixtures,works
+STO7#13,STO7-HomeStoryAssistant,Our style,Opens,S1-PlayingStyle,works
+STO7#14,STO7-HomeStoryAssistant,Where we’re at,Opens,WA1-WhereWeAt,works
+STO7#15,STO7-HomeStoryAssistant,Team staff,Opens,ST1-TeamStaff,works
+STO7#16,STO7-HomeStoryAssistant,5:45 Training / Sam leads · 90 minutes,Opens,T3-TrainingTab,works
+STO7#17,STO7-HomeStoryAssistant,"6:00 Your part / Warm-up rondo, 5 v 2",Opens,T3-TrainingTab,works
+STO7#18,STO7-HomeStoryAssistant,Sunday’s warm-up,Says,"Your warm-up for Sunday, 12 minutes.",works
+STO7#19,STO7-HomeStoryAssistant,Open my part,Opens,T3-TrainingTab,works
+STO7#20,STO7-HomeStoryAssistant,Play 60 seconds,Says,Five clips from Sunday. Sam has put them in tonight’s team talk.,works
+STO7#21,STO7-HomeStoryAssistant,Reply to Sam,Says,Reply sent to Sam.,works
+STO7#22,STO7-HomeStoryAssistant,Squad,Opens,T4-SquadTab,works
+STO7#23,STO7-HomeStoryAssistant,"The 16 dots, pressed as one row",Opens,T4-SquadTab,works: the board has one 30px link per dot and all open this screen; built as one 44px row so it can be pressed
+STO7#24,STO7-HomeStoryAssistant,Add a note,Says,Your note is added. Sam sends it.,works
+STO7#25,STO7-HomeStoryAssistant,Watch for one,Says,Finn is pinned for Sunday.,works
+STO7#26,STO7-HomeStoryAssistant,Open sub plan,Opens,T2-TabletMatch,works
+STO7#27,STO7-HomeStoryAssistant,Sub plan for Sunday / Drafted · all 16 over half a game,Opens,T2-TabletMatch,works
+STO7#28,STO7-HomeStoryAssistant,Sunday’s warm-up / 12 minutes · cones list sent to Rob,Opens,T3-TrainingTab,works
+STO7#29,STO7-HomeStoryAssistant,"Notes after Tuesday / Two taps each, 16 of 16",Opens,GP1-AfterTraining,works
+STO7#30,STO7-HomeStoryAssistant,Sam asked: can you lead on Tue 9 June? / Not answered yet,Opens,I1-Inbox,works
+STO7#31,STO7-HomeStoryAssistant,Avatar (your profile),Opens,SET1-Account,works: opens the account page over the home (the board draws the avatar as a plain circle with no target; kept from the old home)
+STO8#1,STO8-HomeStoryFitness,Home,Opens,T1-TabletTraining,works
+STO8#2,STO8-HomeStoryFitness,Squad,Opens,T4-SquadTab,works
+STO8#3,STO8-HomeStoryFitness,Training,Opens,T3-TrainingTab,works
+STO8#4,STO8-HomeStoryFitness,Match day,Opens,T2-TabletMatch,works
+STO8#5,STO8-HomeStoryFitness,Ask Clean Sheet,Opens,ASKd4-PanelFirst,works
+STO8#6,STO8-HomeStoryFitness,Four teams,Opens,VS1-SwitchView,works
+STO8#7,STO8-HomeStoryFitness,Overview,Opens,FT1-FitnessHomeU12,works
+STO8#8,STO8-HomeStoryFitness,Messages,Opens,I1-Inbox,works
+STO8#9,STO8-HomeStoryFitness,Calendar,Opens,CF1-Fixtures,works
+STO8#10,STO8-HomeStoryFitness,5:45 U12 Sam / Your 15 minutes · 2 capped,Opens,F3-FitnessTraining,works
+STO8#11,STO8-HomeStoryFitness,Thu 11 June / Measuring session · 12 due,Opens,GT2-MeasureSession,works
+STO8#12,STO8-HomeStoryFitness,Tell Sam,Says,Sam has your part of tonight’s plan.,works
+STO8#13,STO8-HomeStoryFitness,Open my part,Opens,F3-FitnessTraining,works
+STO8#14,STO8-HomeStoryFitness,See the load,Opens,FT4-FitnessHomeU16,works
+STO8#15,STO8-HomeStoryFitness,By player,Opens,T4-SquadTab,works
+STO8#16,STO8-HomeStoryFitness,9 / Real changes this month / Bigger than the noise in the vests,Opens,FT1-FitnessHomeU12,works
+STO8#17,STO8-HomeStoryFitness,3 / Growing fast / Sprints capped. Coach and parent know,Opens,GT1-Growth,works
+STO8#18,STO8-HomeStoryFitness,12 / Due a measure / Thursday 11 June,Opens,GT2-MeasureSession,works
+STO8#19,STO8-HomeStoryFitness,2 / Sore two days running / Noah and one U16,Opens,WL1-Wellness,works
+STO8#20,STO8-HomeStoryFitness,Growth,Opens,GT1-Growth,works
+STO8#21,STO8-HomeStoryFitness,U12 Sam / 16 players / 14 of 16 / 13 of 16 / 16 of 16,Opens,FT1-FitnessHomeU12,works
+STO8#22,STO8-HomeStoryFitness,U13 Girls Meg / 15 players / 13 of 15 / 15 of 15 / 12 of 15,Opens,FT3-FitnessHomeU13G,works
+STO8#23,STO8-HomeStoryFitness,U14 Josh / 16 players / 10 of 16 / 14 of 16 / 11 of 16,Opens,FT2-FitnessHomeU14,works
+STO8#24,STO8-HomeStoryFitness,U16 Ollie / 16 players / 13 of 16 / 15 of 16 / 12 of 16,Opens,FT4-FitnessHomeU16,works
+STO8#25,STO8-HomeStoryFitness,Check-ins answered this week / 50 of 63 / U14 Josh is the low one,Opens,WL1-Wellness,works
+STO8#26,STO8-HomeStoryFitness,Vests synced on Sunday / 57 of 63 / 3 of U12 Sam’s didn’t sync,Opens,FT1-FitnessHomeU12,works
+STO8#27,STO8-HomeStoryFitness,Measured this term / 51 of 63 / 12 due on Thursday 11 June,Opens,GT2-MeasureSession,works
+STO8#28,STO8-HomeStoryFitness,Coaches told about caps / 4 of 4 / Applied to four plans,Opens,I1-Inbox,works
+STO8#29,STO8-HomeStoryFitness,2 / Two things need you / Noah’s sore knee · measuring due,Opens,I1-Inbox,works
+STO8#30,STO8-HomeStoryFitness,Avatar (your profile),Opens,SET1-Account,works: opens the account page over the home (the board draws the avatar as a plain circle with no target; kept from the old home)
+STO9#1,STO9-HomeStoryKeepers,Home,Opens,HG1-HomeKeeperCoach,works
+STO9#2,STO9-HomeStoryKeepers,Keepers,Opens,FK1-Goalkeepers,works
+STO9#3,STO9-HomeStoryKeepers,Training,Opens,HG2-KeeperSession,works
+STO9#4,STO9-HomeStoryKeepers,Clips,Opens,C1-ClipsTab,works
+STO9#5,STO9-HomeStoryKeepers,Ask Clean Sheet,Opens,ASKd4-PanelFirst,works
+STO9#6,STO9-HomeStoryKeepers,All keepers,Opens,VS1-SwitchView,works
+STO9#7,STO9-HomeStoryKeepers,Overview,Opens,HG1-HomeKeeperCoach,works
+STO9#8,STO9-HomeStoryKeepers,Messages,Opens,I1-Inbox,works
+STO9#9,STO9-HomeStoryKeepers,Calendar,Opens,CF1-Fixtures,works
+STO9#10,STO9-HomeStoryKeepers,Tue 6:00 Keepers / 40 minutes · 3 drills · ready,Opens,HG2-KeeperSession,works
+STO9#11,STO9-HomeStoryKeepers,9 coming / 2 still to answer,Opens,HG2-KeeperSession,works
+STO9#12,STO9-HomeStoryKeepers,Send the plan,Says,Session plan sent to all 11 keepers and their coaches.,works
+STO9#13,STO9-HomeStoryKeepers,Open Tuesday,Opens,HG2-KeeperSession,works
+STO9#14,STO9-HomeStoryKeepers,Play 60 seconds,Says,"Six sweeps from five keepers, and one that started a goal.",works
+STO9#15,STO9-HomeStoryKeepers,By keeper,Opens,FK1-Goalkeepers,works
+STO9#16,STO9-HomeStoryKeepers,Keepers,Opens,FK1-Goalkeepers,works
+STO9#17,STO9-HomeStoryKeepers,"The 11 dots, pressed as one row",Opens,FK1-Goalkeepers,works: the board has one 30px link per dot and all open this screen; built as one 44px row so it can be pressed
+STO9#18,STO9-HomeStoryKeepers,Send to Grace,Says,Sent to Grace and her coach with your note.,works
+STO9#19,STO9-HomeStoryKeepers,Watch for one,Says,Sami is pinned for Tuesday.,works
+STO9#20,STO9-HomeStoryKeepers,Set one,Opens,FK1-Goalkeepers,works
+STO9#21,STO9-HomeStoryKeepers,A clip this fortnight / 9 of 11 / Sami and Finn to go,Opens,C1-ClipsTab,works
+STO9#22,STO9-HomeStoryKeepers,A goal set / 10 of 11 / Only Evie to go,Opens,FK1-Goalkeepers,works
+STO9#23,STO9-HomeStoryKeepers,Coming on Tuesday / 9 of 11 / 2 still to answer,Opens,HG2-KeeperSession,works
+STO9#24,STO9-HomeStoryKeepers,Team coaches sent your notes / 5 of 7 / U9 Mark and U13 Chris have had none,Opens,I1-Inbox,works
+STO9#25,STO9-HomeStoryKeepers,1 / One thing needs you / U13 Chris asked for help with his keeper,Opens,I1-Inbox,works
+STO9#26,STO9-HomeStoryKeepers,Avatar (your profile),Opens,SET1-Account,works: opens the account page over the home (the board draws the avatar as a plain circle with no target; kept from the old home)
+STO10#1,STO10-HomeStoryDirector,Club,Opens,D1-ClubOverview,works
+STO10#2,STO10-HomeStoryDirector,Teams,Opens,D2-Teams,works
+STO10#3,STO10-HomeStoryDirector,Coaches,Opens,D3-Coaches,works
+STO10#4,STO10-HomeStoryDirector,Players,Opens,D4-Players,works
+STO10#5,STO10-HomeStoryDirector,Safeguarding,Opens,D5-Safeguarding,works
+STO10#6,STO10-HomeStoryDirector,Reports,Opens,D6-BoardReport,works
+STO10#7,STO10-HomeStoryDirector,Ask Clean Sheet,Opens,ASKd4-PanelFirst,works
+STO10#8,STO10-HomeStoryDirector,Whole club,Opens,VS1-SwitchView,works
+STO10#9,STO10-HomeStoryDirector,Overview,Opens,D1-ClubOverview,works
+STO10#10,STO10-HomeStoryDirector,Messages,Opens,MSG4-DirectorMessages,works
+STO10#11,STO10-HomeStoryDirector,Calendar,Opens,DC1-Calendar,works
+STO10#12,STO10-HomeStoryDirector,Season plan,Opens,FY1-SeasonPlan,works
+STO10#13,STO10-HomeStoryDirector,Playing style,Opens,S1-PlayingStyle,works
+STO10#14,STO10-HomeStoryDirector,Files,Opens,FIL5-ClubFiles,works
+STO10#15,STO10-HomeStoryDirector,Features and billing,Opens,PRM1-FeaturesByTeam,works
+STO10#16,STO10-HomeStoryDirector,This weekend / 14 games · 3 grounds,Opens,RD4-ClubWeekend,works
+STO10#17,STO10-HomeStoryDirector,Tue 9 June 7:00 / Coach meeting · agenda ready,Opens,DM1-CoachMeeting,works
+STO10#18,STO10-HomeStoryDirector,Last weekend,Opens,RD4-ClubWeekend,works
+STO10#19,STO10-HomeStoryDirector,Open the agenda,Opens,DM1-CoachMeeting,works
+STO10#20,STO10-HomeStoryDirector,The round in 2 minutes,Says,One clip from each team that recorded a game. Ready for Tuesday’s coach meeting.,works
+STO10#21,STO10-HomeStoryDirector,By team,Opens,D2-Teams,works
+STO10#22,STO10-HomeStoryDirector,"3 / Ready to play up / Mia, Leo and Tane",Opens,PU1-PlayingUp,works
+STO10#23,STO10-HomeStoryDirector,14 / Players with no goal / 9 of them in two teams,Opens,D4-Players,works
+STO10#24,STO10-HomeStoryDirector,3 / Coaches due a learning step / It’s on Tuesday’s agenda,Opens,DT1-Courses,works
+STO10#25,STO10-HomeStoryDirector,2 / Coaches worth a visit / U9 Mark and U13 Chris,Opens,D3-Coaches,works
+STO10#26,STO10-HomeStoryDirector,All 14 teams,Opens,D2-Teams,works
+STO10#27,STO10-HomeStoryDirector,U9 Mark / No coach on Sunday / 6 of 10 / 3 of 10 / 4 of 10 / No,Opens,D2-Teams,works
+STO10#28,STO10-HomeStoryDirector,U13 Chris / New coach this year / 9 of 15 / 5 of 15 / 12 of 15 / No,Opens,D2-Teams,works
+STO10#29,STO10-HomeStoryDirector,U12 Sam / Biggest mover / 14 of 16 / 12 of 16 / 15 of 16 / Yes,Opens,D2-Teams,works
+STO10#30,STO10-HomeStoryDirector,"Back from last year / 157 of 178 / 88%. The year before, 81%",Opens,DR1-Registrations,works
+STO10#31,STO10-HomeStoryDirector,Players sent a clip this month / 131 of 192 / Players who see their progress tend to stay,Opens,C1-ClipsTab,works
+STO10#32,STO10-HomeStoryDirector,U9 Mark has no coach on Sunday,Opens,D2-Teams,works
+STO10#33,STO10-HomeStoryDirector,4 children checks run out this month,Opens,DCK1-ClubChecks,works
+STO10#34,STO10-HomeStoryDirector,2 teams are outside fair game time,Opens,DP1-FairGameTime,works
+STO10#35,STO10-HomeStoryDirector,A request for Mia to play up,Opens,PU1-PlayingUp,works
+STO10#36,STO10-HomeStoryDirector,Tuesday’s coach meeting agenda to send,Opens,DM1-CoachMeeting,works
+STO10#37,STO10-HomeStoryDirector,Avatar (your profile),Opens,SET1-Account,works: opens the account page over the home (the board draws the avatar as a plain circle with no target; kept from the old home)
+STO11#1,STO11-HomeStoryChair,Club,Opens,D1-ClubOverview,works
+STO11#2,STO11-HomeStoryChair,Teams,Opens,D2-Teams,works
+STO11#3,STO11-HomeStoryChair,Coaches,Opens,D3-Coaches,works
+STO11#4,STO11-HomeStoryChair,Players,Opens,D4-Players,works
+STO11#5,STO11-HomeStoryChair,Safeguarding,Opens,D5-Safeguarding,works
+STO11#6,STO11-HomeStoryChair,Reports,Opens,D6-BoardReport,works
+STO11#7,STO11-HomeStoryChair,Ask Clean Sheet,Opens,ASKd4-PanelFirst,works
+STO11#8,STO11-HomeStoryChair,Whole club,Opens,VS1-SwitchView,works
+STO11#9,STO11-HomeStoryChair,Overview,Opens,D1-ClubOverview,works
+STO11#10,STO11-HomeStoryChair,Messages,Opens,MSG4-DirectorMessages,works
+STO11#11,STO11-HomeStoryChair,Calendar,Opens,DC1-Calendar,works
+STO11#12,STO11-HomeStoryChair,Season plan,Opens,FY1-SeasonPlan,works
+STO11#13,STO11-HomeStoryChair,Playing style,Opens,S1-PlayingStyle,works
+STO11#14,STO11-HomeStoryChair,Files,Opens,FIL5-ClubFiles,works
+STO11#15,STO11-HomeStoryChair,Features and billing,Opens,PRM1-FeaturesByTeam,works
+STO11#16,STO11-HomeStoryChair,Wed 10 June 7:30 / Board meeting · report ready,Opens,D6-BoardReport,works
+STO11#17,STO11-HomeStoryChair,This month’s bill / $384 · 6 teams,Opens,PRM1-FeaturesByTeam,works
+STO11#18,STO11-HomeStoryChair,Send to committee,Says,Report sent to the committee.,works
+STO11#19,STO11-HomeStoryChair,Open the report,Opens,D6-BoardReport,works
+STO11#20,STO11-HomeStoryChair,The two teams,Opens,DP1-FairGameTime,works
+STO11#21,STO11-HomeStoryChair,Season review,Opens,DB2-SeasonReview,works
+STO11#22,STO11-HomeStoryChair,412 / Volunteer hours / Totalled for the council grant,Opens,FV1-FeesVolunteers,works
+STO11#23,STO11-HomeStoryChair,2 / Grant reports drafted / From the same numbers,Opens,DB4-Grants,works
+STO11#24,STO11-HomeStoryChair,5 of 6 / Paid teams using it / Two add-ons on six teams,Opens,PRM1-FeaturesByTeam,works
+STO11#25,STO11-HomeStoryChair,2 / Decisions for the board / Coach cover · a second camera,Opens,D6-BoardReport,works
+STO11#26,STO11-HomeStoryChair,Board report,Opens,D6-BoardReport,works
+STO11#27,STO11-HomeStoryChair,Open,Opens,DR1-Registrations,works
+STO11#28,STO11-HomeStoryChair,Open,Opens,FV1-FeesVolunteers,works
+STO11#29,STO11-HomeStoryChair,Open,Opens,DCK1-ClubChecks,works
+STO11#30,STO11-HomeStoryChair,Coaches with a current children check / 31 of 31 / Four run out this month,Opens,DCK1-ClubChecks,works
+STO11#31,STO11-HomeStoryChair,Coaches who’ve done the child safety course / 28 of 31 / Three reminded this week,Opens,DT1-Courses,works
+STO11#32,STO11-HomeStoryChair,Teams keeping fair game time / 12 of 14 / U9 Mark and U13 Chris,Opens,DP1-FairGameTime,works
+STO11#33,STO11-HomeStoryChair,"Concerns closed in time this year / 6 of 6 / 2 open, both on track",Opens,D5-Safeguarding,works
+STO11#34,STO11-HomeStoryChair,1 / One thing needs you / Approve the U9 Mark coach cover,Opens,MSG4-DirectorMessages,works
+STO11#35,STO11-HomeStoryChair,Avatar (your profile),Opens,SET1-Account,works: opens the account page over the home (the board draws the avatar as a plain circle with no target; kept from the old home)
+STO12#1,STO12-HomeStoryCoordinator,Club,Opens,D1-ClubOverview,works
+STO12#2,STO12-HomeStoryCoordinator,Teams,Opens,D2-Teams,works
+STO12#3,STO12-HomeStoryCoordinator,Coaches,Opens,D3-Coaches,works
+STO12#4,STO12-HomeStoryCoordinator,Players,Opens,D4-Players,works
+STO12#5,STO12-HomeStoryCoordinator,Safeguarding,Opens,D5-Safeguarding,works
+STO12#6,STO12-HomeStoryCoordinator,Reports,Opens,D6-BoardReport,works
+STO12#7,STO12-HomeStoryCoordinator,Ask Clean Sheet,Opens,ASKd4-PanelFirst,works
+STO12#8,STO12-HomeStoryCoordinator,Whole club,Opens,VS1-SwitchView,works
+STO12#9,STO12-HomeStoryCoordinator,This week,Opens,STO12-HomeStoryCoordinator,works
+STO12#10,STO12-HomeStoryCoordinator,Registrations,Opens,DR1-Registrations,works
+STO12#11,STO12-HomeStoryCoordinator,Fixtures,Opens,CF1-Fixtures,works
+STO12#12,STO12-HomeStoryCoordinator,Referees,Opens,FR1-Referees,works
+STO12#13,STO12-HomeStoryCoordinator,Kit,Opens,DK1-Kit,works
+STO12#14,STO12-HomeStoryCoordinator,Fees and volunteers,Opens,FV1-FeesVolunteers,works
+STO12#15,STO12-HomeStoryCoordinator,Sat 6 June / 2 senior games,Opens,CF1-Fixtures,works
+STO12#16,STO12-HomeStoryCoordinator,Sun 7 June / 12 junior games · first at 8:30,Opens,CF1-Fixtures,works
+STO12#17,STO12-HomeStoryCoordinator,Remind the five,Says,Reminder sent to 5 families.,works
+STO12#18,STO12-HomeStoryCoordinator,Open the run sheet,Says,"Run sheet opens: 14 games, by ground and time.",works
+STO12#19,STO12-HomeStoryCoordinator,Send to managers,Says,Run sheet sent to 14 team managers.,works
+STO12#20,STO12-HomeStoryCoordinator,Fixtures,Opens,CF1-Fixtures,works
+STO12#21,STO12-HomeStoryCoordinator,2 / Gaps left to fill / On Monday there were nine,Says,Everything for the weekend.,works
+STO12#22,STO12-HomeStoryCoordinator,26 / Volunteers rostered / 412 hours this season,Opens,FV1-FeesVolunteers,works
+STO12#23,STO12-HomeStoryCoordinator,4 / Registrations to check / One is late,Opens,DR1-Registrations,works
+STO12#24,STO12-HomeStoryCoordinator,2 / Bib sets short / Ordered · due Friday,Opens,DK1-Kit,works
+STO12#25,STO12-HomeStoryCoordinator,Volunteers,Opens,FV1-FeesVolunteers,works
+STO12#26,STO12-HomeStoryCoordinator,Ask again,Says,Asked again. First to say yes gets it.,works
+STO12#27,STO12-HomeStoryCoordinator,Ask,Says,Asked the 12 families at the ground at that time.,works
+STO12#28,STO12-HomeStoryCoordinator,Open,Opens,FR1-Referees,works
+STO12#29,STO12-HomeStoryCoordinator,Players answered for / 187 of 192 / 5 families still to answer,Opens,AV1-Availability,works
+STO12#30,STO12-HomeStoryCoordinator,Registrations complete / 188 of 192 / 4 to check,Opens,DR1-Registrations,works
+STO12#31,STO12-HomeStoryCoordinator,Fees paid / 171 of 192 / 21 on a plan or still to pay,Opens,FV1-FeesVolunteers,works
+STO12#32,STO12-HomeStoryCoordinator,Managers sent the run sheet / 14 of 14 / Sent this morning,Opens,CF1-Fixtures,works
+STO12#33,STO12-HomeStoryCoordinator,2 / Two things need you / A dispensation · a late registration,Opens,MSG4-DirectorMessages,works
+STO12#34,STO12-HomeStoryCoordinator,Avatar (your profile),Opens,SET1-Account,works: opens the account page over the home (the board draws the avatar as a plain circle with no target; kept from the old home)
+STO13#1,STO13-HomeStoryWelfare,Welfare,Opens,DS1-Concerns,works
+STO13#2,STO13-HomeStoryWelfare,Ask Clean Sheet,Opens,ASKd4-PanelFirst,works
+STO13#3,STO13-HomeStoryWelfare,Whole club,Opens,VS1-SwitchView,works
+STO13#4,STO13-HomeStoryWelfare,Overview,Opens,DS1-Concerns,works
+STO13#5,STO13-HomeStoryWelfare,Concerns,Opens,DS1-Concerns,works
+STO13#6,STO13-HomeStoryWelfare,Children checks,Opens,D5-Safeguarding,works
+STO13#7,STO13-HomeStoryWelfare,Messages,Opens,I1-Inbox,works
+STO13#8,STO13-HomeStoryWelfare,4:00 pm · phone / A call with a parent · notes ready,Opens,DS1-Concerns,works
+STO13#9,STO13-HomeStoryWelfare,Kids Helpline / 1800 55 1800 · on every child’s screen,Opens,D5-Safeguarding,works
+STO13#10,STO13-HomeStoryWelfare,Log a concern,Says,"A blank concern, private to you.",works
+STO13#11,STO13-HomeStoryWelfare,Open my notes,Opens,DS1-Concerns,works
+STO13#12,STO13-HomeStoryWelfare,Children checks,Opens,DCK1-ClubChecks,works
+STO13#13,STO13-HomeStoryWelfare,All concerns,Opens,DS1-Concerns,works
+STO13#14,STO13-HomeStoryWelfare,All concerns,Opens,DS1-Concerns,works
+STO13#15,STO13-HomeStoryWelfare,Read it,Opens,DS1-Concerns,works
+STO13#16,STO13-HomeStoryWelfare,Open,Opens,DW1-WelfareCases,works
+STO13#17,STO13-HomeStoryWelfare,Open,Opens,DW1-WelfareCases,works
+STO13#18,STO13-HomeStoryWelfare,Remind,Says,Reminder sent to three coaches.,works
+STO13#19,STO13-HomeStoryWelfare,Coaches with a current check / 31 of 31 / Four run out this month. All chased,Opens,DCK1-ClubChecks,works
+STO13#20,STO13-HomeStoryWelfare,Checks linked to the club / 29 of 31 / Two new coaches to link this week,Opens,DCK1-ClubChecks,works
+STO13#21,STO13-HomeStoryWelfare,Child safety course done / 28 of 31 / Three reminded,Opens,DT1-Courses,works
+STO13#22,STO13-HomeStoryWelfare,Open concerns on track / 2 of 2 / Next step due Friday,Opens,DS1-Concerns,works
+STO13#23,STO13-HomeStoryWelfare,1 / One thing needs you / A new concern to read,Opens,DS1-Concerns,works
+STO13#24,STO13-HomeStoryWelfare,Avatar (your profile),Opens,SET1-Account,works: opens the account page over the home (the board draws the avatar as a plain circle with no target; kept from the old home)
+STO16-HomeStoryManager#1,STO16-HomeStoryManager,RO (avatar),Opens,ME-manager,works (not on the board: kept from the old home)
+STO16-HomeStoryManager#2,STO16-HomeStoryManager,Open papers,Opens,TM11-GameDayPapers,works
+STO16-HomeStoryManager#3,STO16-HomeStoryManager,Nudge the two,Says,Nudge sent to the 2 families who haven’t answered.,works
+STO16-HomeStoryManager#4,STO16-HomeStoryManager,Three families haven’t had a job yet · They’re first on the roster for June,Opens,TM4-DutyRoster,works
+STO16-HomeStoryManager#5,STO16-HomeStoryManager,"The Patels have oranges, Linh has the hi-vis · This Sunday",Opens,TM4-DutyRoster,works
+STO16-HomeStoryManager#6,STO16-HomeStoryManager,Medical details on file · 16 of 16,Opens,TM6-ManagerWhosComing,works
+STO16-HomeStoryManager#7,STO16-HomeStoryManager,Last game signed off · Done,Opens,TM9-SignOff,works
+STO16-HomeStoryManager#8,STO16-HomeStoryManager,A parent asked about kit sizes · Reply,Opens,TM5-ManagerMessages,works
+STO16-HomeStoryManager#9,STO16-HomeStoryManager,Home (tab),Stays here,TM1-ManagerHome,works (this page: stays here)
+STO16-HomeStoryManager#10,STO16-HomeStoryManager,Game day (tab),Opens,TM2-ManagerGameDay,works
+STO16-HomeStoryManager#11,STO16-HomeStoryManager,Messages (tab),Opens,TM5-ManagerMessages,works
+STO16-HomeStoryManager#12,STO16-HomeStoryManager,Roster (tab),Opens,TM4-DutyRoster,works
+STO17-HomeStoryParent#1,STO17-HomeStoryParent,LT (avatar),Opens,PS1-ParentSettings,works (not on the board: kept from the old home)
+STO17-HomeStoryParent#2,STO17-HomeStoryParent,Answer,Opens,AV2-ParentAvailability,works
+STO17-HomeStoryParent#3,STO17-HomeStoryParent,Watch Mia’s 12 seconds,Opens,PA-Clip,works
+STO17-HomeStoryParent#4,STO17-HomeStoryParent,Mia · pressing as a pair with Jai · Her goal this term · Sam’s note from Thursday,Opens,PA-Parent,works
+STO17-HomeStoryParent#5,STO17-HomeStoryParent,Bao · first go in goal on Sunday · U8 Hannah sent a photo,Opens,PA-Clip,works
+STO17-HomeStoryParent#6,STO17-HomeStoryParent,Mia played over half of every game · 8 of 8,Opens,PA-Parent,works
+STO17-HomeStoryParent#7,STO17-HomeStoryParent,Their coaches hold a children check · 4 of 4,Opens,PS3-ParentData,works
+STO17-HomeStoryParent#8,STO17-HomeStoryParent,Fees · Paid,Opens,PS1-ParentSettings,works
+STO17-HomeStoryParent#9,STO17-HomeStoryParent,Home (tab),Stays here,FAM14-HomeWithClub,works (this page: stays here)
+STO17-HomeStoryParent#10,STO17-HomeStoryParent,Clips (tab),Opens,PA-Clip,works
+STO17-HomeStoryParent#11,STO17-HomeStoryParent,Messages (tab),Opens,PM1-ParentChats,works
+STO17-HomeStoryParent#12,STO17-HomeStoryParent,Me (tab),Opens,PS1-ParentSettings,works
+STO18-HomeStoryPlayerYoung#1,STO18-HomeStoryPlayerYoung,MT (avatar),Opens,PS4-PlayerMe,works (not on the board: kept from the old home)
+STO18-HomeStoryPlayerYoung#2,STO18-HomeStoryPlayerYoung,My goal,Opens,PA-Goals,works
+STO18-HomeStoryPlayerYoung#3,STO18-HomeStoryPlayerYoung,Watch my clip,Opens,PA-Clip,works
+STO18-HomeStoryPlayerYoung#4,STO18-HomeStoryPlayerYoung,"Press as a pair with Jai · When he goes, you go · step 2 of 3",Opens,PA-Goals,works
+STO18-HomeStoryPlayerYoung#5,STO18-HomeStoryPlayerYoung,From Sam · “Great pressing. Watch how you and Jai close together.”,Opens,PA-Clip,works
+STO18-HomeStoryPlayerYoung#6,STO18-HomeStoryPlayerYoung,How I slept and feel · Done today,Opens,PA-Check,works
+STO18-HomeStoryPlayerYoung#7,STO18-HomeStoryPlayerYoung,Sunday 9:30 away · Mum said yes,Opens,PA-PlayerApp,works
+STO18-HomeStoryPlayerYoung#8,STO18-HomeStoryPlayerYoung,Mum can see everything here too · Always,Opens,PS4-PlayerMe,works
+STO18-HomeStoryPlayerYoung#9,STO18-HomeStoryPlayerYoung,Home (tab),Stays here,PA-PlayerApp,works (this page: stays here)
+STO18-HomeStoryPlayerYoung#10,STO18-HomeStoryPlayerYoung,Clips (tab),Opens,PA-Clip,works
+STO18-HomeStoryPlayerYoung#11,STO18-HomeStoryPlayerYoung,Goals (tab),Opens,PA-Goals,works
+STO18-HomeStoryPlayerYoung#12,STO18-HomeStoryPlayerYoung,Me (tab),Opens,PS4-PlayerMe,works
+STO19-HomeStoryPlayerOlder#1,STO19-HomeStoryPlayerOlder,CW (avatar),Opens,ME-playerolder,works (not on the board: kept from the old home)
+STO19-HomeStoryPlayerOlder#2,STO19-HomeStoryPlayerOlder,I’m in,Says,You’re in for tonight.,works
+STO19-HomeStoryPlayerOlder#3,STO19-HomeStoryPlayerOlder,Watch my three clips,Opens,PA-Clip,works
+STO19-HomeStoryPlayerOlder#4,STO19-HomeStoryPlayerOlder,"Two touches or fewer in midfield · Your goal · 61% on Sunday, up from 48%",Opens,PA-Goals,works
+STO19-HomeStoryPlayerOlder#5,STO19-HomeStoryPlayerOlder,From Ollie · “Look at clip two. That’s the pass.”,Opens,PO2-OlderMessage,works
+STO19-HomeStoryPlayerOlder#6,STO19-HomeStoryPlayerOlder,Check-ins this week · 4 of 4,Opens,PO4-OlderLoad,works
+STO19-HomeStoryPlayerOlder#7,STO19-HomeStoryPlayerOlder,Load · High · capped,Opens,PO4-OlderLoad,works
+STO19-HomeStoryPlayerOlder#8,STO19-HomeStoryPlayerOlder,Who sees my numbers · You choose,Opens,PO5s-AdultSettings,works
+STO19-HomeStoryPlayerOlder#9,STO19-HomeStoryPlayerOlder,Home (tab),Stays here,PO1-OlderHome,works (this page: stays here)
+STO19-HomeStoryPlayerOlder#10,STO19-HomeStoryPlayerOlder,Clips (tab),Opens,PA-Clip,works
+STO19-HomeStoryPlayerOlder#11,STO19-HomeStoryPlayerOlder,Body (tab),Opens,PO4-OlderLoad,works
+STO19-HomeStoryPlayerOlder#12,STO19-HomeStoryPlayerOlder,Messages (tab),Opens,PO2-OlderMessage,works
+STO20-HomeStoryReferee#1,STO20-HomeStoryReferee,ZP (avatar),Opens,ME-referee,works (not on the board: kept from the old home)
+STO20-HomeStoryReferee#2,STO20-HomeStoryReferee,Answer,Opens,RF1-RefAsked,works
+STO20-HomeStoryReferee#3,STO20-HomeStoryReferee,See the kind words,Opens,RF4-RefFeedback,works
+STO20-HomeStoryReferee#4,STO20-HomeStoryReferee,Nine-a-side games · Ruth has put you forward · two more 7-a-side first,Opens,RF2-RefGames,works
+STO20-HomeStoryReferee#5,STO20-HomeStoryReferee,"From Ruth, after your last game · Two tips: your position at corners, a louder whistle",Opens,RF4-RefFeedback,works
+STO20-HomeStoryReferee#6,STO20-HomeStoryReferee,Reports sent · 6 of 6,Opens,RF3-RefReport,works
+STO20-HomeStoryReferee#7,STO20-HomeStoryReferee,Paid · 5 of 6 · May is with Bianca,Opens,RF2-RefGames,works
+STO20-HomeStoryReferee#8,STO20-HomeStoryReferee,Ruth is at the ground all morning · Sunday,Opens,RF2-RefGames,works
+STO20-HomeStoryReferee#9,STO20-HomeStoryReferee,My games (tab),Stays here,RF2-RefGames,works (this page: stays here)
+STO20-HomeStoryReferee#10,STO20-HomeStoryReferee,Report (tab),Opens,RF3-RefReport,works
+STO20-HomeStoryReferee#11,STO20-HomeStoryReferee,Feedback (tab),Opens,RF4-RefFeedback,works
+STO20-HomeStoryReferee#12,STO20-HomeStoryReferee,Me (tab),Says,"Your details, level and children check.",works
+CPh1-CoachPhoneHome#1,CPh1-CoachPhoneHome,Open plan,Opens,CPh5-CoachPhonePlan,works
+CPh1-CoachPhoneHome#2,CPh1-CoachPhoneHome,Play 60 seconds,Opens,RD5-CoachPhoneReview,works
+CPh1-CoachPhoneHome#3,CPh1-CoachPhoneHome,Mia won it back four times · A 12-second clip · send to her family,Says,Sent to Mia and her mum with your note.,works
+CPh1-CoachPhoneHome#4,CPh1-CoachPhoneHome,Finn has had no clip this month · Watch for one on Sunday,Says,Finn is pinned for Sunday.,works
+CPh1-CoachPhoneHome#5,CPh1-CoachPhoneHome,Over half of every game · 14 of 16,Opens,RD5-CoachPhoneReview,works
+CPh1-CoachPhoneHome#6,CPh1-CoachPhoneHome,A clip this month · 12 of 16,Opens,RD5-CoachPhoneReview,works
+CPh1-CoachPhoneHome#7,CPh1-CoachPhoneHome,Three things need you · Open,Opens,CPh3-CoachPhoneMessages,works
+CPh1-CoachPhoneHome#8,CPh1-CoachPhoneHome,Before kick-off,Opens,QCp1-BeforeKickOffPhone,works (not on the board: a plain link)
+CPh1-CoachPhoneHome#9,CPh1-CoachPhoneHome,Log an incident,Opens,CNp18-IncidentLog,works (not on the board: a plain link)
+CPh1-CoachPhoneHome#10,CPh1-CoachPhoneHome,Home (tab),Stays here,CPh1-CoachPhoneHome,works (this page: stays here)
+CPh1-CoachPhoneHome#11,CPh1-CoachPhoneHome,Coming (tab),Opens,CPh2-CoachPhoneComing,works
+CPh1-CoachPhoneHome#12,CPh1-CoachPhoneHome,Messages (tab),Opens,CPh3-CoachPhoneMessages,works
+CPh1-CoachPhoneHome#13,CPh1-CoachPhoneHome,Game (tab),Opens,CPh4-CoachPhoneGame,works
+ACK1-AcademyPlayerHome#1,ACK1-AcademyPlayerHome,KO (avatar),Opens,ME-academyplayer,works (not on the board: kept from the old home)
+ACK1-AcademyPlayerHome#2,ACK1-AcademyPlayerHome,Start,Opens,ACK2-HomePractice,works
+ACK1-AcademyPlayerHome#3,ACK1-AcademyPlayerHome,Watch then and now,Opens,ACK2-HomePractice,works
+ACK1-AcademyPlayerHome#4,ACK1-AcademyPlayerHome,Score with your left foot in a game · My goal this term · 3 in training so far,Opens,ACK2-HomePractice,works
+ACK1-AcademyPlayerHome#5,ACK1-AcademyPlayerHome,From Reece: your left-foot finish · “Look how your hips open here.”,Opens,ACK2-HomePractice,works
+ACK1-AcademyPlayerHome#6,ACK1-AcademyPlayerHome,Practice at home · 2 of 3,Opens,ACK2-HomePractice,works
+ACK1-AcademyPlayerHome#7,ACK1-AcademyPlayerHome,Thu 5:30 Advanced · 6:45 one-on-one · Tonight,Stays here,ACK1-AcademyPlayerHome,works (the board names this same page)
+ACK1-AcademyPlayerHome#8,ACK1-AcademyPlayerHome,"Only you, your mum and your coaches see this · Always",Stays here,ACK1-AcademyPlayerHome,works (the board names this same page)
+ACK1-AcademyPlayerHome#9,ACK1-AcademyPlayerHome,How am I going?,Opens,ADK1-MySkills,works (not on the board: a plain link)
+ACK1-AcademyPlayerHome#10,ACK1-AcademyPlayerHome,My six clips,Opens,ADK2-MyClips,works (not on the board: a plain link)
+ACK1-AcademyPlayerHome#11,ACK1-AcademyPlayerHome,Today’s check-in,Opens,ADK4-CheckIn,works (not on the board: a plain link)
+ACK1-AcademyPlayerHome#12,ACK1-AcademyPlayerHome,Home (tab),Stays here,ACK1-AcademyPlayerHome,works (this page: stays here)
+ACK1-AcademyPlayerHome#13,ACK1-AcademyPlayerHome,Practice (tab),Opens,ACK2-HomePractice,works
+ACC1-CoachToday#12,ACC1-CoachToday,4:30 Development · 14 coming · plan ready,Opens,ACT3-AcademySessionPlan,works
+ACC1-CoachToday#13,ACC1-CoachToday,5:30 Advanced · 20 coming · plan ready,Opens,ACT3-AcademySessionPlan,works
+ACC1-CoachToday#14,ACC1-CoachToday,6:45 One-on-one · Kai · left foot,Opens,ACC5-OneOnOne,works
+ACC1-CoachToday#15,ACC1-CoachToday,Swap a drill,Opens,ACT2-AcademySuggested,works
+ACC1-CoachToday#16,ACC1-CoachToday,Start the 4:30,Opens,ACC2-RunSession,works
+ACC1-CoachToday#17,ACC1-CoachToday,Play 45 seconds,Says,"Then and now for four players, from the drill you filmed in weeks 3 and 7.",works
+ACC1-CoachToday#18,ACC1-CoachToday,By player,Opens,ADC2-Group,works
+ACC1-CoachToday#19,ACC1-CoachToday,My group,Opens,ADC2-Group,works
+ACC1-CoachToday#20,ACC1-CoachToday,KO,Opens,ADC1-PlayerFile,works (target 30x44)
+ACC1-CoachToday#21,ACC1-CoachToday,AC,Opens,ADC1-PlayerFile,works (target 30x44)
+ACC1-CoachToday#22,ACC1-CoachToday,JM,Opens,ADC1-PlayerFile,works (target 30x44)
+ACC1-CoachToday#23,ACC1-CoachToday,FB,Opens,ADC1-PlayerFile,works (target 30x44)
+ACC1-CoachToday#24,ACC1-CoachToday,LN,Opens,ADC1-PlayerFile,works (target 30x44)
+ACC1-CoachToday#25,ACC1-CoachToday,ZA,Opens,ADC1-PlayerFile,works (target 30x44)
+ACC1-CoachToday#26,ACC1-CoachToday,IT,Opens,ADC1-PlayerFile,works (target 30x44)
+ACC1-CoachToday#27,ACC1-CoachToday,NP,Opens,ADC1-PlayerFile,works (target 30x44)
+ACC1-CoachToday#28,ACC1-CoachToday,ML,Opens,ADC1-PlayerFile,works (target 30x44)
+ACC1-CoachToday#29,ACC1-CoachToday,RD,Opens,ADC1-PlayerFile,works (target 30x44)
+ACC1-CoachToday#30,ACC1-CoachToday,TS,Opens,ADC1-PlayerFile,works (target 30x44)
+ACC1-CoachToday#31,ACC1-CoachToday,EK,Opens,ADC1-PlayerFile,works (target 30x44)
+ACC1-CoachToday#32,ACC1-CoachToday,OB,Opens,ADC1-PlayerFile,works (target 30x44)
+ACC1-CoachToday#33,ACC1-CoachToday,HW,Opens,ADC1-PlayerFile,works (target 30x44)
+ACC1-CoachToday#34,ACC1-CoachToday,PG,Opens,ADC1-PlayerFile,works (target 30x44)
+ACC1-CoachToday#35,ACC1-CoachToday,SV,Opens,ADC1-PlayerFile,works (target 30x44)
+ACC1-CoachToday#36,ACC1-CoachToday,DC,Opens,ADC1-PlayerFile,works (target 30x44)
+ACC1-CoachToday#37,ACC1-CoachToday,WM,Opens,ADC1-PlayerFile,works (target 30x44)
+ACC1-CoachToday#38,ACC1-CoachToday,YA,Opens,ADC1-PlayerFile,works (target 30x44)
+ACC1-CoachToday#39,ACC1-CoachToday,BN,Opens,ADC1-PlayerFile,works (target 30x44)
+ACC1-CoachToday#40,ACC1-CoachToday,CF,Opens,ADC1-PlayerFile,works (target 30x44)
+ACC1-CoachToday#41,ACC1-CoachToday,GH,Opens,ADC1-PlayerFile,works (target 30x44)
+ACC1-CoachToday#42,ACC1-CoachToday,Send to his family,Opens,ADC3-SessionFilm,works
+ACC1-CoachToday#43,ACC1-CoachToday,Set one,Opens,ADC10-SetGoal,works
+ACC1-CoachToday#44,ACC1-CoachToday,Add notes,Opens,ADC11-AfterSession,works
+ACC1-CoachToday#45,ACC1-CoachToday,Notes in the last 3 weeks · 19 of 22 · · · · 3 players to catch up on,Opens,ADC11-AfterSession,works
+ACC1-CoachToday#46,ACC1-CoachToday,A goal set · 21 of 22 · · · · Only Ana to go,Opens,ADC10-SetGoal,works
+ACC1-CoachToday#47,ACC1-CoachToday,Families sent a clip this term · 16 of 22 · · · · 6 families have seen nothing yet,Opens,ADC3-SessionFilm,works
+ACC1-CoachToday#48,ACC1-CoachToday,Term reports drafted · 4 of 22 · · · · Due to Dani in week 9,Opens,ACC6-ReportDraft,works
+ACC1-CoachToday#49,ACC1-CoachToday,1 · One thing needs you · Dani asked: can you cover Thursday 11 June?,Opens,AD3-Timetable,works
+AD1-AcademyHome#15,AD1-AcademyHome,Today · 3 sessions · 34 coming,Opens,AD3-Timetable,works
+AD1-AcademyHome#16,AD1-AcademyHome,"Fees · $21,180 of $23,020",Opens,AC5-Fees,works
+AD1-AcademyHome#17,AD1-AcademyHome,Message families,Opens,AC12-AcademyBroadcast,works
+AD1-AcademyHome#18,AD1-AcademyHome,Share the trial link,Says,Trial link copied. Anyone with it can book a free trial.,works
+AD1-AcademyHome#19,AD1-AcademyHome,The term in 60 seconds,Says,One then-and-now clip from each program. 60 seconds.,works
+AD1-AcademyHome#20,AD1-AcademyHome,By player,Opens,AC4-AcademyPlayers,works
+AD1-AcademyHome#21,AD1-AcademyHome,2 · Ready to move up · Ruby and Hugo,Opens,AD5-GroupMoves,works
+AD1-AcademyHome#22,AD1-AcademyHome,6 · On the same step for two terms · Worth a word with their coach,Opens,AC4-AcademyPlayers,works
+AD1-AcademyHome#23,AD1-AcademyHome,5 · No goal set · 4 of them in Foundation,Opens,AC4-AcademyPlayers,works
+AD1-AcademyHome#24,AD1-AcademyHome,"3 · Families worth a call · Missing sessions, not re-enrolled",Opens,AD2-Health,works
+AD1-AcademyHome#25,AD1-AcademyHome,Session quality,Opens,AD8-SessionQuality,works
+AD1-AcademyHome#26,AD1-AcademyHome,"RW · Reece Whitlam · Development, Advanced · · · · · 49 of 52 · · · · 51 of 52 · · · · 40 of 52 · · 39 of 52",Opens,AD10-WatchCoach,works
+AD1-AcademyHome#27,AD1-AcademyHome,SM · Sofia Marin · Foundation · · · · · 22 of 28 · · · · 28 of 28 · · · · 19 of 28 · · 22 of 28,Opens,AD10-WatchCoach,works
+AD1-AcademyHome#28,AD1-AcademyHome,DO · You · One-on-ones · · · · · 8 of 8 · · · · 8 of 8 · · · · 6 of 8 · · 5 of 8,Opens,AD10-WatchCoach,works
+AD1-AcademyHome#29,AD1-AcademyHome,Staying for Term 3 · 52 of 80 · · · · 24 not yet said · 4 leaving,Opens,AD4-NextTerm,works
+AD1-AcademyHome#30,AD1-AcademyHome,Families sent a clip this term · 59 of 80 · · · · Families who see progress tend to stay,Opens,AD15-Families,works
+AD1-AcademyHome#31,AD1-AcademyHome,3 trial families are waiting on an offer,Opens,AC3-Trials,works
+AD1-AcademyHome#32,AD1-AcademyHome,24 families haven’t said about Term 3,Opens,AD4-NextTerm,works
+AD1-AcademyHome#33,AD1-AcademyHome,4 families are behind on fees,Opens,AC5-Fees,works
+AD1-AcademyHome#34,AD1-AcademyHome,Advanced needs cover on Thu 11 June,Opens,AD3-Timetable,works
+AD1-AcademyHome#35,AD1-AcademyHome,Ben’s children check runs out 30 June,Opens,AD17-Checks,works
+STO14-HomeStoryAcademyOwner#0,STO14-HomeStoryAcademyOwner,(the whole screen),Opens,AD1-AcademyHome,"works: the id opens the new AD1 home in the owner app; its controls are the AD1 rows above (screen opened and pictured, controls not pressed again at this id)"
+STO15-HomeStoryAcademyCoach#0,STO15-HomeStoryAcademyCoach,(the whole screen),Opens,ACC1-CoachToday,"works: the id opens the new ACC1 home in the coach app; its controls are the ACC1 rows above (screen opened and pictured, controls not pressed again at this id)"
+STO22-HomeStoryAcademyPlayer#0,STO22-HomeStoryAcademyPlayer,(the whole screen),Opens,ACK1-AcademyPlayerHome,"works: the id opens the new ACK1 home; its tabs were pressed in the academy player look-around, the other controls at ACK1"

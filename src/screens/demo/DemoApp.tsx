@@ -354,9 +354,12 @@ import CoachPhoneApp, { CPh1CoachPhoneHome, CPh2CoachPhoneComing, CPh3CoachPhone
 import DemoStart             from './DemoStart'
 import DemoStartEmpty        from './DemoStartEmpty'
 import StartPage             from '../start/StartPage'
-import { HomeStoryTablet, HomeStoryPhone, HomeStoryBody, HomeStoryMiniRoosTraining, HomeStoryMiniRoosNoFilm } from '../story/HomeStory'
-import { TABLET_CONFIGS, STO1, STO4, STO5, STO6, STO7, STO8, STO9, STO10, STO11, STO12, STO14, STO15 } from '../story/configs'
+import { HomeStoryPhone } from '../story/HomeStory'
+import { HomeFourTablet, HomeFourBody } from '../homes/HomeFour'
+import * as HOMES from '../homes/data'
 import { PHONE_CONFIGS }      from '../story/phoneConfigs'
+import PhoneHome              from '../homesphone/PhoneHome'
+import { PHONE_HOMES }        from '../homesphone/data'
 import DemoWhy               from './DemoWhy'
 import DemoTourShell         from './DemoTourShell'
 import DemoPhone             from './DemoPhone'
@@ -845,11 +848,9 @@ function FIL1FilesNav() {
 function HomeStoryNav({ id }: { id: string }) {
   const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
-  const cfg = TABLET_CONFIGS[id]
-  if (!cfg) return <div style={{ padding: 48 }}>Home story "{id}" not yet built.</div>
-  if (id === 'STO2-HomeStoryMiniRoosTraining') return <HomeStoryMiniRoosTraining cfg={cfg} onNav={(s) => setInner(s)} />
-  if (id === 'STO3-HomeStoryMiniRoosNoFilm') return <HomeStoryMiniRoosNoFilm cfg={cfg} onNav={(s) => setInner(s)} />
-  return <HomeStoryTablet cfg={cfg} onNav={(s) => setInner(s)} />
+  const home = HOMES.TABLET_HOMES[id]   // STO1 to STO13: the four-part home
+  if (!home) return <div style={{ padding: 48 }}>Home story "{id}" not yet built.</div>
+  return <HomeFourTablet home={home} onNav={(s) => setInner(s)} />
 }
 
 function EX1HowWorkedOutNav() {
@@ -861,6 +862,10 @@ function EX1HowWorkedOutNav() {
 function PhoneStoryNav({ id }: { id: string }) {
   const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
+  // The four-part phone homes (homes handover v26). STO22 is a copy of the academy player's home (ACK1).
+  // STO21 is a copy of the family app's Club tab (ADP1), built in the family app, and keeps the older layout here.
+  const home = PHONE_HOMES[id === 'STO22-HomeStoryAcademyPlayer' ? 'ACK1-AcademyPlayerHome' : id]
+  if (home) return <PhoneHome cfg={home} onNav={(s) => setInner(s)} />
   return <HomeStoryPhone cfg={PHONE_CONFIGS[id]} onNav={(s) => setInner(s)} />
 }
 
@@ -1203,7 +1208,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'goalkeeper':
       return <GoalkeeperCoachApp onBack={noop} empty={false} />
     case 'coordinator':
-      return <CoordinatorPortal onBack={noop} empty={false} homeStory={<HomeStoryBody cfg={STO12} renderTarget={renderScreen} />} />
+      return <CoordinatorPortal onBack={noop} empty={false} homeStory={<HomeFourBody home={HOMES.STO12} renderTarget={renderScreen} />} />
     case 'rollover':
       return <RolloverScreen onBack={noop} empty={false} />
     case 'seniors':
@@ -1213,9 +1218,9 @@ function renderScreenInner(key: string): ReactNode {
     case 'fitnesscoach':
       return <FitnessCoachScreen empty={false} />
     case 'clubadmin':
-      return <ClubAdminScreenNav empty={false} role="dof" initials="RM" homeStory={<HomeStoryBody cfg={STO10} renderTarget={renderScreen} />} />
+      return <ClubAdminScreenNav empty={false} role="dof" initials="RM" homeStory={<HomeFourBody home={HOMES.STO10} renderTarget={renderScreen} />} />
     case 'chair-home':
-      return <ClubAdminScreenNav empty={false} role="chair" initials="GL" homeStory={<HomeStoryBody cfg={STO11} renderTarget={renderScreen} />} />
+      return <ClubAdminScreenNav empty={false} role="chair" initials="GL" homeStory={<HomeFourBody home={HOMES.STO11} renderTarget={renderScreen} />} />
     case 'welfare-home':
       return <HomeStoryNav id="STO13-HomeStoryWelfare" />
     case 'teammanager':
@@ -2294,17 +2299,20 @@ function renderScreenInner(key: string): ReactNode {
     case 'STO13-HomeStoryWelfare':
     case 'STO8-HomeStoryFitness':
     case 'STO9-HomeStoryKeepers':
-    case 'STO14-HomeStoryAcademyOwner':
-    case 'STO15-HomeStoryAcademyCoach':
       return <HomeStoryNav id={key} />
+    // Copies of AD1 and ACC1 (homes handover v26): each id opens that home in its own app.
+    case 'STO14-HomeStoryAcademyOwner': return <AcademyOwnerApp onBack={noop} empty={false} initialScreen="AD1-AcademyHome" />
+    case 'STO15-HomeStoryAcademyCoach': return <AcademyCoachApp onBack={noop} empty={false} initialScreen="ACC1-CoachToday" />
     case 'STO16-HomeStoryManager':
     case 'STO17-HomeStoryParent':
     case 'STO18-HomeStoryPlayerYoung':
     case 'STO19-HomeStoryPlayerOlder':
     case 'STO20-HomeStoryReferee':
-    case 'STO21-HomeStoryAcademyParent':
     case 'STO22-HomeStoryAcademyPlayer':
       return <PhoneStoryNav id={key} />
+    // STO21 is a copy of the family app's Club tab for an academy (ADP1): academy parents use the family app.
+    case 'STO21-HomeStoryAcademyParent':
+      return <FamilyApp key="STO21" start="ADP1-AcademyHome" />
     // Home-link targets that lacked a direct address (map to the real screen)
     case 'T2-TabletMatch':             return <JuniorCoachApp initialScreen="matchday" />
     case 'S1-PlayingStyle':            return <OurStyleScreen />
@@ -2366,7 +2374,7 @@ const LOOK_HOME: Record<string, string> = {
   youth: 'STO6-HomeStoryYouth', seniors: 'STO4-HomeStorySeniors',
   miniroos: 'STO1-HomeStoryMiniRoos', goalkeeper: 'STO9-HomeStoryKeepers',
   fitness: 'STO8-HomeStoryFitness', academyowner: 'AD1-AcademyHome',   // the owner's Home is AD1 since the academy handover (24 Nov); STO14 keeps its own address
-  academycoach: 'STO15-HomeStoryAcademyCoach', academyparent: 'STO21-HomeStoryAcademyParent',
+  academycoach: 'ACC1-CoachToday', academyparent: 'STO21-HomeStoryAcademyParent',
   academyplayer: 'STO22-HomeStoryAcademyPlayer', referee: 'STO20-HomeStoryReferee',
   parent: 'STO17-HomeStoryParent', manager: 'STO16-HomeStoryManager',
   playeryoung: 'STO18-HomeStoryPlayerYoung', playerolder: 'STO19-HomeStoryPlayerOlder',
@@ -2710,67 +2718,67 @@ export default function DemoApp() {
         const pc = phase === 'preseason' ? <SP2HomePreSeason onBack={noop} />
                  : phase === 'postseason' ? <SP10HomePostSeason onBack={noop} />
                  : phase === 'restmonth' ? <SP16RestMonth onBack={noop} />
-                 : <HomeStoryBody cfg={STO5} renderTarget={renderScreen} frameNav={(t) => coachNavRef.current(t)} />
+                 : <HomeFourBody home={HOMES.STO5} renderTarget={renderScreen} frameNav={(t) => coachNavRef.current(t)} />
         lookContent = <JuniorCoachApp phaseContent={pc} initialScreen={screen} onNavChange={setScreen} registerNav={(fn) => { coachNavRef.current = fn }} />
       }
     } else if (role === 'ccoach') {
       const pc = phase === 'preseason' ? <SPc2CoCoachPreSeason onBack={noop} />
                : phase === 'postseason' ? <SP10HomePostSeason onBack={noop} />
                : phase === 'restmonth' ? <SP16RestMonth onBack={noop} />
-               : <HomeStoryBody cfg={STO7} renderTarget={renderScreen} frameNav={(t) => coachNavRef.current(t)} />
+               : <HomeFourBody home={HOMES.STO7} renderTarget={renderScreen} frameNav={(t) => coachNavRef.current(t)} />
       lookContent = <JuniorCoachApp phaseContent={pc} coachLabel="U12 Sam · Assistant coach" coachInitials="JM" initialScreen={screen} onNavChange={setScreen} coachRole="ccoach" registerNav={(fn) => { coachNavRef.current = fn }} />
     } else if (role === 'youth') {
       const pc = phase === 'preseason' ? <SPy2YouthPreSeason onBack={noop} />
                : phase === 'postseason' ? <SPy10YouthPostSeason onBack={noop} />
                : phase === 'restmonth' ? <SPy16YouthRestMonth onBack={noop} />
-               : <HomeStoryBody cfg={STO6} renderTarget={renderScreen} frameNav={(t) => coachNavRef.current(t)} />
+               : <HomeFourBody home={HOMES.STO6} renderTarget={renderScreen} frameNav={(t) => coachNavRef.current(t)} />
       lookContent = <SeniorsYouthCoachApp teamType="youth" onBack={noop} phaseContent={pc} initialScreen={screen} onNavChange={setScreen} registerNav={(fn) => { coachNavRef.current = fn }} />
     } else if (role === 'seniors') {
       const pc = phase === 'preseason' ? <SPs2SeniorPreSeason onBack={noop} />
                : phase === 'postseason' ? <SPs10SeniorPostSeason onBack={noop} />
                : phase === 'restmonth' ? <SPs16SeniorOffSeason onBack={noop} />
-               : <HomeStoryBody cfg={STO4} renderTarget={renderScreen} frameNav={(t) => coachNavRef.current(t)} />
+               : <HomeFourBody home={HOMES.STO4} renderTarget={renderScreen} frameNav={(t) => coachNavRef.current(t)} />
       lookContent = <SeniorsYouthCoachApp teamType="seniors" onBack={noop} phaseContent={pc} initialScreen={screen} onNavChange={setScreen} registerNav={(fn) => { coachNavRef.current = fn }} />
     } else if (role === 'miniroos') {
       const pc = phase === 'preseason' ? <SPm2MiniRoosPreSeason onBack={noop} />
                : phase === 'postseason' ? <SPm10MiniRoosPostSeason onBack={noop} />
                : phase === 'restmonth' ? <SPm16MiniRoosRest onBack={noop} />
-               : <HomeStoryBody cfg={STO1} renderTarget={renderScreen} frameNav={(t) => coachNavRef.current(t)} />
+               : <HomeFourBody home={HOMES.STO1} renderTarget={renderScreen} frameNav={(t) => coachNavRef.current(t)} />
       lookContent = <div style={{ width: 1180, background: 'var(--surface-100)' }}><MiniRoosApp onBack={() => setRole('coach')} empty={false} phaseContent={pc} initialScreen={screen} onNavChange={setScreen} registerNav={(fn) => { coachNavRef.current = fn }} /></div>
     } else if (role === 'goalkeeper') {
-      lookContent = <GoalkeeperCoachApp onBack={() => setRole('coach')} empty={false} initialScreen={screen} onNavChange={setScreen} homeStory={<HomeStoryBody cfg={STO9} renderTarget={renderScreen} />} />
+      lookContent = <GoalkeeperCoachApp onBack={() => setRole('coach')} empty={false} initialScreen={screen} onNavChange={setScreen} homeStory={<HomeFourBody home={HOMES.STO9} renderTarget={renderScreen} />} />
     } else if (role === 'fitness') {
-      lookContent = <FitnessCoachScreen empty={false} initialScreen={screen} onNavChange={setScreen} homeStory={<HomeStoryBody cfg={STO8} renderTarget={renderScreen} frameNav={t => { if (t !== 'MSG-fitness') return false; startChat('fitness', 'sam.kelly'); return true }} />} />
+      lookContent = <FitnessCoachScreen empty={false} initialScreen={screen} onNavChange={setScreen} homeStory={<HomeFourBody home={HOMES.STO8} renderTarget={renderScreen} frameNav={t => { if (t !== 'MSG-fitness') return false; startChat('fitness', 'sam.kelly'); return true }} />} />
     } else if (role === 'academyowner') {
-      lookContent = <AcademyOwnerApp onBack={() => setRole('academycoach')} empty={false} initialScreen={screen} onNavChange={setScreen} homeStory={<HomeStoryBody cfg={STO14} renderTarget={renderScreen} />} />
+      lookContent = <AcademyOwnerApp onBack={() => setRole('academycoach')} empty={false} initialScreen={screen} onNavChange={setScreen} />
     } else if (role === 'academycoach') {
-      lookContent = <AcademyCoachApp onBack={() => setRole('coach')} empty={false} initialScreen={screen} onNavChange={setScreen} homeStory={<HomeStoryBody cfg={STO15} renderTarget={renderScreen} />} />
+      lookContent = <AcademyCoachApp onBack={() => setRole('coach')} empty={false} initialScreen={screen} onNavChange={setScreen} />
     } else if (role === 'academyparent') {
-      lookContent = <HomeStoryPhone cfg={PHONE_CONFIGS['STO21-HomeStoryAcademyParent']} renderTarget={renderScreen} />
+      lookContent = <FamilyApp key="look-academyparent" start="ADP1-AcademyHome" />   // academy parents use the family app (homes v1)
     } else if (role === 'academyplayer') {
-      lookContent = <HomeStoryPhone cfg={PHONE_CONFIGS['STO22-HomeStoryAcademyPlayer']} renderTarget={renderScreen} />
+      lookContent = <PhoneHome cfg={PHONE_HOMES['ACK1-AcademyPlayerHome']} renderTarget={renderScreen} />
     } else if (role === 'referee') {
-      lookContent = <HomeStoryPhone cfg={PHONE_CONFIGS['STO20-HomeStoryReferee']} renderTarget={renderScreen} />
+      lookContent = <PhoneHome cfg={PHONE_HOMES['STO20-HomeStoryReferee']} renderTarget={renderScreen} />
     } else if (role === 'parent') {
       if (phase === 'preseason')       lookContent = <SPp1ParentPreSeason onBack={noop} />
       else if (phase === 'postseason') lookContent = <SPp3ParentTournament onBack={noop} />
       else if (phase === 'restmonth')  lookContent = <SPp4ParentRestMonth onBack={noop} />
-      else                             lookContent = <HomeStoryPhone cfg={PHONE_CONFIGS['STO17-HomeStoryParent']} renderTarget={renderScreen} />
+      else                             lookContent = <PhoneHome cfg={PHONE_HOMES['STO17-HomeStoryParent']} renderTarget={renderScreen} />
     } else if (role === 'manager') {
       if (phase === 'preseason')       lookContent = <SPp10ManagerPreSeason />
       else if (phase === 'postseason') lookContent = <SPp11ManagerPostSeason />
       else if (phase === 'restmonth')  lookContent = <SPp12ManagerRestMonth />
-      else                             lookContent = <HomeStoryPhone cfg={PHONE_CONFIGS['STO16-HomeStoryManager']} renderTarget={renderScreen} />
+      else                             lookContent = <PhoneHome cfg={PHONE_HOMES['STO16-HomeStoryManager']} renderTarget={renderScreen} />
     } else if (role === 'playeryoung') {
       if (phase === 'preseason')       lookContent = <SPp13PlayerPreSeason />
       else if (phase === 'postseason') lookContent = <SPp14PlayerPostSeason />
       else if (phase === 'restmonth')  lookContent = <SPp7PlayerRestMonth />
-      else                             lookContent = <HomeStoryPhone cfg={PHONE_CONFIGS['STO18-HomeStoryPlayerYoung']} renderTarget={renderScreen} />
+      else                             lookContent = <PhoneHome cfg={PHONE_HOMES['STO18-HomeStoryPlayerYoung']} renderTarget={renderScreen} />
     } else if (role === 'playerolder') {
       if (phase === 'preseason')       lookContent = <SPp15OlderPreSeason />
       else if (phase === 'postseason') lookContent = <SPp16OlderPostSeason />
       else if (phase === 'restmonth')  lookContent = <SPp17OlderRestMonth />
-      else                             lookContent = <HomeStoryPhone cfg={PHONE_CONFIGS['STO19-HomeStoryPlayerOlder']} renderTarget={renderScreen} />
+      else                             lookContent = <PhoneHome cfg={PHONE_HOMES['STO19-HomeStoryPlayerOlder']} renderTarget={renderScreen} />
     } else if (homeKey) {
       lookContent = renderScreen(homeKey)
     } else {

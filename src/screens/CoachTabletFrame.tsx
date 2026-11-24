@@ -360,8 +360,8 @@ export default function CoachTabletFrame({
               </button>
             ))}
           </nav>
-          {/* Ask button — hidden on Home tab */}
-          {showAsk && !onHome && (
+          {/* Ask button: on every tab, Home too (the home no longer has its own ask bar) */}
+          {showAsk && (
             <button
               onClick={onAskToggle}
               aria-label="Ask Clean Sheet" data-club-keep={askOpen ? '' : undefined}

@@ -1,4 +1,4 @@
-// Clean Sheet Family (family-app-v25): a parent uploads a video, and credits pay for finding their own child's moments.
+// Clean Sheet Family (family-app-v26): a parent uploads a video, and credits pay for finding their own child's moments.
 // This is a demo of the flows on sample data. Nothing here analyses real film, and the purchase is a stub.
 // Prices, pack sizes, the rate table, the check's thresholds and the club offer are placeholders until Booker confirms them.
 
