@@ -5,7 +5,7 @@ Build: the commit that adds this file. 73 phone screens, a fourth walkthrough pa
 ## Where it is
 
 - Every screen opens by its id, in the state it is drawn in (for example `/__screen/FAM1-Welcome`, `/__screen/FAM3-Home`, `/__screen/FAM20-GameStats`).
-- **Nothing in the demo's role picker opens it yet.** The pack does not say where a parent with no club comes in.
+- **Nothing in the demo's role picker opens it yet.** The pack does not say where a parent with no club comes in. The end of the club's join path for a parent now opens `FAM14-HomeWithClub`; the role pickers and tours still open the old parent screens, which are listed in `PLATFORM-MOMENTS-NOTES.md` for a decision.
 - Once the club has joined, an item on the Learn tab opens from the Education centre's library with no "We did it".
 
 ## v17 and v18: one parent app (handovers v12 and v13, 24 Nov)
