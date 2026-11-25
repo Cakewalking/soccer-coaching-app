@@ -14,6 +14,7 @@ The Ask panel used to give canned replies. It now sends the question to Claude a
 | Name | What it does | Default |
 |---|---|---|
 | `ANTHROPIC_API_KEY` (or `Claude_API`, the name it was saved under) | The key. Without it the panel says Ask is not switched on | none |
+| `ANTHROPIC_WORKSPACE_ID` | Only for a key that is not tied to one workspace: the workspace to use | none |
 | `ASK_MODEL` | The model | `claude-opus-5-5` |
 | `ASK_PER_VISITOR` | Questions one visitor can ask in ten minutes | 12 |
 | `ASK_DAILY_CAP` | Questions one server instance answers in a day | 1500 |

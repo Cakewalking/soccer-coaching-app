@@ -7,6 +7,7 @@
 // Settings (all optional except the key):
 //   ANTHROPIC_API_KEY   the key (also read from Claude_API, the name it has in this project's Vercel settings).
 //                       Without it the function answers 503 and the panel says Ask is not switched on.
+//   ANTHROPIC_WORKSPACE_ID  only for a key that is not tied to one workspace: the workspace to use (wrkspc_...).
 //   ASK_MODEL           the model. Default claude-opus-5-5. A cheaper one, e.g. claude-haiku-5-5, also works.
 //   ASK_PER_VISITOR     questions one visitor can ask in ten minutes. Default 12.
 //   ASK_DAILY_CAP       questions this server instance answers in a day. Default 1500.
@@ -19,6 +20,7 @@ import Anthropic from '@anthropic-ai/sdk'
 
 /** The key, under its usual name or the name it was saved under in this project's settings. */
 const KEY = (process.env.ANTHROPIC_API_KEY || process.env.Claude_API || process.env.CLAUDE_API || '').trim()
+const WORKSPACE = (process.env.ANTHROPIC_WORKSPACE_ID || '').trim()
 const MODEL = process.env.ASK_MODEL || 'claude-opus-5-5'
 const PER_VISITOR = Number(process.env.ASK_PER_VISITOR) || 12, WINDOW_MS = 10 * 60 * 1000
 const DAILY_CAP = Number(process.env.ASK_DAILY_CAP) || 1500
@@ -109,7 +111,9 @@ export async function POST(request: Request): Promise<Response> {
   }
   if (!KEY && !process.env.ANTHROPIC_AUTH_TOKEN) return json(503, { error: 'not_configured' })
 
-  const client = KEY ? new Anthropic({ apiKey: KEY }) : new Anthropic()
+  // A key that is not tied to one workspace must say which workspace to use.
+  const defaultHeaders = WORKSPACE ? { 'anthropic-workspace-id': WORKSPACE } : undefined
+  const client = KEY ? new Anthropic({ apiKey: KEY, defaultHeaders }) : new Anthropic({ defaultHeaders })
   const messages: Anthropic.Beta.BetaMessageParam[] = [...history.map(t => ({ role: t.role, content: t.text })), { role: 'user', content: ask }]
   const stream = client.beta.messages.stream({
     model: MODEL,
