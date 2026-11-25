@@ -5,7 +5,8 @@
 // calls Claude. The API key lives here, in the server's settings (ANTHROPIC_API_KEY), and is never sent to the browser.
 //
 // Settings (all optional except the key):
-//   ANTHROPIC_API_KEY   the key. Without it the function answers 503 and the panel says Ask is not switched on.
+//   ANTHROPIC_API_KEY   the key (also read from Claude_API, the name it has in this project's Vercel settings).
+//                       Without it the function answers 503 and the panel says Ask is not switched on.
 //   ASK_MODEL           the model. Default claude-opus-5-5. A cheaper one, e.g. claude-haiku-5-5, also works.
 //   ASK_PER_VISITOR     questions one visitor can ask in ten minutes. Default 12.
 //   ASK_DAILY_CAP       questions this server instance answers in a day. Default 1500.
@@ -16,6 +17,8 @@
 
 import Anthropic from '@anthropic-ai/sdk'
 
+/** The key, under its usual name or the name it was saved under in this project's settings. */
+const KEY = (process.env.ANTHROPIC_API_KEY || process.env.Claude_API || process.env.CLAUDE_API || '').trim()
 const MODEL = process.env.ASK_MODEL || 'claude-opus-5-5'
 const PER_VISITOR = Number(process.env.ASK_PER_VISITOR) || 12, WINDOW_MS = 10 * 60 * 1000
 const DAILY_CAP = Number(process.env.ASK_DAILY_CAP) || 1500
@@ -104,9 +107,9 @@ export async function POST(request: Request): Promise<Response> {
     const words = `This is a test answer for the ${role}. You asked: ${question} The context sent was ${context.length} characters long.${places[0] ? `\nOPEN: ${places[0]}` : ''}`.split(/(?<= )/)
     return new Response(new ReadableStream({ async start(c) { for (const w of words) { c.enqueue(line({ t: w })); await new Promise(r => setTimeout(r, 15)) } c.enqueue(line({ done: true })); c.close() } }), { headers: STREAM })
   }
-  if (!process.env.ANTHROPIC_API_KEY && !process.env.ANTHROPIC_AUTH_TOKEN) return json(503, { error: 'not_configured' })
+  if (!KEY && !process.env.ANTHROPIC_AUTH_TOKEN) return json(503, { error: 'not_configured' })
 
-  const client = new Anthropic()
+  const client = KEY ? new Anthropic({ apiKey: KEY }) : new Anthropic()
   const messages: Anthropic.Beta.BetaMessageParam[] = [...history.map(t => ({ role: t.role, content: t.text })), { role: 'user', content: ask }]
   const stream = client.beta.messages.stream({
     model: MODEL,
