@@ -42,9 +42,13 @@ export default function ADC2Group({ go }: { go: (id: string) => void }) {
         </div>
 
         <section aria-label="The team" style={{ ...T.tile, flex: 'none' }}>
-          <div style={T.between}><h2 style={T.h2}>The team</h2><span style={T.cap}>In name order. Steps are 1 to 5: first touch, running with the ball, one against one, striking.</span></div>
+          <div style={T.between}><h2 style={T.h2}>The team</h2><span style={T.cap}>In name order. Each skill is a step from 1 to 5. Green with a plus is up this term.</span></div>
           <div style={{ display: 'grid', gridTemplateColumns: COLS, gap: 10, alignItems: 'end', paddingBottom: 6 }}>
-            {['Player', 'Steps now', 'Came', 'Goal this term'].map(h => <span key={h} style={th}>{h}</span>)}
+            {/* One heading for each of the four step columns, so each number says which skill it is (pack v41). */}
+            <span style={th}>Player</span>
+            <span style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 4, alignItems: 'end' }}>{a.skills.map(t => <span key={t} style={{ ...th, minWidth: 0 }}>{t}</span>)}</span>
+            <span style={th}>Came</span>
+            <span style={th}>Goal this term</span>
           </div>
           {ps.map(p => (
             <button key={p.id} data-player={p.id} onClick={() => go(coachBoard(p))} style={{ ...plain, display: 'grid', gridTemplateColumns: COLS, gap: 10, alignItems: 'center', minHeight: 46, borderTop: `1px solid ${HAIR}`, fontSize: 14, lineHeight: '19px' }}>

@@ -339,3 +339,14 @@ From `programs/tours/ACADEMY-TOURS.md` and `academy-tours.json` (the file sent o
 - **The parent's academy pages** already named Marcus and 5:30 from the academy's list. One-on-ones now name the child's own coach for the Saturday time. They stay on Friday and Saturday (v29); the v40 board still draws Thursday and Monday at 6:45.
 - **Not changed:** the list of every older screen under "Step 4" in the demo still has the old parent screens. It is an index, not a tour.
 
+---
+
+# Pack v41 (25 Nov): skill headings on the step columns
+
+- On the coach's team page (`ADC2-Group`) and the owner's 17 team pages (`ADG01` to `ADG17`, one template) each of the four step numbers now sits under its own heading: First touch, Running with the ball, One against one, Striking the ball. The caption reads "Each skill is a step from 1 to 5. Green with a plus is up this term."
+- **Anywhere else the four steps are a bare row of numbers:** the one other place is the owner's moves between teams (`AD5-GroupMoves`). It had no header row at all; it has one now, with the same four headings.
+- Each number also says its skill to a screen reader.
+- **`ADC2`'s "A goal set" tile** already named everyone without a goal from the data (Ana and Sienna).
+- **Where the build differs from the board:** the steps column on the owner's team page is wider than the board's, and so is the one on the moves page. At the board's width the four headings ran into each other at the build's type size.
+- **Checked:** the three screens by eye against the picture, the headings measured to fit their columns, all 17 team pages, `ADC2` and `AD5` open without an error, and the live roll test still passes.
+

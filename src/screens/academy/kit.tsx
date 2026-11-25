@@ -69,7 +69,13 @@ export const PlayerName = ({ p, sub, isNew }: { p: Player; sub?: ReactNode; isNe
 )
 
 /** Table headings. */
-export const Th = ({ cols, heads }: { cols: string; heads: string[] }) => (
+/** The four core skills, in the list's order: the headings over the four step numbers, so each number says which skill it is (pack v41). */
+export const SKILL_HEADS = ['First touch', 'Running with the ball', 'One against one', 'Striking the ball']
+/** One heading for each of the four step columns. It sits in a table's header cell over `Steps`. */
+export const StepHeads = ({ skills = SKILL_HEADS }: { skills?: string[] }) => (
+  <span style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 4, alignItems: 'end' }}>{skills.map(t => <span key={t} style={{ ...S.th, minWidth: 0 }}>{t}</span>)}</span>
+)
+export const Th = ({ cols, heads }: { cols: string; heads: ReactNode[] }) => (
   <div style={{ display: 'grid', gridTemplateColumns: cols, gap: 10, alignItems: 'end', paddingBottom: 6 }}>{heads.map((h, i) => <span key={i} style={S.th}>{h}</span>)}</div>
 )
 const rowLook = (cols: string, h: number): CSSProperties => ({ display: 'grid', gridTemplateColumns: cols, gap: 10, alignItems: 'center', minHeight: h, borderTop: `1px solid ${LINE}`, fontSize: 14, lineHeight: '19px', color: INK, textDecoration: 'none', boxSizing: 'content-box' })
@@ -145,8 +151,8 @@ export function Steps({ p }: { p: Player }) {
   return (
     <span style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 4 }}>
       {p.skills_now.map((now, k) => now > p.skills_then[k]
-        ? <span key={k} style={{ ...S.num, fontSize: 14, fontWeight: 700, color: G }}>{now} <span style={{ fontSize: 11 }}>+{now - p.skills_then[k]}</span></span>
-        : <span key={k} style={{ ...S.num, fontSize: 14, color: '#33443f' }}>{now}</span>)}
+        ? <span key={k} aria-label={`${SKILL_HEADS[k]}: step ${now}, up ${now - p.skills_then[k]}`} style={{ ...S.num, fontSize: 14, fontWeight: 700, color: G }}>{now} <span style={{ fontSize: 11 }}>+{now - p.skills_then[k]}</span></span>
+        : <span key={k} aria-label={`${SKILL_HEADS[k]}: step ${now}`} style={{ ...S.num, fontSize: 14, color: '#33443f' }}>{now}</span>)}
     </span>
   )
 }

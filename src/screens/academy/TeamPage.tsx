@@ -7,9 +7,10 @@ import Tap from './Tap'
 import { OwnerGo } from './ownerMenu'
 import { changeTeam } from './ownerFocus'
 import { CAME_LOW, basics, cameOf, isNew, money, needs, playerBoard, playersIn, teamCounts, upsBySkill, useAcademy, groupOf, worthACall, SESSIONS_A_TERM } from './academyStore'
-import { Cap, FeePill, G, Head, Kpi, Kpis, LINE, LOW, Lines, Link, MAIN, MAUVE, Met, Num, PALE, Pill, PlayerName, Proof, Row, SOURCES, Sources, Steps, Term3Pill, Th } from './kit'
+import { Cap, FeePill, G, Head, Kpi, Kpis, LINE, LOW, Lines, Link, MAIN, MAUVE, Met, Num, PALE, Pill, PlayerName, Proof, Row, SOURCES, Sources, StepHeads, Steps, Term3Pill, Th } from './kit'
 
-const COLS = '1.55fr 0.6fr 1.5fr 1.7fr 0.5fr 0.8fr 0.9fr'
+// The steps column is wider than the board's, so each of the four skill headings fits over its own number (pack v41).
+const COLS = '1.4fr 0.6fr 2.05fr 1.5fr 0.4fr 0.8fr 0.8fr'
 const BASIC_SUB = ['Two taps a player after a session', 'One goal a player, a term', 'Families who see progress tend to stay', 'Due to you in week 9']
 const BASIC_TO = ['ADC11-AfterSession', 'ADC10-SetGoal', 'ADC3-SessionFilm', 'AC7-ReportsOut']
 
@@ -78,8 +79,8 @@ export default function TeamPage({ id }: { id: string }) {
         </section>
       </div>
       <section style={{ ...S.tile, flex: 'none', gap: 2, padding: '12px 16px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}><h2 style={S.h2}>Every player · {n}</h2><Cap>In name order, never ranked. Steps are 1 to 5: first touch, running with the ball, one against one, striking.</Cap></div>
-        <Th cols={COLS} heads={['Player', 'Came', 'Steps now', 'Goal this term', 'Clips', 'Term 3', 'Fees']} />
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}><h2 style={S.h2}>Every player · {n}</h2><Cap>In name order, never ranked. Each skill is a step from 1 to 5. Green with a plus is up this term.</Cap></div>
+        <Th cols={COLS} heads={['Player', 'Came', <StepHeads key="s" skills={a.skills} />, 'Goal this term', 'Clips', 'Term 3', 'Fees']} />
         {ps.map(p => { const c = cameOf(p); return (
           <Row key={p.id} cols={COLS} to={playerBoard(p)}>
             <PlayerName p={p} isNew={isNew(a, p)} />

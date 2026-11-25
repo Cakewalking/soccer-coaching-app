@@ -5,9 +5,9 @@ import type { ReactNode } from 'react'
 import { S } from './adStyles'
 import Tap from './Tap'
 import { cameOf, groupOf, isNew, playerBoard, useAcademy, type Academy, type Player } from './academyStore'
-import { Cap, Head, LINE, MAIN, PlayerName, Sources, Steps, Tile } from './kit'
+import { Cap, Head, LINE, MAIN, PlayerName, Sources, StepHeads, Steps, Th, Tile } from './kit'
 
-const COLS = '1.3fr 1.2fr 1.1fr 1.9fr 170px'
+const COLS = '1.15fr 1.1fr 1.75fr 1.5fr 170px'
 // A sample value, not in the list of players: the one move a coach suggested and then asked to hold for a term.
 const LOOK_AGAIN = { name: 'Theo Lindqvist', to: 'U12 Timber', line: 'wait a term. Growing fast, so keep his week steady.' }
 
@@ -36,6 +36,7 @@ export default function AD5GroupMoves() {
         <Tap to="AC4-AcademyPlayers" style={S.primary}>All players</Tap>
       </Head>
       <Tile title="Suggested by your coaches" right={<Cap>{ready.length} ready{again ? ' · 1 to look at again' : ''}</Cap>}>
+        {(ready.length > 0 || again) && <Th cols={COLS} heads={['Player', 'Move', <StepHeads key="s" skills={a.skills} />, 'What the coach says', '']} />}
         {ready.map(p => { const c = cameOf(p), up = p.skills_now.reduce((t, v, k) => t + v - p.skills_then[k], 0); return (
           <Move key={p.id} a={a} p={p} to={moveTo(a, p)} line={`ready for Term 3. Up ${up} this term and came to ${c.came} of ${c.of}.`}>
             <Tap to="ADP12-MoveOffer" style={S.primary}>Offer the move</Tap>
@@ -43,7 +44,7 @@ export default function AD5GroupMoves() {
         ) })}
         {again && <Move a={a} p={again} to={LOOK_AGAIN.to} line={LOOK_AGAIN.line}><Tap to={playerBoard(again)} style={S.more}>Look again in Term 3</Tap></Move>}
         {ready.length === 0 && !again && <Cap style={{ padding: '10px 0' }}>No coach has suggested a move yet.</Cap>}
-        <Cap style={{ paddingTop: 6 }}>Steps now are 1 to 5: first touch, running with the ball, one against one, striking. The family is asked, not told, and can say no.</Cap>
+        <Cap style={{ paddingTop: 6 }}>Each skill is a step from 1 to 5. Green with a plus is up this term. The family is asked, not told, and can say no.</Cap>
       </Tile>
       <Sources items={[['A coach suggests a move here', 'ADC14-SuggestMove'], ['What the family sees', 'ADP12-MoveOffer']]} />
     </main>
