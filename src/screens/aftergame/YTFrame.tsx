@@ -1,3 +1,4 @@
+import { openAsk } from '../../ask/askState'
 import { createContext, useContext, type ReactNode } from 'react'
 
 /** The game line for the team whose app is showing these boards, in place of U12 Sam's. MiniRoos never show a result. */
@@ -44,7 +45,7 @@ export default function YTFrame({ onNav, active, heading, sentence, support, fig
         <button onClick={() => onNav?.('C1-ClipsTab')} style={tnb}>Clips</button>
         <button onClick={() => onNav?.('REC1-RecordHub')} style={tnb}>Record</button>
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 10 }}>
-          <button aria-label="Ask Clean Sheet" onClick={() => onNav?.('ASKd4-PanelFirst')} style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <button aria-label="Ask Clean Sheet" onClick={() => openAsk()} style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <svg width="15" height="15" viewBox="0 0 24 24" fill="rgba(255,255,255,0.9)"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17 5.8 21.3l2.4-7.4L2 9.4h7.6L12 2z"/></svg>
           </button>
           <button onClick={() => onNav?.('VS1-SwitchView')} style={{ height: 40, padding: '0 14px', borderRadius: 999, border: '1.5px solid rgba(255,255,255,0.3)', background: 'none', fontSize: 13, color: '#fff', cursor: 'pointer', fontFamily: 'inherit' }}>U12 Sam ▾</button>

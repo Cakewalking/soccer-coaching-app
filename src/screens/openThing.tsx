@@ -13,6 +13,7 @@ import { playClips } from './clips/clipSheet'
 import { markDone, useDoneAll } from './doneStore'
 import { demoToast } from './demoToast'
 import { record, onBack, isOpenInHistory } from '../backState'
+import { openAsk } from '../ask/askState'
 
 export type Where = 'coach' | 'mini' | 'club' | 'academy' | 'phone' | 'entry'
 type Route = [RegExp, string]
@@ -25,7 +26,7 @@ const COACH: Route[] = [
   [/welfare (chat|contact|report)|support contacts/, 'PC2-TellSomeone'],
   [/announcement/, 'CH2-Announcements'], [/new (group )?chat|people picker|add to group/, 'CH3-NewChat'], [/chat settings|role info/, 'CH8-ChatInfo'], [/poll/, 'CH5-PollResults'],
   [/seen list|held-back photo|photo consent|photo picker/, 'CH7-PhotoCheck'], [/group chats?|team chat|family chat/, 'CH1-TeamChat'],
-  [/ask clean sheet|voice input/, 'ASKd4-PanelFirst'], [/selector|all teams view|miniroos view/, 'VS1-SwitchView'],
+  [/selector|all teams view|miniroos view/, 'VS1-SwitchView'],
   [/drill creator/, 'DF3-OwnBasics'], [/all suggestions/, 'SG1-Suggested'],
   [/drill|game library|game picker|add to session/, 'DF0-Library'],
   [/pairing|camera setup/, 'SET4-Devices'], [/results/, 'RC5-RecordResults'],
@@ -58,13 +59,13 @@ const ACADEMY: Route[] = [
   [/group chats?|message composer/, 'ACC13-AcademyChat'], [/report|next draft|word editor/, 'ACC6-ReportDraft'], [/trial/, 'AC3-Trials'], [/program/, 'AC2-Programs'],
   [/pairing/, 'ACC8p-PairCamera'], [/record|film-this|manual count/, 'ACC8-AcademyRecord'], [/session|reschedule/, 'ACT3-AcademySessionPlan'], [/drill/, 'ACT2-AcademySuggested'],
   [/calendar|term date/, 'ACT1-AcademyWeek'], [/child safety/, 'AC10-AcademySafety'], [/bank|fees/, 'AC5-Fees'], [/club invite|message to club/, 'AC11-PartnerClub'],
-  [/game day/, 'ACC7-AcademyGameDay'], [/home practice/, 'ACK2-HomePractice'], [/ask clean sheet/, 'ASKd4-PanelFirst'],
+  [/game day/, 'ACC7-AcademyGameDay'], [/home practice/, 'ACK2-HomePractice'],
 ]
 const PHONE: Route[] = [
   [/\binbox\b|all messages|new chat/, 'PM1-ParentChats'], [/team chat|announcement/, 'PM2-ParentTeamChat'], [/chat settings/, 'PM6-ParentChatSettings'],
   [/photo consent/, 'PM10-ParentPhotoCheck'], [/welfare|support contacts/, 'PC2-TellSomeone'], [/report flow/, 'PM7-ParentReport'],
   [/recording settings|data download|leave squad|deletion/, 'PS3-ParentData'], [/team sheet|line-up/, 'FBp2-LineupParent'], [/fixtures?|game day/, 'TM2-ManagerGameDay'],
-  [/parent view/, 'PA-Parent'], [/referee/, 'TM11l-LetterFull'], [/ask clean sheet/, 'ASKp2-PhoneAskOpen'],
+  [/parent view/, 'PA-Parent'], [/referee/, 'TM11l-LetterFull'],
 ]
 const ENTRY: Route[] = [[/help|feedback/, 'SET7-Help'], [/sign-in/, 'SI1-SignIn'], [/invite/, 'IV-Invite'], [/safeguarding/, 'D5-Safeguarding']]
 const TABLES: Record<Where, Route[]> = { coach: COACH, mini: [...MINI, ...COACH], club: [...CLUB, ...COACH], academy: ACADEMY, phone: PHONE, entry: ENTRY }
@@ -94,6 +95,7 @@ const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
 export function openThing(said: string, where: Where = 'coach') {
   const what = tidy(said), low = what.toLowerCase()
   if (!what) { demoToast(said); return }
+  if (/ask clean sheet|voice input/.test(low)) { openAsk({ phone: where === 'phone' ? true : undefined }); return }   // the real chat, for whoever is using the app
   if (/^clips( tab)?$/.test(low)) { openScreen('C1-ClipsTab'); return }
   if (/\bclips?\b|\bfilm\b(?!-)/.test(low) && !/picker|settings/.test(low)) { const n = Number(low.match(/(\d+) clips/)?.[1] ?? 1); playClips(Array.from({ length: Math.min(n, 8) }, (_, k) => ({ title: n > 1 ? `Clip ${k + 1} of ${n}` : cap(what), sub: 'From the match film.', len: 9 })), cap(what)); return }
   const to = low.match(/^(?:message|chat|call|private thread)(?: to| with)? (.+)$/)?.[1] ?? (/^new message|message composer|message editor|announcement compose|change message|reply$/.test(low) ? '' : undefined)

@@ -3,6 +3,8 @@ import FamilyApp from '../family/FamilyApp'
 import { SwapText } from '../../teamNames'
 import { useBackState, pushPath } from '../../backState'
 import { useState, useEffect, useRef, isValidElement, cloneElement } from 'react'
+import { setAskOff, setAskWho } from '../../ask/askState'
+import { ASK_AS, askAs } from '../../ask/roles'
 import type { ReactNode, ReactElement } from 'react'
 import HomeScreen            from '../HomeScreen'
 import TrainingScreen        from '../TrainingScreen'
@@ -2486,6 +2488,12 @@ export default function DemoApp() {
   const [sbStore, setSbStore] = useState<SandboxStore>(() => readStore())
   const sbFilled = storeHasData(sbStore)
   const [isPhone, setIsPhone] = useState(() => window.innerWidth < 700)
+
+  // Ask Clean Sheet on a page with no Ask panel of its own asks as the role being looked at.
+  useEffect(() => view === 'lookaround' || view === 'sandboxlook' ? setAskWho(askAs(role), true) : view === 'family' ? setAskWho(ASK_AS.family, true) : undefined, [view, role])
+  // A club the visitor set up in the sandbox is theirs, not the demo's sample data: Ask is off there, so nothing they typed is sent.
+  const askOff = view === 'sandboxlook' && !storeIsSample(sbStore)
+  useEffect(() => { setAskOff(askOff); return () => setAskOff(false) }, [askOff])
 
   useEffect(() => {
     const onResize = () => setIsPhone(window.innerWidth < 700)

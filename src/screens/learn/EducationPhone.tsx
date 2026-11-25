@@ -3,6 +3,7 @@
 // A child under 12 has no account, so ECp1 and ECp2 are the parent's. Nothing is counted or ranked for the family:
 // "We did it" sends the coach one tick for that child and clip, and nothing else.
 
+import { openAsk } from '../../ask/askState'
 import { useState } from 'react'
 import { useBackState } from '../../backState'
 import { openScreen } from '../openThing'
@@ -47,7 +48,7 @@ export default function EducationPhone({ start = 'ECp1-FamilyLibrary', team, chi
     <div style={{ flex: 'none', padding: '12px 18px', background: G, color: '#fff', display: 'flex', alignItems: 'center', gap: 10 }}>
       <button aria-label="Back" onClick={() => go(back)} style={{ ...round, border: 0, background: 'transparent', color: '#fff', marginLeft: -10 }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" /></svg></button>
       <span style={{ flexGrow: 1, minWidth: 0 }}><span style={{ display: 'block', fontSize: 12, color: '#cfe6dc' }}>{over}</span><strong style={{ fontSize: 20, lineHeight: '25px' }}>{title}</strong></span>
-      <button aria-label="Ask Clean Sheet" onClick={() => go('ASKp2-PhoneAskOpen')} style={{ ...round, border: '1.5px solid #a9cfc0', background: 'transparent', color: '#fff' }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={SPARK} /></svg></button>
+      <button aria-label="Ask Clean Sheet" onClick={() => openAsk({ phone: true })} style={{ ...round, border: '1.5px solid #a9cfc0', background: 'transparent', color: '#fff' }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={SPARK} /></svg></button>
       <span style={{ ...round, cursor: 'default', background: '#e8cfcf', color: INK, fontSize: 14, fontWeight: 700 }}>{who}</span>
     </div>)
   const tile = (key: string, frame: Frame, len: string, title: string, sub: string, o: string) => (

@@ -1,3 +1,4 @@
+import { openAsk } from '../../ask/askState'
 import { Crest } from '../../clubTheme'
 import { openScreen } from '../openThing'
 import { useBackState } from '../../backState'
@@ -472,7 +473,7 @@ export function HomeStoryTablet({ cfg, onNav }: { cfg: HomeCfg; onNav?: (s: stri
     <div data-lasttool={lastTool}>
       <Frame cfg={cfg} nav={nav} tool={tool}>
         <div style={{ padding: '14px 28px 0' }}>
-          <button onClick={() => nav(cfg.askTarget)} style={{ width: '100%', height: 52, borderRadius: 14, border: `1px solid ${HAIR}`, background: '#fff', display: 'flex', alignItems: 'center', gap: 10, padding: '0 16px', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+          <button onClick={() => openAsk()} style={{ width: '100%', height: 52, borderRadius: 14, border: `1px solid ${HAIR}`, background: '#fff', display: 'flex', alignItems: 'center', gap: 10, padding: '0 16px', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill={GREEN} aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17 5.8 21.3l2.4-7.4L2 9.4h7.6L12 2z" /></svg>
             <span style={{ fontSize: 15, color: GREY }}>{cfg.ask}</span>
           </button>
@@ -519,7 +520,7 @@ export function HomeStoryBody({ cfg, onNav, renderTarget, frameNav }: { cfg: Hom
   if (open && renderTarget) return <TargetShell onBack={() => setOpen(null)}>{renderTarget(open)}</TargetShell>
   return (
     <div data-lasttool={lastTool} style={{ flex: 1, display: 'flex', flexDirection: 'column', background: '#f4f6f5', fontFamily: "'DM Sans',system-ui,sans-serif", overflowY: 'auto' }}>
-      <AskLine cfg={cfg} nav={nav} />
+      <AskLine cfg={cfg} />
       <div style={{ padding: '12px 28px 18px', display: 'grid', gap: 14, gridTemplateColumns: 'minmax(0,1fr) minmax(0,1.08fr) 300px', gridTemplateRows: 'auto minmax(0,1fr)', flex: 1 }}>
         <div style={{ gridColumn: '1 / 4', background: DARK, borderRadius: 20, padding: cfg.take ? '14px 24px' : '18px 24px' }}>
           <ProofInner p={cfg.proof} take={cfg.take} nav={nav} tool={tool} />
@@ -533,10 +534,10 @@ export function HomeStoryBody({ cfg, onNav, renderTarget, frameNav }: { cfg: Hom
   )
 }
 
-function AskLine({ cfg, nav }: { cfg: HomeCfg; nav: (s: string) => void }) {
+function AskLine({ cfg }: { cfg: HomeCfg }) {
   return (
     <div style={{ padding: '14px 28px 0' }}>
-      <button onClick={() => nav(cfg.askTarget)} style={{ width: '100%', height: 52, borderRadius: 14, border: `1px solid ${HAIR}`, background: '#fff', display: 'flex', alignItems: 'center', gap: 10, padding: '0 16px', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+      <button onClick={() => openAsk()} style={{ width: '100%', height: 52, borderRadius: 14, border: `1px solid ${HAIR}`, background: '#fff', display: 'flex', alignItems: 'center', gap: 10, padding: '0 16px', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
         <svg width="18" height="18" viewBox="0 0 24 24" fill={GREEN} aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17 5.8 21.3l2.4-7.4L2 9.4h7.6L12 2z" /></svg>
         <span style={{ fontSize: 15, color: GREY }}>{cfg.ask}</span>
       </button>
@@ -557,7 +558,7 @@ export function HomeStoryMiniRoosTraining({ cfg, onNav }: { cfg: HomeCfg; onNav?
   return (
     <div data-lasttool={lastTool}>
       <Frame cfg={cfg} nav={nav} tool={tool}>
-        <AskLine cfg={cfg} nav={nav} />
+        <AskLine cfg={cfg} />
         <div style={{ padding: '12px 28px 18px', display: 'grid', gap: 14, gridTemplateColumns: 'minmax(0,1fr) minmax(0,1.08fr) 300px', gridTemplateRows: 'auto minmax(0,1fr)', flex: 1 }}>
           <div style={{ gridColumn: '1 / 4', background: DARK, borderRadius: 20, padding: cfg.take ? '14px 24px' : '18px 24px' }}>
             <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 28, alignItems: 'center' }}>
@@ -617,7 +618,7 @@ export function HomeStoryMiniRoosNoFilm({ cfg, onNav }: { cfg: HomeCfg; onNav?: 
   return (
     <div data-lasttool={lastTool}>
       <Frame cfg={cfg} nav={nav} tool={tool}>
-        <AskLine cfg={cfg} nav={nav} />
+        <AskLine cfg={cfg} />
         <div style={{ padding: '12px 28px 18px', display: 'grid', gap: 14, gridTemplateColumns: 'minmax(0,1fr) minmax(0,1.08fr) 300px', gridTemplateRows: 'auto minmax(0,1fr)', flex: 1 }}>
           <div style={{ gridColumn: '1 / 4', background: DARK, borderRadius: 20, padding: '18px 24px' }}>
             <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 28, alignItems: 'center' }}>

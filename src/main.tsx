@@ -5,6 +5,7 @@ import DevScreens from './screens/dev/DevScreens.tsx'
 import TrialShare from './screens/trial/TrialShare.tsx'
 import { ClipSheetHost } from './screens/clips/clipSheet.tsx'
 import { OpenHost } from './screens/openThing.tsx'
+import { AskHost } from './ask/AskHost.tsx'
 import { ClubRoot } from './clubTheme.tsx'
 
 // /share/<slug> is the page a new club opens from a trial pack link: no demo bar, no app frame.
@@ -16,5 +17,5 @@ const root = share
   : <App />
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode><ClubRoot>{root}<OpenHost /><ClipSheetHost /></ClubRoot></StrictMode>,
+  <StrictMode><ClubRoot>{root}<OpenHost /><AskHost /><ClipSheetHost /></ClubRoot></StrictMode>,
 )

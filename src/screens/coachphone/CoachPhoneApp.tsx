@@ -2,7 +2,9 @@ import RD5CoachPhoneReview from '../dashboards/RD5CoachPhoneReview'
 import { useRead, markRead } from '../readStore'
 import { useBackState } from '../../backState'
 import { openThing } from '../openThing'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import AskChat, { type AskPlace } from '../../ask/AskChat'
+import { ASK_AS } from '../../ask/roles'
 import QCp1BeforeKickOffPhone from '../capture/QCp1BeforeKickOffPhone'
 import CaptureFlow, { isCaptureId } from '../capture/CaptureFlow'
 import { CNp18IncidentLog } from '../connected/CnPhone'
@@ -18,40 +20,25 @@ type Phase = 'preseason' | 'season' | 'postseason' | 'restmonth'
 
 const SPARKLE_D = 'M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z'
 
-function PhoneAskSheet({ onClose }: { onClose: () => void }) {
-  const [input, setInput] = useState('')
-  const [toast, setToast] = useState<string | null>(null)
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 2500) }
+function PhoneAskSheet({ onClose, places }: { onClose: () => void; places: AskPlace[] }) {
+  useEffect(() => { const k = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }; window.addEventListener('keydown', k); return () => window.removeEventListener('keydown', k) }, [onClose])
   return (
-    <div style={{ position: 'absolute', inset: 0, zIndex: 40, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+    <div style={{ position: 'fixed', inset: 0, maxWidth: 390, margin: '0 auto', zIndex: 40, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>{/* fixed to the phone's screen, like the tab bar, so the box to type in is always in view */}
       <div onClick={onClose} style={{ position: 'absolute', inset: 0, background: 'rgba(16,33,31,0.3)' }} />
-      <div style={{ position: 'relative', background: '#fff', borderRadius: '20px 20px 0 0', boxShadow: '0 -4px 24px rgba(16,33,31,0.14)', display: 'flex', flexDirection: 'column', maxHeight: '72%' }}>
+      <div role="dialog" aria-label="Ask Clean Sheet" style={{ position: 'relative', background: '#fff', borderRadius: '20px 20px 0 0', boxShadow: '0 -4px 24px rgba(16,33,31,0.14)', display: 'flex', flexDirection: 'column', height: 'min(640px, 82%)', overflow: 'hidden' }}>
         <div style={{ display: 'flex', justifyContent: 'center', padding: '10px 0 4px', flexShrink: 0 }}>
           <div style={{ width: 40, height: 4, borderRadius: 2, background: '#e8edeb' }} />
         </div>
-        <div style={{ padding: '6px 16px 10px', display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
+        <div style={{ padding: '0 8px 4px 16px', display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={SPARKLE_D}/></svg>
           <span style={{ fontSize: 14, fontWeight: 700, color: G, flex: 1 }}>Ask Clean Sheet</span>
-          <button onClick={onClose} style={{ width: 28, height: 28, borderRadius: '50%', border: '1px solid #e8edeb', background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          <button onClick={onClose} aria-label="Close" style={{ width: 44, height: 44, border: 0, background: 'none', padding: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
+            <span style={{ width: 28, height: 28, borderRadius: '50%', border: '1px solid #e8edeb', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></span>
           </button>
         </div>
-        <div style={{ flex: 1, overflowY: 'auto', padding: '0 16px 10px', display: 'flex', flexDirection: 'column', gap: 8 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 2 }}>About today</div>
-          {['Who needs a rest this week?', 'What should we work on tonight?', 'Is everyone getting fair minutes?'].map(q => (
-            <button key={q} onClick={() => st(q)} style={{ width: '100%', textAlign: 'left', padding: '10px 12px', borderRadius: 10, border: '1px solid #e8edeb', background: '#eef5f2', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{q}</button>
-          ))}
-        </div>
-        <div style={{ padding: '10px 16px 20px', borderTop: '1px solid #e8edeb', flexShrink: 0 }}>
-          <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 6 }}>
-            <input value={input} onChange={e => setInput(e.target.value)} placeholder="Ask something…" style={{ flex: 1, height: 40, padding: '0 12px', borderRadius: 8, border: '1px solid #e8edeb', fontSize: 13, fontFamily: 'inherit', outline: 'none' }} />
-            <button onClick={() => st('Ask sent.')} style={{ width: 40, height: 40, borderRadius: 8, background: G, border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-            </button>
-          </div>
-          <div style={{ fontSize: 11, color: MUT, lineHeight: 1.5 }}>Uses only what you can see as coach. Never sends anything by itself.</div>
-        </div>
-        {toast && <div style={{ position: 'absolute', bottom: 80, left: '50%', transform: 'translateX(-50%)', background: GD, color: '#fff', padding: '8px 16px', borderRadius: 20, fontSize: 12, fontWeight: 600, whiteSpace: 'nowrap' }}>{toast}</div>}
+        {/* The working chat: the question goes to the demo's server with the coach's role and what is on the phone. */}
+        <AskChat role={ASK_AS.coach.role} heading="About today" examples={ASK_AS.coach.examples} places={places} onOpened={onClose}
+          note="Uses only what you can see as coach. Never sends anything by itself." />
       </div>
     </div>
   )
@@ -104,7 +91,7 @@ function PhoneShell({ children, tab, onTab, onPlan, askOpen, onAskToggle }: {
       <div style={{ flex: 1, overflowY: 'auto', paddingBottom: 68 }}>
         {children}
       </div>
-      {askOpen && onAskToggle && <PhoneAskSheet onClose={onAskToggle} />}
+      {askOpen && onAskToggle && <PhoneAskSheet onClose={onAskToggle} places={tabs.map(t => ({ label: t.label, go: () => onTab(t.key) }))} />}
       {/* Bottom tab bar */}
       <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, maxWidth: 390, margin: '0 auto', background: '#fff', borderTop: '1px solid #e8e9e7', display: 'flex', height: 68, zIndex: 10 }}>
         {tabs.map(t => (

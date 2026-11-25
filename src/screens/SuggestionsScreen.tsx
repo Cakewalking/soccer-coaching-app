@@ -1,6 +1,9 @@
 import { openThing } from './openThing'
 import { useDoneAll, markDone } from './doneStore'
 import { useState } from 'react'
+import AskChat from '../ask/AskChat'
+import { askingAs } from '../ask/askState'
+import { ASK_AS } from '../ask/roles'
 import { goApp } from './sandbox/sandboxNav'
 
 const G    = '#2f6252'
@@ -326,113 +329,21 @@ function WhyView({ onBack }: { onBack: () => void }) {
 // ─── SG3 — Ask Clean Sheet ────────────────────────────────────────────────────
 
 function AskView({ onBack }: { onBack: () => void }) {
-  const [submitted, setSubmitted] = useState(false)
-  const [question, setQuestion] = useState('')
-  const [toast, setToast] = useState<string|null>(null)
-  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
-
-  const exampleQ = "We keep getting caught on the counter after our own corners. What should I run?"
-
-  if (!submitted) return (
-    <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-        <BackBtn onBack={onBack}/>
-        <div style={{ fontSize: 20, fontWeight: 700, color: INK }}>Ask Clean Sheet</div>
-      </div>
-      <div style={{ fontSize: 14, color: MUT }}>Describe the problem in your own words</div>
-
-      <textarea
-        value={question}
-        onChange={e => setQuestion(e.target.value)}
-        placeholder="Type or say it the way you'd tell another coach."
-        style={{ height: 120, padding: 14, border: `1px solid ${LN}`, borderRadius: 12, fontFamily: 'inherit', fontSize: 14, color: INK, background: '#fff', resize: 'none', outline: 'none', lineHeight: 1.5 }}
-      />
-      <div style={{ display: 'flex', gap: 10 }}>
-        <button onClick={() => { setQuestion(exampleQ); setSubmitted(true) }} style={{ height: 44, flex: 1, borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
-          <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-          Ask
-        </button>
-        <button onClick={() => openThing('voice input', 'coach')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 8 }}>
-          <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3zM19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8"/></svg>
-          Mic
-        </button>
-      </div>
-
-      <div>
-        <SectionHead label="Try asking"/>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-          {[
-            'Why do we concede late?',
-            'What should Mia work on?',
-            'A warm-up for 9 players and no goals',
-            'Is the pressing drill working?',
-          ].map(q => (
-            <button key={q} onClick={() => { setQuestion(q); setSubmitted(true) }} style={{ textAlign: 'left' as const, padding: '10px 14px', border: `1px solid ${LN}`, borderRadius: 10, background: '#fff', fontFamily: 'inherit', fontSize: 13, color: G2, fontWeight: 600, cursor: 'pointer' }}>"{q}"</button>
-          ))}
-        </div>
-      </div>
-
-      <div style={{ background: PALE, borderRadius: 14, padding: '14px 16px' }}>
-        <div style={{ fontSize: 13, fontWeight: 700, color: GD, marginBottom: 6 }}>Where answers come from</div>
-        <div style={{ fontSize: 13, color: G, lineHeight: 1.5 }}>Only your own team's games, recordings and notes, and the drill library. If there isn't enough to go on, it says so and doesn't guess.</div>
-        <div style={{ fontSize: 13, color: G, lineHeight: 1.5, marginTop: 6 }}>It won't rank players, or answer about a child whose parent hasn't agreed.</div>
-      </div>
-      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
-    </div>
-  )
-
+  // The working chat, in the page: the question goes to the demo's server as whoever is using the app (this screen is U12 Sam's head coach's).
+  const who = askingAs(), role = who === ASK_AS.visitor ? ASK_AS.coach.role : who.role
   return (
-    <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-        <BackBtn onBack={onBack}/>
-        <div style={{ fontSize: 20, fontWeight: 700, color: INK }}>Ask Clean Sheet</div>
-      </div>
-
-      <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '14px 16px', fontSize: 14, color: INK, lineHeight: 1.5, fontStyle: 'italic' }}>
-        "{exampleQ}"
-      </div>
-
-      {/* What I found */}
-      <div style={{ background: PALE, borderRadius: 14, padding: '14px 16px' }}>
-        <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', color: G, marginBottom: 8 }}>WHAT I FOUND IN YOUR GAMES</div>
-        <div style={{ fontSize: 13, color: GD, lineHeight: 1.5, marginBottom: 10 }}>In your last 6 games, 5 counters started from your own corners and 2 led to goals. Each time only Ava stayed back, and nobody stood in front of their striker.</div>
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' as const }}>
-          {['6 games', '5 clips', 'Vests: 4 players slow to turn'].map(t => (
-            <span key={t} style={{ fontSize: 12, fontWeight: 600, color: G, background: '#fff', padding: '3px 10px', borderRadius: 999, border: `1px solid ${G2}44` }}>{t}</span>
-          ))}
+    <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
+      <div style={{ flex: 'none', padding: '20px 28px 4px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <BackBtn onBack={onBack}/>
+          <div style={{ fontSize: 20, fontWeight: 700, color: INK }}>Ask Clean Sheet</div>
         </div>
-        <button onClick={() => openThing('5 clips', 'coach')} style={{ marginTop: 10, height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }}>
-          <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          Watch the 5 clips
-        </button>
+        <div style={{ fontSize: 14, color: MUT, lineHeight: 1.5 }}>Describe the problem in your own words, the way you'd tell another coach. If there isn't enough to go on, it says so and doesn't guess. It won't rank players.</div>
       </div>
-
-      {/* Three drills */}
-      <div>
-        <SectionHead label="Three drills that fit"/>
-        {[
-          { n: '1', name: 'Rest defence: two stay, one screens', note: 'Set who stays back before every corner · 12 min · 10 players', tag: 'Teaches the shape' },
-          { n: '2', name: 'Corner, then counter game', note: 'Attack a corner, then defend a 3 against 2 the other way · 15 min · 12 players', tag: 'Closest to what happened' },
-          { n: '3', name: 'Recovery race', note: 'Sprint back past the ball before the pass is played · 8 min · whole squad', tag: 'Lower load · fits a heavy week' },
-        ].map((drill) => (
-          <div key={drill.n} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '12px 16px', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 12 }}>
-            <div style={{ width: 28, height: 28, borderRadius: '50%', background: GD, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 800, flexShrink: 0 }}>{drill.n}</div>
-            <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>{drill.name}</div>
-              <div style={{ fontSize: 12, color: MUT, marginTop: 2 }}>{drill.note}</div>
-              <span style={{ fontSize: 11, fontWeight: 700, color: G2, background: PALE, padding: '2px 8px', borderRadius: 999, marginTop: 6, display: 'inline-block' }}>{drill.tag}</span>
-            </div>
-            <button onClick={() => showToast(`${drill.name.split(':')[0]} added to Tuesday.`)} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>Add</button>
-          </div>
-        ))}
+      <div style={{ flex: 1, minHeight: 420, maxWidth: 760, padding: '0 12px', display: 'flex', flexDirection: 'column' }}>
+        <AskChat role={role} examples={['Why do we concede late?', 'What should Mia work on?', 'A warm-up for 9 players and no goals', 'Is the pressing drill working?']}
+          note="Uses only your own team's games, recordings and notes, and the drill library. Never sends anything by itself." />
       </div>
-
-      {/* Follow up */}
-      <div style={{ display: 'flex', gap: 10 }}>
-        <input defaultValue="" placeholder="Ask a follow-up, or tap the microphone" style={{ flex: 1, height: 44, padding: '0 14px', border: `1px solid ${LN}`, borderRadius: 999, fontFamily: 'inherit', fontSize: 14, color: INK, outline: 'none', background: '#fff' }}/>
-        <button onClick={() => showToast('Sending follow-up question.')} style={{ height: 44, padding: '0 20px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Ask</button>
-      </div>
-      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }

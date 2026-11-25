@@ -186,6 +186,9 @@ function avatarBg(status: SquadPlayer['status']): string {
   return '#e8cfcf'
 }
 
+// Ask Clean Sheet never gets a wellness answer: the pieces of this screen that show one are marked `data-ask-skip`, which leaves them out of what is sent with a question.
+const FROM_WELLNESS = /sleep|wellness|check-?in|mood|feeling/i
+
 function wellnessColor(w: number): string {
   if (w < 3.0) return '#9d7c80'
   if (w < 3.8) return '#10211f'
@@ -218,9 +221,9 @@ function PlayerCard({ p, selected, onClick }: { p: SquadPlayer; selected: boolea
       </div>
       <div style={{ flexGrow: 1, minWidth: 0 }}>
         <div style={{ fontSize: 13, fontWeight: 600, color: '#10211f', lineHeight: '17px' }}>{p.name}</div>
-        <div style={{ fontSize: 12, color: '#5c6b67', lineHeight: '16px' }}>{p.note}</div>
+        <div data-ask-skip={FROM_WELLNESS.test(p.note) ? '' : undefined} style={{ fontSize: 12, color: '#5c6b67', lineHeight: '16px' }}>{p.note}</div>
       </div>
-      <div style={{ flex: 'none', fontSize: 14, fontWeight: 700, color: p.wellness ? wellnessColor(p.wellness) : '#a3b0ad' }}>
+      <div data-ask-skip="" style={{ flex: 'none', fontSize: 14, fontWeight: 700, color: p.wellness ? wellnessColor(p.wellness) : '#a3b0ad' }}>
         {p.wellness ?? '—'}
       </div>
     </button>
@@ -262,7 +265,7 @@ function RightPanel({ p, onProfile }: { p: SquadPlayer; onProfile: () => void })
       </div>
 
       {/* Alert box */}
-      <div style={{ background: alert.bg, borderRadius: 12, padding: '12px 14px' }}>
+      <div data-ask-skip={p.status === 'checkin' || p.status === 'missing' ? '' : undefined} style={{ background: alert.bg, borderRadius: 12, padding: '12px 14px' }}>
         <div style={{ fontSize: 13, fontWeight: 700, color: alert.text, marginBottom: 4 }}>{alert.label}</div>
         <div style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>{alertDesc}</div>
       </div>
@@ -270,7 +273,7 @@ function RightPanel({ p, onProfile }: { p: SquadPlayer; onProfile: () => void })
       {/* Stats row */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
         {/* Wellness */}
-        <div style={{ background: '#faf5ec', borderRadius: 10, padding: 12 }}>
+        <div data-ask-skip="" style={{ background: '#faf5ec', borderRadius: 10, padding: 12 }}>
           <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#5c6b67', marginBottom: 4 }}>Wellness</div>
           <div style={{ fontSize: 22, fontWeight: 700, color: p.wellness ? wellnessColor(p.wellness) : '#a3b0ad' }}>
             {p.wellness ?? '—'}
@@ -459,7 +462,7 @@ export default function SquadScreen({ onPlayerProfile, empty, players: propPlaye
           </div>
 
           {/* Wellness */}
-          <div style={{ background: '#ffffff', border: '1px solid #e9eae8', borderRadius: 14, padding: 16 }}>
+          <div data-ask-skip="" style={{ background: '#ffffff', border: '1px solid #e9eae8', borderRadius: 14, padding: 16 }}>
             <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#5c6b67', marginBottom: 8 }}>Wellness this week</div>
             <div style={{ fontSize: 24, fontWeight: 700, color: '#10211f', marginBottom: 4 }}>{wellnessAvg} / 5</div>
             <div style={{ fontSize: 13, color: '#4a5a57' }}>Up from 3.6 · {players.filter(p => p.wellness).length} of {players.length} checked in today</div>

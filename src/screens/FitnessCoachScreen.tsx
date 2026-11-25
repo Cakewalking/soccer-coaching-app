@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react'
 import { goSetup } from './sandbox/sandboxNav'
 import { demoToast } from './demoToast'
 import CoachTabletFrame from './CoachTabletFrame'
+import { setAskWho } from '../ask/askState'
+import { ASK_AS } from '../ask/roles'
 import ClipsScreen from './ClipsScreen'
 import RecordHub from './RecordHub'
 import SessionTab from './session/SessionTab'
@@ -203,6 +205,8 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
   const [logTrain, setLogTrain]     = useState<string | null>(null)
 
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(''), 3000) }
+  // Ask Clean Sheet: an Ask button on a page inside this app opens this app's own panel. (The empty app has no panel.)
+  useEffect(() => empty ? undefined : setAskWho({ ...ASK_AS.fitness, open: () => { setAskOpen(true); return true } }), [empty])
 
   const RPE_PLAYERS = ['Mia T', 'Noah O', 'Ella B', 'Jai P', 'Zoe H', 'Grace O', 'Liam H', 'Finn W', 'Ruby C', 'Isla M', 'Leo M']
   const RPE_EMOJIS = [
@@ -225,10 +229,11 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
   useEffect(() => { if (chatWanted) { setTab('home'); setHomeSub('messages') } }, [chatWanted, setTab, setHomeSub])
   const SQUAD_SUBS: SquadSubTab[] = ['growth', 'injuries', 'test-results']
   const TRAIN_SUBS: TrainingSubTab[] = ['tests', 'her-part', 'measuring', 'sprint']
+  const HOME_LABELS = ['Overview', 'Fitness level', 'Messages'], SQUAD_LABELS = ['Growth', 'Injuries', 'Test results over time'], TRAIN_LABELS = ['Fitness tests', 'Her part tonight', 'Measuring session', 'Sprint race']
   const subTabs =
-    tab === 'home'     ? ['Overview', 'Fitness level', 'Messages'] :
-    tab === 'squad'    ? ['Growth', 'Injuries', 'Test results over time'] :
-    tab === 'training' ? ['Fitness tests', 'Her part tonight', 'Measuring session', 'Sprint race'] :
+    tab === 'home'     ? HOME_LABELS :
+    tab === 'squad'    ? SQUAD_LABELS :
+    tab === 'training' ? TRAIN_LABELS :
     film               ? FILM_SUBS :
     tab === 'learn'    ? ['Education centre'] : []
   const subIndex =
@@ -242,6 +247,17 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
     else if (tab === 'training') setTrainSub(TRAIN_SUBS[i])
     else if (film) { const to = i === 0 ? 'record' : 'clips'; if (i > 0) setClipsTab(i - 1); if (to !== tab) { setTab(to); onNavChange?.(to) } }
   }
+
+  // The screens Ask Clean Sheet can offer to open: every tab of this app, by its menu label.
+  const askGo = (to: FitnessTab, then?: () => void) => () => { setTab(to); onNavChange?.(to); then?.(); setAskOpen(false) }
+  const askPlaces = [
+    ...HOME_LABELS.map((t, i) => ({ label: `Home › ${t}`, go: askGo('home', () => setHomeSub(HOME_SUBS[i])) })),
+    ...SQUAD_LABELS.map((t, i) => ({ label: `Squad › ${t}`, go: askGo('squad', () => setSquadSub(SQUAD_SUBS[i])) })),
+    ...TRAIN_LABELS.map((t, i) => ({ label: `Training › ${t}`, go: askGo('training', () => setTrainSub(TRAIN_SUBS[i])) })),
+    { label: 'Match day', go: askGo('matchday') },
+    ...FILM_SUBS.map((t, i) => ({ label: `Record › ${t}`, go: askGo(i === 0 ? 'record' : 'clips', () => { if (i > 0) setClipsTab(i - 1) }) })),
+    { label: 'Learn › Education centre', go: askGo('learn') },
+  ]
 
   if (empty) {
     return (
@@ -300,6 +316,8 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
       onAskToggle={() => setAskOpen(o => !o)}
       askQuestions={['Who is growing fast?', 'Any load concerns this week?', 'Who needs a sprint limit review?']}
       askRole="fitness coach"
+      askAs={ASK_AS.fitness.role}
+      askPlaces={askPlaces}
     >
       <div style={{ flexGrow: 1, overflowY: 'auto' }}>
 

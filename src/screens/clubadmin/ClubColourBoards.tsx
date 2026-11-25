@@ -2,6 +2,7 @@
 // KC2 is the rule board. KC5, KC6 and KC7 are the session screens at a red, a navy-and-gold and a sky blue club.
 // KC8 is a season report with the club's band. KCp1 to KCp3 are a parent with children at two clubs.
 
+import { openAsk } from '../../ask/askState'
 import { useBackState } from '../../backState'
 import { AMBER, BAYSIDE, ClubScope, Crest, HARBOUR, INK, IRONBARK, REDGUM, CS_GREEN } from '../../clubTheme'
 import CoachTabletFrame from '../CoachTabletFrame'
@@ -110,7 +111,7 @@ export function KC8Report({ onNav }: { onNav?: Nav }) {
 // ── KCp1, KCp2, KCp3: a parent with children at two clubs ────────────────────
 const KIDS = { ari: { club: REDGUM, child: 'Ari', team: 'U11 Luke', next: 'next game Sunday 9:30', id: 'KCp1-ParentRedClub' }, mia: { club: BAYSIDE, child: 'Mia', team: 'U14 Girls', next: 'next game Sunday 11:00', id: 'KCp2-ParentPaleClub' } }
 const round: React.CSSProperties = { flex: 'none', width: 44, height: 44, borderRadius: 999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0, cursor: 'pointer' }
-const Ask = ({ go }: { go: Nav }) => <button aria-label="Ask Clean Sheet" onClick={() => go('ASKp2-PhoneAskOpen')} style={{ ...round, border: '1.5px solid #a9cfc0', background: 'transparent', color: '#fff' }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={SPARK} /></svg></button>
+const Ask = () => <button aria-label="Ask Clean Sheet" onClick={() => openAsk({ phone: true })} style={{ ...round, border: '1.5px solid #a9cfc0', background: 'transparent', color: '#fff' }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={SPARK} /></svg></button>
 const Me = () => <span data-club-keep="" style={{ ...round, cursor: 'default', background: '#e8cfcf', color: INK, fontSize: 14, fontWeight: 700 }}>DB</span>
 
 export function KCParent({ start = 'KCp1-ParentRedClub', onNav }: { start?: string; onNav?: Nav }) {
@@ -130,7 +131,7 @@ export function KCParent({ start = 'KCp1-ParentRedClub', onNav }: { start?: stri
       <div data-club-none="" style={{ flex: 'none', padding: '12px 18px', background: G, color: '#fff', display: 'flex', alignItems: 'center', gap: 10 }}>
         <button aria-label="Back" onClick={() => go('KCp1-ParentRedClub')} style={{ ...round, border: 0, background: 'transparent', color: '#fff', marginLeft: -10 }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" /></svg></button>
         <span style={{ flexGrow: 1 }}><span style={{ display: 'block', fontSize: 12, color: '#cfe6dc' }}>Dana Boyd</span><strong style={{ fontSize: 21 }}>Your children</strong></span>
-        <Ask go={go} /><Me />
+        <Ask /><Me />
       </div>
       <div role="radiogroup" aria-label="Your children" style={{ padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
         {[KIDS.ari, KIDS.mia].map((c, i) => <ClubScope key={c.child} {...c.club}>
@@ -149,7 +150,7 @@ export function KCParent({ start = 'KCp1-ParentRedClub', onNav }: { start?: stri
     <div data-screen={k.id} style={phone}><ClubScope {...k.club}>
       <div data-club-bar="" style={{ flex: 'none', padding: '12px 18px', background: G, color: '#fff', display: 'flex', alignItems: 'center', gap: 10 }}>
         <span style={{ flexGrow: 1 }}><span style={{ display: 'block', fontSize: 12 }}>U11 Luke · {k.club.name}</span><strong style={{ fontSize: 21 }}>Hi Dana</strong></span>
-        <Ask go={go} /><Me />
+        <Ask /><Me />
       </div>
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
         <section style={card}><span style={cap}>SUNDAY</span><strong style={{ fontSize: 19 }}>9:30 v Ridgeway, home</strong><span style={{ fontSize: 14, color: MUT }}>Be there by 9:00 · {k.club.name} Reserve, pitch 3</span>

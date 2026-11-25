@@ -1,3 +1,4 @@
+import { openAsk } from '../../ask/askState'
 import { kept, keep } from '../kept'
 import { useState } from 'react'
 import { INK, MUT, GREEN, CTL, PALEON, DARK, PALEGREEN } from '../step4/directorParts'
@@ -32,7 +33,7 @@ export default function YTp1ParentVotes({ onNav }: { onNav?: (s: string) => void
           <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)' }}>U12 Sam · Sunday at Ironbark</div>
           <div style={{ fontSize: 19, fontWeight: 800, color: '#fff' }}>Rate the game</div>
         </div>
-        <div aria-label="Ask Clean Sheet" onClick={() => onNav?.('ASKp2-PhoneAskOpen')} style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+        <div role="button" tabIndex={0} aria-label="Ask Clean Sheet" onClick={() => openAsk({ phone: true })} onKeyDown={e => { if (e.key === 'Enter') openAsk({ phone: true }) }} style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="rgba(255,255,255,0.9)"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17 5.8 21.3l2.4-7.4L2 9.4h7.6L12 2z"/></svg>
         </div>
         <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#c0a070', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#fff' }}>LT</div>

@@ -2,7 +2,12 @@ import { openScreen } from './openThing'
 import { Crest } from '../clubTheme'
 import { useBackState } from '../backState'
 import { openThing } from './openThing'
-import { useState, cloneElement, isValidElement } from 'react'
+import { useEffect, useState, cloneElement, isValidElement } from 'react'
+import AskChat from '../ask/AskChat'
+import { setAskContext } from '../ask/ask'
+import { setAskWho } from '../ask/askState'
+import { ASK_AS } from '../ask/roles'
+import { clubContext } from '../ask/clubContext'
 import type { ReactElement } from 'react'
 import type { AdminTab } from './clubadmin/data'
 import ClubFlowScreen from './clubflows/flows'
@@ -36,8 +41,10 @@ export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM'
   const openFlow = (id: string) => { const t = DIRECTOR_FLOW_TAB[id]; if (!t) { openScreen(id); return } setTab(t); setFlow(id) }
   const flowGo = (id: string) => { if (id === 'CN20-Sponsors' || frameNav(id)) { setFlow(null); return } if (onNav) onNav(id); else { setFlow(null); openScreen(id) } }
   const [askOpen, setAskOpen] = useState(false)
-  const [toast, setToast] = useState<string|null>(null)
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  // Ask Clean Sheet: who is asking. The director and the chair get the club's totals team by team; the welfare officer gets no summary, and her concerns are never sent.
+  const askAs = ASK_AS[role === 'chair' ? 'chair' : role === 'welfare' ? 'welfare' : 'director']
+  useEffect(() => role === 'welfare' ? undefined : setAskContext('club', clubContext), [role])
+  useEffect(() => setAskWho({ ...askAs, open: () => { setAskOpen(true); return true } }), [askAs])
 
   // Home-story deep-links that match a real frame tab switch the outer nav
   // (lit in the top bar) instead of rendering a nested, double-framed screen.
@@ -146,12 +153,12 @@ export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM'
           {tab === 'leaguesync'   && <LeagueSyncTab empty={empty} />}
           {tab === 'referees'     && <RefereesTab empty={empty} />}
           {tab === 'sideline'     && <SidelineTab empty={empty} />}
-          {tab === 'welfare'      && <WelfareTab empty={empty} />}
+          {tab === 'welfare'      && <div data-ask-skip="" style={{ display: 'contents' }}><WelfareTab empty={empty} /></div>}{/* concerns are never sent with a question */}
           {tab === 'concussion'   && <ConcussionTab empty={empty} />}
           {tab === 'goalkeepers'  && <GoalkeepersTab empty={empty} />}
           {tab === 'footballyear' && <SP18ClubPhases onBack={() => setTab('club')} />}
           {tab === 'trialwindow'  && <SP19TrialWindow onBack={() => setTab('club')} />}
-          {tab === 'messages'     && (role === 'welfare' ? <div style={{ flex: 1, minHeight: 560, display: 'flex' }}><DirectorMessages embedded as="welfare" /></div> : <DirectorMessages />)}
+          {tab === 'messages'     && (role === 'welfare' ? <div data-ask-skip="" style={{ flex: 1, minHeight: 560, display: 'flex' }}><DirectorMessages embedded as="welfare" /></div> : <DirectorMessages />)}
           {tab === 'files'        && <FilesTab onNav={onNav} />}
           {tab === 'features'     && <FeaturesTab onNav={onNav} initial={initialFeature} />}
         </div>
@@ -165,26 +172,12 @@ export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM'
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
               </button>
             </div>
-            <div style={{ flex: 1, overflowY: 'auto', padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 10 }}>
-              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: '#4a5a57', textTransform: 'uppercase' as const, marginTop: 4 }}>About this screen</div>
-              {['Which teams are outside fair game time?', 'Who can cover U9 Mark on Sunday?', 'Which teams have recorded the fewest games?'].map(q => (
-                <button key={q} onClick={() => st(q)} style={{ width: '100%', textAlign: 'left', padding: '10px 14px', borderRadius: 10, border: '1px solid #e8edeb', background: '#fff', color: '#2f6252', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{q}</button>
-              ))}
-              <div style={{ fontSize: 12, color: '#4a5a57', marginTop: 4 }}>Or anything else</div>
-            </div>
-            <div style={{ background: '#fff', padding: '10px 14px 12px', borderTop: '1px solid #e8edeb', flexShrink: 0 }}>
-              <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 6 }}>
-                <input placeholder="Ask a follow-up…" style={{ flex: 1, height: 40, padding: '0 12px', borderRadius: 8, border: '1px solid #e8edeb', fontSize: 13, fontFamily: 'inherit', outline: 'none', color: '#10211f' }} />
-                <button onClick={() => st('Ask sent.')} style={{ width: 44, height: 44, borderRadius: 8, background: '#2f6252', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-                </button>
-              </div>
-              <div style={{ fontSize: 11, color: '#4a5a57', lineHeight: 1.5 }}>Uses only what you can see as {role === 'chair' ? 'club chair' : role === 'welfare' ? 'welfare officer' : 'director of football'}. Never sends anything by itself.</div>
-            </div>
+            {/* The working chat: the question goes to the demo's server with this person's role and what is on the screen. */}
+            <AskChat role={askAs.role} heading="About this screen" examples={askAs.examples} note={askAs.note} focus
+              places={TABS.map(t => ({ label: t.label, go: () => { setTab(t.id); setFlow(null) } }))} onOpened={() => setAskOpen(false)} />
           </aside>
         )}
       </div>
-    {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }

@@ -1,6 +1,7 @@
 // FBp1 — the formation board on the coach's phone. Tap a bench player, then tap a
 // spot. Each half has its own line-up, and Save keeps both on this device.
 
+import { openAsk } from '../../ask/askState'
 import { useState } from 'react'
 import { TEAMS, shapesFor, shapeByName, remap, type Player } from './formationData'
 
@@ -64,7 +65,7 @@ export default function FormationPhone({ onNav }: { onNav?: (s: string) => void 
           <span style={{ fontSize: 12, lineHeight: '16px', opacity: 0.85 }}>{cfg.teamLabel.split(' · ')[0]} · {cfg.game.replace(' · ', ' ')}</span>
           <strong style={{ fontSize: 20, lineHeight: '26px' }}>Formation</strong>
         </span>
-        <button onClick={() => onNav?.('ASKp2-PhoneAskOpen')} aria-label="Ask Clean Sheet" style={{ flex: 'none', width: 44, height: 44, borderRadius: 999, border: '1.5px solid rgba(255,255,255,0.7)', background: 'none', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M10 3l1.9 5.1L17 10l-5.1 1.9L10 17l-1.9-5.1L3 10l5.1-1.9zM18 14l.9 2.1L21 17l-2.1.9L18 20l-.9-2.1L15 17l2.1-.9z" /></svg></button>
+        <button onClick={() => openAsk({ phone: true })} aria-label="Ask Clean Sheet" style={{ flex: 'none', width: 44, height: 44, borderRadius: 999, border: '1.5px solid rgba(255,255,255,0.7)', background: 'none', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M10 3l1.9 5.1L17 10l-5.1 1.9L10 17l-1.9-5.1L3 10l5.1-1.9zM18 14l.9 2.1L21 17l-2.1.9L18 20l-.9-2.1L15 17l2.1-.9z" /></svg></button>
         <span aria-hidden="true" style={{ flex: 'none', width: 40, height: 40, borderRadius: 999, background: '#e8cfcf', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700 }}>SK</span>
       </header>
 

@@ -1,3 +1,4 @@
+import { openAsk } from '../../ask/askState'
 import { useState, type CSSProperties, type ReactNode } from 'react'
 import { useBackState } from '../../backState'
 import { Crest } from '../../clubTheme'
@@ -351,7 +352,7 @@ function Bars({ frame, go }: { frame: Frame; go: Go }) {
             </button>
           ))}
         </nav>
-        <button onClick={() => go({ to: 'ASKd4-PanelFirst' })} aria-label="Ask Clean Sheet" style={{ ...reset, flex: 'none', width: 44, height: 44, borderRadius: 999, border: '1px solid #a9cfc0', color: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Svg d={SPARKLE} size={20} /></button>
+        <button onClick={() => openAsk()} aria-label="Ask Clean Sheet" style={{ ...reset, flex: 'none', width: 44, height: 44, borderRadius: 999, border: '1px solid #a9cfc0', color: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Svg d={SPARKLE} size={20} /></button>
         <button data-club-pill="" onClick={() => go({ to: 'VS1-SwitchView' })} style={{ ...reset, height: 44, padding: '0 14px', borderRadius: 999, background: '#ffffff', color: INK, fontSize: 15, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 8, whiteSpace: 'nowrap' }}><Crest size={18} />{frame.team} <Svg d="M6 9l6 6 6-6" w={2.4} /></button>
         <button onClick={() => openScreen('SET1-Account', frame.who)} aria-label="Your account and settings" data-club-keep="" style={{ ...reset, flex: 'none', width: 44, height: 44, borderRadius: 999, background: EDGE, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15 }}>{frame.avatar}</button>
       </div>

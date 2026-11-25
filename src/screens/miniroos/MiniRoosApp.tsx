@@ -43,6 +43,8 @@ import FixturesMiniRoos  from './FixturesMiniRoos'
 import TeamChatMiniRoos  from './TeamChatMiniRoos'
 import FootballYearScreen from './FootballYearScreen'
 import CoachTabletFrame  from '../CoachTabletFrame'
+import { setAskWho } from '../../ask/askState'
+import { ASK_AS } from '../../ask/roles'
 import ClubFlowScreen from '../clubflows/flows'
 import { useSandbox }   from '../sandbox/SandboxContext'
 import ChancesFlow, { isChanceId } from '../chances/ChancesFlow'
@@ -750,6 +752,10 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
   const [files, setFiles]           = useState<MrFile[]>(MR_FILES)
   const { active: inSandbox, store } = useSandbox()
   const ASK_QUESTIONS = ['Who needs a rest this week?', 'What should we work on tonight?', 'Is everyone getting fair minutes?']
+  // Ask Clean Sheet: who is asking. A club the visitor is building in the sandbox is theirs, not sample data, so Ask is not offered there.
+  const askAs = inSandbox ? `MiniRoos coach of ${store.teams[0]?.name ?? 'a team'}, the demo's sample club (children under 12: no scores or rankings; not fees)` : ASK_AS.miniroos.role
+  const askHidden = inSandbox && !!empty, askCovered = !!layer
+  useEffect(() => askHidden ? undefined : setAskWho({ ...ASK_AS.miniroos, examples: ASK_QUESTIONS, role: askAs, open: () => { if (askCovered) return false; setAskOpen(true); return true } }), [askAs, askHidden, askCovered, setAskOpen])   // eslint-disable-line react-hooks/exhaustive-deps
 
   // APP-MAP: Turns, Who's coming, Review. What we saw and Thank the parents open
   // from Review, not as sub-tabs; Live is not a MiniRoos thing (FIX-LIST item 3).
@@ -815,6 +821,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
     registerAppNav(t => {
       setFilOpen(null)
       if (t.startsWith('example:')) setLayer(t)
+      else if (/^ASK[dp]?\d/.test(t)) setAskOpen(true)   // an Ask button drawn on a home opens this app's own Ask panel
       else if (t === 'training') setNav('training')
       else if (t === 'squad') setNav('squad')
       else if (t === 'record') setNav('record')
@@ -957,6 +964,16 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
 
   if (teamTalkOpen) return <MiniRoosTeamTalk onClose={() => setTeamTalkOpen(false)} />
 
+  // The screens Ask Clean Sheet can offer to open: every tab of this app, by its menu label.
+  const askGo = (n: MiniNav, then?: () => void) => () => { handleNavChange(n); then?.(); setAskOpen(false) }
+  const askPlaces = [
+    ...HOME_TABS.map(t => ({ label: `Home › ${t.label}`, go: askGo('home', () => { setHomeTab(t.id); setHomeSubView('main') }) })),
+    ...SQUAD_TABS_MR.map(t => ({ label: `Squad › ${t.label}`, go: askGo('squad', () => setSquadTab(t.id)) })),
+    ...TRAINING_TABS_MR.map(t => ({ label: `Training › ${t.label}`, go: askGo('training', () => { setTrainingTab(t.id); if (t.id === 'session') setGsView('GS1-ProposedSession') }) })),
+    ...GAMEDAY_TABS.map(t => ({ label: `Match day › ${t.label}`, go: askGo('gameday', () => { setGameDayTab(t.id); if (t.id === 'yourtake') setYtView('YT1-YourTake') }) })),
+    { label: 'Record', go: askGo('record') }, { label: 'Record › Clips', go: askGo('clips') },
+    ...LEARN_TABS.map((t, i) => ({ label: `Learn › ${t}`, go: askGo('learn', () => setLearnTab(i === 1 ? 'centre' : 'course')) })),
+  ]
   if (layer) return <ScreenLayer who={inSandbox ? null : 'Tom Albers · coach, U9 Tom'} screenKey={layer.replace(/^example:/, '')} example={layer.startsWith('example:')} onClose={() => setLayer(null)} backLabel={layer.startsWith('example:') && inSandbox ? `Back to ${store.teams[0]?.name ?? 'your team'} · this is an example from the demo club` : 'Back to U9 Tom'} />
 
   return (
@@ -972,10 +989,13 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
       onTeam={inSandbox ? undefined : () => setLayer('VS1-SwitchView')}
       onAvatar={() => setLayer('SET1-Account')}
       avatarLetters={inSandbox ? 'MC' : 'TA'}
+      showAsk={!askHidden}
       askOpen={askOpen}
       onAskToggle={() => setAskOpen(o => !o)}
       askQuestions={ASK_QUESTIONS}
       askRole="MiniRoos coach"
+      askAs={askAs}
+      askPlaces={askPlaces}
     >
       <div data-screen={MR_SCREEN[nav === 'home' ? homeTab : nav === 'squad' ? `squad:${squadTab}` : nav === 'training' ? `training:${trainingTab}` : nav === 'gameday' ? `gameday:${gameDayTab}` : nav === 'learn' ? `learn:${learnTab}` : nav] ?? undefined} style={{ display: 'contents' }}>{content}</div>
     </CoachTabletFrame>

@@ -173,7 +173,7 @@ export default function PlayerProfileScreen({ playerIni, empty, players = SQUAD_
             <div style={{ flexGrow: 1, minWidth: 0 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
                 <span style={{ fontSize: 24, fontWeight: 700, color: '#10211f', letterSpacing: '-0.02em' }}>{player.fullName}</span>
-                <span style={{ ...statusChip, fontSize: 12, fontWeight: 700, padding: '3px 10px', borderRadius: '999px', border: `1px solid ${statusChip.border}` }}>{statusLabel}</span>
+                <span data-ask-skip={player.status === 'checkin' || player.status === 'missing' ? '' : undefined} style={{ ...statusChip, fontSize: 12, fontWeight: 700, padding: '3px 10px', borderRadius: '999px', border: `1px solid ${statusChip.border}` }}>{statusLabel}</span>
               </div>
               <div style={{ fontSize: 13, color: '#5c6b67', marginTop: 4 }}>
                 {player.pos} · #{player.games} · U12 Sam · {player.foot} foot · {player.season}
@@ -307,8 +307,8 @@ export default function PlayerProfileScreen({ playerIni, empty, players = SQUAD_
           <div style={{ fontSize: 12, color: '#5c6b67' }}>GPS vest · line marks 110%</div>
         </div>
 
-        {/* Wellness */}
-        <div style={{ marginBottom: 16, padding: '10px 12px', background: '#faf5ec', borderRadius: 10 }}>
+        {/* Wellness: never sent with an Ask Clean Sheet question */}
+        <div data-ask-skip="" style={{ marginBottom: 16, padding: '10px 12px', background: '#faf5ec', borderRadius: 10 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span style={{ fontSize: 14, fontWeight: 600, color: '#10211f' }}>Wellness today</span>
             <span style={{ fontSize: 14, fontWeight: 700, color: player.wellness && player.wellness < 3 ? '#9d7c80' : '#10211f' }}>

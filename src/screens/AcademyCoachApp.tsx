@@ -7,7 +7,11 @@ import { useEffect, useState, type ReactNode } from 'react'
 import { useBackState } from '../backState'
 import { openScreen } from './openThing'
 import CoachNav from './academycoach/CoachNav'
-import { InCoachApp, type CoachMain } from './academycoach/menu'
+import { COACH_MENU, InCoachApp, type CoachMain } from './academycoach/menu'
+import AskChat from '../ask/AskChat'
+import { setAskContext } from '../ask/ask'
+import { setAskWho } from '../ask/askState'
+import { coachContext } from '../ask/academyContext'
 import { COACH_BOARDS } from './academycoach/boards'
 import CoachPlayer from './academycoach/CoachPlayer'
 import { COACH_PLAYER_BOARDS, coachBoard, openPlayer, playerOfBoard, useCoachTeam } from './academycoach/coachTeam'
@@ -58,18 +62,22 @@ const BASE_OF: Record<string, string> = Object.fromEntries(EMPTY_IDS.map(e => [e
 const EMPTY_OF: Record<string, string> = Object.fromEntries(Object.entries(BASE_OF).map(([e, b]) => [b, e]))
 const boardOf = (id: string) => BASE_OF[id] ?? FIRST[id] ?? id
 
+/** The screens Ask Clean Sheet can offer to open: every item in the coach's menu, by its label. */
+const ASK_PLACES: [string, string][] = COACH_MENU.flatMap(m => [[m.label, m.opens] as [string, string], ...m.subs.map(x => [`${m.label} › ${x.label}`, x.opens] as [string, string])])
+
 export default function AcademyCoachApp({ empty: emptyApp = false, initialScreen, onNavChange, homeStory }: { onBack?: () => void; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; homeStory?: ReactNode }) {
   const asked = boardOf(initialScreen ?? 'today')
   const first = asked === 'ADC16-Chances' && !SHOW_CHANCE_QUALITY_TILES ? 'ADC7-GameReview' : asked   // hidden until chance values are validated
   const empty = emptyApp || (initialScreen ?? '') in BASE_OF   // an empty-state address opens the app with nothing in it
   const [board, setBoard] = useBackState<string>(first in LIT ? first : FIRST.today)
-  const { a, player: openOne } = useCoachTeam()
+  const { a, g: coachTeam, player: openOne } = useCoachTeam()
+  const coachTeamName = coachTeam.name, coachTeamId = coachTeam.id
+  useEffect(() => setAskContext('academycoach', () => coachContext(coachTeamId)), [coachTeamId])   // what Ask Clean Sheet knows for this coach: their own team, no fees
   const filed = playerOfBoard(a, board)   // the player whose file is showing, when one is
   const filedId = filed?.id
   useEffect(() => { if (filedId !== undefined) openPlayer(filedId) }, [filedId])   // a goal, a clip or a report opened from here is this player's
   const [askOpen, setAskOpen] = useState(false)
-  const [toast, setToast] = useState<string | null>(null)
-  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  useEffect(() => setAskWho({ role: 'academy coach', examples: [], note: '', open: () => { setAskOpen(true); return true } }), [])   // an "Ask in your own words" button on one of this app's pages opens the panel below
 
   // Open a screen by its id. The app shows its own boards in place; anything else
   // (Learn, the view switcher, a club coach's screen) opens over the top with a Back bar.
@@ -130,26 +138,14 @@ export default function AcademyCoachApp({ empty: emptyApp = false, initialScreen
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
               </button>
             </div>
-            <div style={{ flex: 1, overflowY: 'auto', padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 10 }}>
-              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: '#4a5a57', textTransform: 'uppercase' as const, marginTop: 4 }}>About this screen</div>
-              {['Who is making the most progress?', 'Which players need more one-on-ones?', 'Is anyone behind on their term goals?'].map(q => (
-                <button key={q} onClick={() => showToast(q)} style={{ width: '100%', textAlign: 'left', padding: '10px 14px', borderRadius: 10, border: '1px solid #e8edeb', background: '#fff', color: '#2f6252', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{q}</button>
-              ))}
-              <div style={{ fontSize: 12, color: '#4a5a57', marginTop: 4 }}>Or anything else</div>
-            </div>
-            <div style={{ background: '#fff', padding: '10px 14px 12px', borderTop: '1px solid #e8edeb', flexShrink: 0 }}>
-              <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 6 }}>
-                <input placeholder="Ask a follow-up…" style={{ flex: 1, height: 40, padding: '0 12px', borderRadius: 8, border: '1px solid #e8edeb', fontSize: 13, fontFamily: 'inherit', outline: 'none', color: '#10211f' }} />
-                <button onClick={() => showToast('Ask sent.')} style={{ width: 44, height: 44, borderRadius: 8, background: '#2f6252', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-                </button>
-              </div>
-              <div style={{ fontSize: 11, color: '#4a5a57', lineHeight: 1.5 }}>Uses only what you can see as academy coach. Never sends anything by itself.</div>
-            </div>
+            {/* The working chat: the question goes to the demo's server with this coach's role and what is on the screen. */}
+            <AskChat role={`academy coach of ${coachTeamName}, Tall Timber Academy (sees their own team only; never fees)`} heading="About this screen"
+              examples={['Who is making the most progress?', 'Who has missed the most sessions?', 'Is anyone behind on their term goal?']}
+              places={ASK_PLACES.map(([label, id]) => ({ label, go: () => go(id) }))} onOpened={() => setAskOpen(false)}
+              note="Uses only what you can see as academy coach. Never sends anything by itself." />
           </aside>
         )}
       </div>
-      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
     </InCoachApp.Provider>
   )

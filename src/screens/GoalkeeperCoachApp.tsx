@@ -1,7 +1,10 @@
 import { openScreen } from './openThing'
 import { useBackState } from '../backState'
 import { openThing } from './openThing'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import AskChat from '../ask/AskChat'
+import { setAskWho } from '../ask/askState'
+import { ASK_AS } from '../ask/roles'
 import SessionTab from './session/SessionTab'
 import { isEduId, openEdu } from './learn/library'
 import RecordHub           from './RecordHub'
@@ -293,6 +296,7 @@ export default function GoalkeeperCoachApp({ empty = false, initialScreen, onNav
   const [toast, setToast]         = useState<string | null>(null)
   const [askOpen, setAskOpen]     = useState(false)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
+  useEffect(() => setAskWho({ ...ASK_AS.goalkeeper, open: () => { setAskOpen(true); return true } }), [])   // an Ask button on a page inside this app opens this panel
 
   return (
     <div style={{ width: 1180, minHeight: 'var(--frame-h, 100vh)', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
@@ -449,22 +453,9 @@ export default function GoalkeeperCoachApp({ empty = false, initialScreen, onNav
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
               </button>
             </div>
-            <div style={{ flex: 1, overflowY: 'auto', padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 10 }}>
-              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: '#4a5a57', textTransform: 'uppercase' as const, marginTop: 4 }}>About this screen</div>
-              {['Who needs a rest this week?', "How is each keeper's distribution?", 'Who has had the least training time?'].map(q => (
-                <button key={q} onClick={() => showToast(q)} style={{ width: '100%', textAlign: 'left', padding: '10px 14px', borderRadius: 10, border: '1px solid #e8edeb', background: '#fff', color: '#2f6252', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{q}</button>
-              ))}
-              <div style={{ fontSize: 12, color: '#4a5a57', marginTop: 4 }}>Or anything else</div>
-            </div>
-            <div style={{ background: '#fff', padding: '10px 14px 12px', borderTop: '1px solid #e8edeb', flexShrink: 0 }}>
-              <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 6 }}>
-                <input placeholder="Ask a follow-up…" style={{ flex: 1, height: 40, padding: '0 12px', borderRadius: 8, border: '1px solid #e8edeb', fontSize: 13, fontFamily: 'inherit', outline: 'none', color: '#10211f' }} />
-                <button onClick={() => showToast('Ask sent.')} style={{ width: 44, height: 44, borderRadius: 8, background: '#2f6252', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-                </button>
-              </div>
-              <div style={{ fontSize: 11, color: '#4a5a57', lineHeight: 1.5 }}>Uses only what you can see as goalkeeper coach. Never sends anything by itself.</div>
-            </div>
+            {/* The working chat: the question goes to the demo's server with this coach's role and what is on the screen. */}
+            <AskChat role={ASK_AS.goalkeeper.role} heading="About this screen" examples={ASK_AS.goalkeeper.examples} note={ASK_AS.goalkeeper.note} focus
+              places={GK_NAV.map(t => ({ label: t.label, go: () => { setNav(t.id); onNavChange?.(t.id) } }))} onOpened={() => setAskOpen(false)} />
           </aside>
         )}
       </div>

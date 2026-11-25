@@ -129,7 +129,7 @@ export default function WellnessScreen({ empty, onNav }: { empty?: boolean; onNa
   const sel = PLAYERS[selIdx]
 
   return (
-    <main style={{ flexGrow: 1, minHeight: 0, padding: '12px 28px 18px', boxSizing: 'border-box', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 14, overflow: 'hidden' }}>
+    <main data-ask-skip="" /* wellness answers are never sent with an Ask Clean Sheet question */ style={{ flexGrow: 1, minHeight: 0, padding: '12px 28px 18px', boxSizing: 'border-box', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 14, overflow: 'hidden' }}>
 
       {/* Left: heatmap */}
       <section style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '10px 16px', display: 'flex', flexDirection: 'column', gap: 0, minHeight: 0, overflow: 'auto' }} aria-label="Wellness heatmap">

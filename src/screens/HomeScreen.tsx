@@ -1,3 +1,4 @@
+import { askWhenOpen } from '../ask/askState'
 import { useState } from 'react'
 import { INBOX, METRICS, WEEK_SCHEDULE, RESULTS, SQUAD, type Role } from '../data'
 import { useSandbox } from './sandbox/SandboxContext'
@@ -214,7 +215,7 @@ export function AskLine({ teamName, questions, onAsk, roleLabel = 'head coach' }
           {questions.map(q => (
             <button
               key={q}
-              onClick={() => { setOpen(false); onAsk?.() }}
+              onClick={() => { setOpen(false); if (onAsk) { askWhenOpen(q); onAsk() } }}   // the panel opens and asks this question
               style={{ display: 'block', width: '100%', textAlign: 'left', padding: '10px 16px', border: 0, background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', fontSize: 14, color: '#10211f', borderTop: '1px solid #f0f1ef' }}
             >
               {q}

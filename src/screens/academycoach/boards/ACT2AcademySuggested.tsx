@@ -1,6 +1,7 @@
 // ACT2-AcademySuggested, as the academy pack draws it (handover v24): the board's own words, sizes and colours.
 // Made from the board's source by the converter kept with the checking scripts; change the words here, not the layout.
 
+import { openAsk } from '../../../ask/askState'
 import { useContext } from 'react'
 import { demoToast } from '../../demoToast'
 import CoachNav from '../CoachNav'
@@ -28,7 +29,7 @@ export default function ACT2AcademySuggested({ onNav }: { onNav?: (id: string) =
           <span style={{ ...C.cap, whiteSpace: "nowrap" }}>Wednesday 3 June · 14 players · 60 minutes</span>
         </div>
         <div style={{ display: "flex", gap: "8px", flex: "none" }}>
-          <button onClick={() => go("ASK3-AskOpen")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.more }}>Ask in your own words</button>
+          <button onClick={() => openAsk()} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.more }}>Ask in your own words</button>
           <button onClick={() => go("ACT3-AcademySessionPlan")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.primary }}>Build the whole session</button>
         </div>
       </div>

@@ -55,6 +55,10 @@ import { SquadLineups }    from './SquadLineups'
 import { useSandbox }      from './sandbox/SandboxContext'
 import { storeIsSample }  from './sandbox/sandboxStore'
 import CoachTabletFrame   from './CoachTabletFrame'
+import { setAskContext } from '../ask/ask'
+import { setAskWho } from '../ask/askState'
+import { ASK_AS } from '../ask/roles'
+import { teamContext } from '../ask/clubContext'
 import { WhereWeAtScreen, WhereWeAtScreenEmpty } from './WhereWeAtScreen'
 import FIL1Files       from './step4/FIL1Files'
 import FIL2Sheet       from './step4/FIL2Sheet'
@@ -446,6 +450,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
     if (isLearnId(s)) { openLearn(s); s = 'GS8-WelcomeCourse' }   // a lesson or module: it opens inside Learn to coach
     if (s === 'GS8-WelcomeCourse' || s === 'learn') { goNav('learn'); setLearnTab(0); return }   // the course has its own top tab
     if (isEduId(s)) { openEdu(s); goNav('learn'); setLearnTab(1); return }   // a page of the Education centre
+    if (/^ASK[dp]?\d/.test(s)) { setAskOpen(true); return }   // an Ask button drawn on a home opens this app's own Ask panel
     if (s in GS_TAB) { const i = GS_TAB[s]; goNav('training'); setTrainingTab(teamType === 'seniors' && i > 6 ? i - 1 : i); if (i === 0) setGsView(s.startsWith('GS') ? s : 'GS1-ProposedSession'); return }   // the justified session lives under Training
     if (s === 'CN2-SelfVsCoach') { goNav('matchday'); setMatchTab(6); setTake('theirs'); return }
     if (isYourTakeId(s)) { goNav('matchday'); setMatchTab(6); setTake('yours'); setYtView(s); return }   // the four Your take boards stay inside Match day
@@ -468,6 +473,19 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
     if (s === 'GP2-AddPlayer' && teamType !== 'seniors') { goNav('squad'); setSquadTab(0); setAddingPlayer(true); return }
     if (isScreenId(s))     { setLayer(s); return }
   }
+
+  // Ask Clean Sheet: who is asking, and what the demo knows for them (their own team; no fees, no wellness answers).
+  // A club the visitor is building in the sandbox is theirs, not sample data, so nothing of it is sent and Ask is not offered there.
+  const askKey = teamType === 'seniors' ? 'seniors' : 'youth'
+  const askAs = inSandbox ? `head coach of ${store.teams[0]?.name ?? 'a team'}, the demo's sample club (sees their own team; not fees)` : ASK_AS[askKey].role
+  const askHidden = inSandbox && sbEmpty, askCovered = !!layer || !!sub
+  useEffect(() => inSandbox ? undefined : setAskContext('clubcoach', () => teamContext(askKey, data.teamName, askKey === 'seniors' ? 'Marko Petrovic' : 'Ollie Grant', [
+    `Ladder: ${data.lastFiveLabel}. Last five games: ${data.lastFive.map(g => g.result).join(' ')}.`,
+    `Last game: ${data.lastGame.label}, ${data.lastGame.opponent}, ${data.lastGame.score}. ${data.lastGame.scorer}. ${data.lastGame.bullets.map(b => b.text).join('; ')}.`,
+    `${data.nextGame}.`,
+    `This week: ${data.thisWeek.map(d => `${d.day} ${d.label}`).join('; ')}.`,
+  ])), [inSandbox, askKey, data])
+  useEffect(() => askHidden ? undefined : setAskWho({ ...ASK_AS[askKey], role: askAs, open: () => { if (askCovered) return false; setAskOpen(true); return true } }), [askKey, askAs, askHidden, askCovered, setAskOpen])
 
   // Embedded Home story drives this frame: mapped deep-links switch the real tab.
   useEffect(() => {
@@ -617,6 +635,15 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
   }
 
   const navTabs = NAV_LABELS.map((label, i) => ({ id: NAV_KEYS[i], label, icon: NAV_ICONS[i] }))
+  // The screens Ask Clean Sheet can offer to open: every tab of this app, by its menu label. Seniors have fewer Squad and Training tabs.
+  const askPlaces = [
+    ...HOME_TABS.map((t, i) => ({ label: `Home › ${t}`, go: () => { goNav('home'); setHomeTab(i) } })),
+    ...(teamType === 'seniors' ? SQUAD_TABS.slice(0, 7) : SQUAD_TABS).map((t, i) => ({ label: `Squad › ${t}`, go: () => { goNav('squad'); setSquadTab(i); setProfileIni(null) } })),
+    ...(teamType === 'seniors' ? TRAINING_TABS.filter(t => t !== 'Growth and load') : TRAINING_TABS).map((t, i) => ({ label: `Training › ${t}`, go: () => { goNav('training'); setTrainingTab(i); if (i === 0) setGsView('GS1-ProposedSession') } })),
+    ...matchVisible.map(i => ({ label: `Match day › ${MATCHDAY_TABS[i]}`, go: () => { goNav('matchday'); setMatchTab(i); if (i === 6) { setYtView('YT1-YourTake'); setTake('yours') } } })),
+    ...FILM_TABS.map(([part, j, t]) => ({ label: `Record › ${t}`, go: () => { if (part === 'clips') { goNav('clips'); setClipsTab(j) } else if (j === 2) handleNav('SET4-Devices'); else { goNav('record'); setRecView(j === 1 ? 'REC2-RecordSaved' : j === 3 ? 'QC10-HowWeMeasure' : null) } } })),
+    ...LEARN_TABS.map((t, i) => ({ label: `Learn › ${t}`, go: () => { goNav('learn'); setLearnTab(i) } })),
+  ]
 
   if (addingPlayer) content = <div data-screen="GP2-AddPlayer" style={{ display: 'contents' }}><ClubFlowScreen id="GP2-AddPlayer" team={data.teamName} go={t => { setAddingPlayer(false); if (t !== 'T4-SquadTab') handleNav(t) }} /></div>
 
@@ -636,8 +663,10 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
         onTeam={inSandbox ? undefined : () => handleNav('VS1-SwitchView')}
         avatarLetters={data.avatarLetters}
         avatarBg={data.avatarBg}
-        showAsk={true}
+        showAsk={!askHidden}
         askOpen={askOpen}
+        askAs={askAs}
+        askPlaces={askPlaces}
         onAskToggle={() => setAskOpen(o => !o)}
         askQuestions={teamType === 'seniors' ? ["Who is one yellow from a ban?", "How do Banksia Park build out?", "Who is carrying a knock?"] : ["Who is over their load this week?", "What did Kingfisher United do to us?", "Who has exams coming up?"]}
         askRole={teamType === 'seniors' ? 'senior coach' : 'youth coach'}

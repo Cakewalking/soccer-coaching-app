@@ -2,6 +2,7 @@
 // Every question has Skip, and skipping stores nothing. A question over the
 // week's limit is held, not asked.
 
+import { openAsk } from '../../ask/askState'
 import { saveFile, savePdf } from '../saveFile'
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { Ico, IC, G, INK, MUT, LINE, PALE, DARK, tile } from '../capture/marks'
@@ -29,7 +30,7 @@ export function Phone({ id, over, title, ini, home, onNav, intro, children, foot
       <header style={{ flex: 'none', background: G, color: '#fff', padding: '10px 12px 14px', display: 'flex', alignItems: 'center', gap: 4 }}>
         <button onClick={() => onNav(home)} aria-label="Back" style={{ flex: 'none', width: 44, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'none', border: 0, color: '#fff', cursor: 'pointer' }}><Ico d="M15 18l-6-6 6-6" size={20} sw={2.4} /></button>
         <span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}><span style={{ fontSize: 12, color: '#dcefe8' }}>{over}</span><h1 style={{ margin: 0, fontSize: 21, lineHeight: '26px', letterSpacing: '-0.02em' }}>{title}</h1></span>
-        <button onClick={() => onNav('ASKp2-PhoneAskOpen')} aria-label="Ask Clean Sheet" style={{ flex: 'none', width: 44, height: 44, borderRadius: 999, border: '1.5px solid #a9cfc0', background: 'none', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}><Ico d={SPARK} size={20} /></button>
+        <button onClick={() => openAsk({ phone: true })} aria-label="Ask Clean Sheet" style={{ flex: 'none', width: 44, height: 44, borderRadius: 999, border: '1.5px solid #a9cfc0', background: 'none', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}><Ico d={SPARK} size={20} /></button>
         <span style={{ flex: 'none', width: 40, height: 40, borderRadius: 999, background: '#e8cfcf', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, marginLeft: 6 }}>{ini}</span>
       </header>
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 12 }}>

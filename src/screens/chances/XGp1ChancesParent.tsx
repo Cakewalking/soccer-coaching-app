@@ -1,3 +1,4 @@
+import { openAsk } from '../../ask/askState'
 import { openThing } from '../openThing'
 // XGp1 · Parent phone: how the team played, in plain words.
 // The team, never one child. Shown only where the child's age band has
@@ -35,7 +36,7 @@ export default function XGp1ChancesParent({ data = ELLA_U11, onNav = () => {}, i
       <header style={{ flex: 'none', background: G, color: '#fff', padding: '10px 12px 14px', display: 'flex', alignItems: 'center', gap: 4 }}>
         <button onClick={() => onNav('STO17-HomeStoryParent')} aria-label="Back" style={{ flex: 'none', width: 44, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'none', border: 0, color: '#fff', cursor: 'pointer' }}><Ico d="M15 18l-6-6 6-6" size={20} sw={2.4} /></button>
         <span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><span style={{ fontSize: 12, color: '#dcefe8' }}>{data.team} · Sunday</span><h1 style={{ margin: 0, fontSize: 22, lineHeight: '27px', letterSpacing: '-0.02em' }}>How the team played</h1></span>
-        <button onClick={() => onNav('ASKp2-PhoneAskOpen')} aria-label="Ask Clean Sheet" style={{ flex: 'none', width: 44, height: 44, borderRadius: 999, border: '1.5px solid #a9cfc0', background: 'none', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}><Ico d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z" size={20} /></button>
+        <button onClick={() => openAsk({ phone: true })} aria-label="Ask Clean Sheet" style={{ flex: 'none', width: 44, height: 44, borderRadius: 999, border: '1.5px solid #a9cfc0', background: 'none', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}><Ico d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z" size={20} /></button>
         <span style={{ flex: 'none', width: 44, height: 44, borderRadius: 999, background: '#e8cfcf', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, marginLeft: 6 }}>{initials}</span>
       </header>
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 12 }}>
