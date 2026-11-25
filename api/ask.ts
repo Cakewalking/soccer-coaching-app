@@ -19,8 +19,10 @@
 import Anthropic from '@anthropic-ai/sdk'
 
 /** The key, under its usual name or the name it was saved under in this project's settings. */
-const KEY = (process.env.ANTHROPIC_API_KEY || process.env.Claude_API || process.env.CLAUDE_API || '').trim()
-const WORKSPACE = (process.env.ANTHROPIC_WORKSPACE_ID || '').trim()
+// Names in a server's settings are case-sensitive, so the key is looked for under these names in any capitals.
+const named = (...names: string[]) => { for (const n of names) for (const [k, v] of Object.entries(process.env)) if (k.toLowerCase() === n && v?.trim()) return v.trim(); return '' }
+const KEY = named('anthropic_api_key', 'claude_api_key', 'claude_api')
+const WORKSPACE = named('anthropic_workspace_id')
 const MODEL = process.env.ASK_MODEL || 'claude-opus-5-5'
 const PER_VISITOR = Number(process.env.ASK_PER_VISITOR) || 12, WINDOW_MS = 10 * 60 * 1000
 const DAILY_CAP = Number(process.env.ASK_DAILY_CAP) || 1500
