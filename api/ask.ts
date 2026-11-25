@@ -137,6 +137,8 @@ export async function POST(request: Request): Promise<Response> {
         // Most specific first: what the panel says depends on whether trying again could help.
         const e = err instanceof Anthropic.AuthenticationError || err instanceof Anthropic.PermissionDeniedError ? 'not_configured'
           : err instanceof Anthropic.RateLimitError ? 'busy'
+          // A key that is refused for how it is set up (no workspace, no credit) is a setup fault, not the question's.
+          : err instanceof Anthropic.BadRequestError && /api key|workspace|credit balance|billing/i.test(err.message) ? 'not_configured'
           : err instanceof Anthropic.BadRequestError || err instanceof Anthropic.NotFoundError ? 'failed'
           : err instanceof Anthropic.APIConnectionError ? 'busy'
           : err instanceof Anthropic.APIError ? (err.status && err.status >= 500 ? 'busy' : 'failed')

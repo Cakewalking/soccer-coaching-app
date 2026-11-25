@@ -11,7 +11,7 @@ export type AskTurn = { role: 'user' | 'assistant'; text: string }
 /** Why an answer did not come, in the panel's own words. */
 export type AskError = 'not_configured' | 'slow_down' | 'busy' | 'failed' | 'declined' | 'cut_short' | 'offline'
 export const ASK_ERROR: Record<AskError, string> = {
-  not_configured: 'Ask Clean Sheet is not switched on for this demo yet.',
+  not_configured: 'Ask Clean Sheet is not switched on for this demo yet. Its key needs setting up.',
   slow_down: 'That is a lot of questions in a short time. Give it a few minutes and ask again.',
   busy: 'Ask Clean Sheet is busy right now. Try again in a minute.',
   failed: 'That question could not be answered. Try asking it another way.',
