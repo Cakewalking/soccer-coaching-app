@@ -30,7 +30,24 @@ export default function AskChat({ role, examples, places = [], note, heading = '
   const msgs = useChat(role), [input, setInput] = useState(''), [busy, setBusy] = useState(false)
   const isOff = useSyncExternalStore(onAskChange, askIsOff, () => false)
   const box = useRef<HTMLDivElement>(null), end = useRef<HTMLDivElement>(null), field = useRef<HTMLInputElement>(null), stop = useRef<AbortController | null>(null)
-  useEffect(() => { end.current?.scrollIntoView({ block: 'end' }) }, [msgs])
+  // The newest words are kept in view by scrolling the conversation itself, never the page behind it.
+  useEffect(() => { const list = end.current?.parentElement; if (list) list.scrollTop = list.scrollHeight }, [msgs])
+  // A side panel is drawn from the top of its page to the bottom. On a page taller than the window that put the box to type in
+  // far below the fold. So a panel placed that way is kept to the part of its page that is in the window, as the page scrolls.
+  useEffect(() => {
+    const panel = box.current?.closest<HTMLElement>('[role="dialog"], aside'), host = panel?.offsetParent as HTMLElement | null
+    if (!panel || !host || getComputedStyle(panel).position !== 'absolute') return
+    const was = { top: panel.style.top, bottom: panel.style.bottom, height: panel.style.height }
+    const fit = () => {
+      const r = host.getBoundingClientRect(), scale = r.width / host.offsetWidth || 1   // a frame may be drawn smaller than its own size
+      const top = Math.max(r.top, 0), bottom = Math.min(r.bottom, window.innerHeight)
+      panel.style.top = `${(top - r.top) / scale}px`; panel.style.bottom = 'auto'; panel.style.height = `${Math.max(240, bottom - top) / scale}px`
+    }
+    fit()
+    window.addEventListener('scroll', fit, { capture: true, passive: true }); window.addEventListener('resize', fit)
+    const seen = new ResizeObserver(fit); seen.observe(host)
+    return () => { window.removeEventListener('scroll', fit, { capture: true }); window.removeEventListener('resize', fit); seen.disconnect(); Object.assign(panel.style, was) }
+  }, [])
   useEffect(() => () => stop.current?.abort(), [])
   useEffect(() => { if (focus) field.current?.focus() }, [focus])
   async function send(q: string) {
